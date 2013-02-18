@@ -1,0 +1,12 @@
+
+*.aux
+
+*.toc
+
+*.synctex.*
+
+.DS_Store
+
+*.log
+
+lanzadera.pdf
