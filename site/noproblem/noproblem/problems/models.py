@@ -11,7 +11,7 @@ class SubArea (models.Model):
     name = models.CharField(max_length=100)
     area = models.ForeignKey(Area)
     def __unicode__(self):
-        return u'%s (%s)' % (self.nombre, self.area.nombre)
+        return u'%s (%s)' % (self.name, self.area.name)
 
 class Problem (models.Model):
     category = models.ForeignKey(SubArea)
@@ -22,23 +22,11 @@ class Problem (models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     requirements = models.ManyToManyField('Problem',blank=True,null=True)
+    datos = models.CharField(max_length=200)
+    solucion = models.CharField(max_length=200)
     def __unicode__(self):
         return self.title
 
-
-class NoTest(Problem):
-    datos = models.CharField(max_length=200)
-    solucion = models.CharField(max_length=200)
-
-class Test(Problem):
-    pass
-
-class TestOptions(models.Model):
-    test = models.ForeignKey(Test)
-    text = models.CharField(max_length=200)
-    is_correct = models.BooleanField()
-    def __unicode__(self):
-        return self.texto
 
 class CustomUser(User):
     # Use UserManager to get the create_user method, etc.
