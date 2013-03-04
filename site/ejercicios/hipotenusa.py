@@ -81,9 +81,9 @@ def altura(lista):
 	
 	
 #++++++++++++++++frenada++++++++++
-#Un coche ve el semaforo ponerse en rojo cuando esta a 50 metros de el, y los peatones han empezado a pasar. 
-#Si el motor de su coche es capaz de decelerar como maximo a 7 m/s2 (es la deceleracion de un coche normal), 
-#cual es la velocidad maxima a la que puede ir antes de empezar a frenar para no atropellarlos?
+#Un coche ve el semaforo ponerse en rojo cuando esta a 20 metros de el, y los peatones han empezado a pasar. 
+#Si el motor de su coche es capaz de decelerar como maximo a 6 m/s2 (es la deceleracion de un coche normal), 
+#a cuantos km/h podra ir como maximo el coche antes de empezar a frenar para no atropellarlos?
 
 def frenada_datos():
 	lista=[]
@@ -92,12 +92,28 @@ def frenada_datos():
 	return lista
 
 def frenada(lista):
-	decel=7.0
+	decel=6.0
 	t=sqrt(lista[0]*2.0/decel)
 	v=decel*t*3.6
 	return v
 	
- 
+#++++++++++velocidadMedia+++++++++++++++
+#Una bici va a 5m/s durante 5 minutos y luego cambia a una velocidad media de 8 m/s durante los siguientes 10 minutos. 
+#Cuantos km habra recorrido en total? Cual es la velocidad media (m/s) de todo el recorrido?
+
+def velm_datos():
+	lista=[]
+	v1=randint(4,6)
+	v2=randint(6,10)
+	t1=randint(3,6)
+	t2=randint(10,20)
+	lista.extend([v1,v2,t1,t2])
+	return lista
+	
+def velm(lista):
+	d=lista[0]*lista[2]*60+lista[1]*lista[3]*60
+	vm=float(d)/(lista[2]*60+lista[3]*60)
+	return (d,vm)
  
  
  
