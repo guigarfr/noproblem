@@ -2,5 +2,27 @@
 
 
 La funcion se llama {{ prob.solucion }} y se le pasan los datos con {{ prob.datos }} <br>
+Se ha solucionado {{ num }}
+{% if num = 1 %}
+	vez
+{% else %}
+	veces
+{% endif %}
+ya! <br />
 
-Hay {{ num }} resultados en total
+{% if solves_list %}
+    <ul>
+    {% for res in solves_list %}
+        <li>{{ res.user }} at {{ res.date }}
+        {% if res.is_correct %}
+        	correct!
+        {% else %}
+			failed!
+		{% endif %}
+	</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No results are available. Problem {{ prob.title }} still hasn't been solved</p>
+{% endif %}
+

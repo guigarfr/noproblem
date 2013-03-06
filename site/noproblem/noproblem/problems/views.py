@@ -29,10 +29,20 @@ def index(request):
 def detail(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
     num = Solves.objects.filter(prob=prob_id).count()
-    return render(request, 'stats.html', {'prob': pr,'num' : num})
+    return render(request, 'detail.html', {'prob': pr,'num' : num})
 
 def stats(request, prob_id):
-    return HttpResponse("You're looking at the statistics of problem %s." % prob_id)
+    pr = get_object_or_404(Problem, pk=prob_id)
+    solves_list = Solves.objects.filter(prob=pr)
+    num = solves_list.count();
+    template = loader.get_template('stats.html')
+    context = Context({
+    				  'prob': pr,
+                      'solves_list': solves_list,
+                      'num' : num,
+                      })
+    return HttpResponse(template.render(context))
+
 
 
 def solve(request, prob_id):
