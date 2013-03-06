@@ -116,10 +116,54 @@ def velm(lista):
 	return (d,vm)
  
  
+#++++++++++Valor minimo mu++++++++++++++
+#Caemos por una montanya de ALPHA grados de inclinacion en un trineo sobre hielo, lo que nos deja casi sin rozamiento,
+#en un primer tramo de X1 metros, a partir de ese momento, la superficie se convierte en nieve dura y ofrece rozamiento; por
+#suerte, porque vamos en el trineo sin saber frenarlo. Que minimo coeficiente de rozamiento ha de tener el suelo en el segundo tramo
+#para que no caigamos por el precipicio que hay al final de la montanya si desde el principio del descenso al final hay X metros.
+
+
+def mumin_datos():
+	lista=[]
+	alpha=randint(10,70)
+	x=randint(50,100)
+	x1=randint(10,20)
+	lista.extend([alpha,x,x1])
+	return lista
+
+def mumin(lista):
+	lista[0]=float(lista[0])
+	lista[1]=float(lista[1])
+	lista[2]=float(lista[2])
+	mu=math.tan(math.radians(lista[0]))*((lista[2]/(lista[1]-lista[2]))+1)
+	return mu
+	
  
+#++++++++++Rozamiento agua++++++++++++++
+
  
- 
- 
+#+++++++++++++++caida libro con folio concepto rozamiento+++++++++++
+
+#+++++++++++velocidad limite gota agua++++++++++++++++++++
+#El rozamiento dinamico se da cuando un cuerpo se mueve dentro de un fluido, y su efecto depende, entre otras cosas, 
+#de la superficie del cuerpo en cuestion, la densidad del medio y la velocidad relativa entre el cuerpo y el medio.
+#El coeficiente de este rozamiento en el caso de una esfera en el aire es 3.4times10-4r kg/s, donde r esta en metros. 
+#Cual es la velocidad limite que puede conseguir una gota de agua de 0.5 mm de radio al caer al suelo?
+
+def gota_datos():
+	lista=[]
+	diam=random.uniform(0.1,2.0)
+	diam=round(diam,2)
+	lista.append(diam)
+	return lista
+	
+def gota(lista):
+	r=lista[0]/1000
+	gamma=3.4*(10**(-4))*r
+	densidad=1000.0
+	masa=densidad*(4.0/3.0)*math.pi*r**3
+	v=masa*constantes.G/gamma
+	return v
  
  
  
