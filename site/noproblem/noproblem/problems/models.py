@@ -37,7 +37,7 @@ class CustomUser(User):
         return self.name
 
 
-class Resultados(models.Model):
+class Solves(models.Model):
     user = models.ForeignKey(CustomUser)
     prob = models.ForeignKey(Problem)
     date = models.DateTimeField()
