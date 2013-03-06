@@ -3,7 +3,6 @@ from django.views.generic import DetailView, ListView
 from noproblem.problems.models import Problem
 from noproblem.problems import views
 
-
 urlpatterns = patterns('',
                        # ex: /problems/
                        url(r'^$', views.index, name='index'),
@@ -11,7 +10,9 @@ urlpatterns = patterns('',
                        url(r'^(?P<prob_id>\d+)/$', views.detail, name='detail'),
                        # ex: /problems/5/stats/
                        url(r'^(?P<prob_id>\d+)/stats/$', views.stats, name='stats'),
-                       )
+                       # ex: /problems/5/stats/
+                       url(r'^(?P<prob_id>\d+)/solve/$', views.user_solves, name='solve'),
+)
 
 #urlpatterns = patterns('',
 #                       url(r'^$',
