@@ -11,4 +11,4 @@ SolverFormSet = inlineformset_factory(Problem,
 class UserSubmittedProblemForm(forms.ModelForm):
     class Meta:
         model = Problem
-        exclude = ('category', 'created_at','updated_at','requirements','datos','solucion')
+        exclude = ('category', 'wording','points','created_at','updated_at','requirements','datos','solucion')

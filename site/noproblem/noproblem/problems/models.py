@@ -34,7 +34,7 @@ class CustomUser(User):
     # Our own fields
     credits = models.IntegerField()
     def __unicode__(self):
-        return self.name
+        return self.username
 
 
 class Solves(models.Model):

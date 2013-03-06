@@ -9,6 +9,15 @@ from noproblem.problems.forms import UserSubmittedProblemForm, SolverFormSet
 
 from django.forms.models import inlineformset_factory
 
+from django.core.context_processors import csrf
+from django.shortcuts import get_object_or_404, render_to_response
+from django.forms.models import inlineformset_factory
+from django.http import HttpResponseRedirect
+from django.template import RequestContext
+from django.core.urlresolvers import reverse
+
+
+
 def index(request):
     latest_prob_list = Problem.objects.order_by('-created_at')[:5]
     template = loader.get_template('indexpr.html')
@@ -26,7 +35,7 @@ def stats(request, prob_id):
     return HttpResponse("You're looking at the statistics of problem %s." % prob_id)
 
 
-def user_solves(request, prob_id):
+def solve(request, prob_id):
     
     pr = get_object_or_404(Problem, pk=prob_id)
             
@@ -35,14 +44,16 @@ def user_solves(request, prob_id):
         problem_form = UserSubmittedProblemForm(request.POST, instance=pr)
         if problem_form.is_valid():
             problem_form = problem_form.save(commit=False)
-            solve_formset = SolverFormSet(request.POST, request.FILES, instance=pr)
+            solve_formset = SolverFormSet(request.POST, instance=pr)
             if solve_formset.is_valid():
                 solve_formset.save()
                 # Agregar una nueva tupla a resueltos
-                return HttpResponseRedirect(reverse('stats', args=(pr.id,)))
+                return HttpResponseRedirect(reverse('problems:stats', args=(pr.id,)))
 
     else:
         problem_form = UserSubmittedProblemForm(instance=pr)
         solve_formset = SolverFormSet(instance=pr)
     
-    return render(request, "user_solves.html", {"prob": pr, "form":problem_form, "formset": solve_formset})
+    #c.update({"form":problem_form, "formset": solve_formset})
+    return render_to_response('user_solves.html', {"form":problem_form, "formset": solve_formset}, context_instance=RequestContext(request))
+    #return render(request, "user_solves.html", {"form":problem_form, "formset": solve_formset})

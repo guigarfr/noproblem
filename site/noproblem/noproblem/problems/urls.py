@@ -11,7 +11,7 @@ urlpatterns = patterns('',
                        # ex: /problems/5/stats/
                        url(r'^(?P<prob_id>\d+)/stats/$', views.stats, name='stats'),
                        # ex: /problems/5/stats/
-                       url(r'^(?P<prob_id>\d+)/solve/$', views.user_solves, name='solve'),
+                       url(r'^(?P<prob_id>\d+)/solve/$', views.solve, name='solve'),
 )
 
 #urlpatterns = patterns('',

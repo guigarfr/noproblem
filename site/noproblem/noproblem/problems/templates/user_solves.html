@@ -1,13 +1,10 @@
-<h1>{{ prob.title }}</h1>
-La funcion se llama {{ prob.solucion }} y se le pasan los datos con {{ prob.datos }} <br>
-
 <img src="{{ MEDIA_URL}}Memoria_De_Espana_.jpg" />
 
 
-<form action="." method="post" class="problem_form">
+<form action="." method="post" class="problem_form">{% csrf_token %}
     <table>
-      {{ problem_form.as_table }}
-      {{ solve_formset.as_table }}
+      {{ form.as_p }}
+      {{ formset.as_p }}
       <tr>
         <th></th>
         <td><input type="submit" name="submit" value="Submit" class="button"></td>
