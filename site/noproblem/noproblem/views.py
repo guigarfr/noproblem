@@ -10,10 +10,11 @@
 #     return HttpResponse(html)
 from django.shortcuts import render_to_response
 import datetime
+from django.template import RequestContext
 
 def current_datetime(request):
     now = datetime.datetime.now()
-    return render_to_response('current_datetime.html', {'current_date': now})
+    return render_to_response('current_datetime.html', {'current_date': now}, context_instance=RequestContext(request))
     
 def hours_ahead(request, offset):
 	try:
@@ -21,4 +22,4 @@ def hours_ahead(request, offset):
 	except ValueError:
 		raise Http404()
 	dt = datetime.datetime.now() + datetime.timedelta(hours=offset)
-	return render_to_response('hours_ahead.html', {'hour_offset': offset,'next_time': dt})
+	return render_to_response('hours_ahead.html', {'hour_offset': offset,'next_time': dt}, context_instance=RequestContext(request))
