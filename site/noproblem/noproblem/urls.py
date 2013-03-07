@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.views.static import *
+from noproblem.views import current_datetime, hours_ahead
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -8,6 +9,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    ('^time/$', current_datetime),
+    (r'^time/plus/(\d{1,2})/$', hours_ahead),
     # url(r'^$', '{{ project_name }}.views.home', name='home'),
     # url(r'^{{ project_name }}/', include('{{ project_name }}.foo.urls')),
     url(r'^problems/', include('noproblem.problems.urls', namespace="problems")),

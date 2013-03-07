@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <h1>Connecta</h1>
+    <img src="{{ MEDIA_URL }}Memoria_De_Espana_.jpg" />
+    <h2>Centro de Promoción Científica</h2>
+    {% block content %}{% endblock %}
+    {% block footer %}
+    <hr>
+    <p>Gracias por visitar nuestra web.</p>
+    {% endblock %}
+</body>
+</html>
