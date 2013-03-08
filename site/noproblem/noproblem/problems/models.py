@@ -27,6 +27,17 @@ class Problem (models.Model):
     def __unicode__(self):
         return self.title
 
+    def data(self):
+        "Returns the data needed to solve a problem"
+        from noproblem.problems.pyconnecta import probs
+        return getattr(probs, self.datos)()
+
+    def solve(self,data):
+        "Returns the data needed to solve a problem"
+        from noproblem.problems.pyconnecta import probs
+        return getattr(probs, self.solucion)(data)
+
+
 
 class CustomUser(User):
     # Use UserManager to get the create_user method, etc.
