@@ -1,4 +1,22 @@
-<h1>{{ prob.title }}</h1>
-La funcion se llama {{ prob.solucion }} y se le pasan los datos con {{ prob.datos }} <br>
+{% load custom_filters %}
 
-Hay {{ num }} resultados en total
+
+
+<h1>{{ prob.title }}</h1>
+La funcion se llama {{ prob.solucion }} y se le pasan los datos con {{ prob.datos }} <br>
+
+Hay {{ num }} resultados en total. <br/>
+
+
+{% set data = prob.data %}
+
+Los datos son: 
+<ul>
+{% for d in data %}
+<li>{{ d }}</li>
+{% endfor %}
+</ul>
+
+<br />
+
+La solucion es: {{ prob|solve:data }}
