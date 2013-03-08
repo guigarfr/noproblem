@@ -1,26 +1,35 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
 <head>
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}deco.css" />
 	<link href=' http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' type='text/css'>
 	<link href=' http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
-	<style type="text/css">
-		body{
-		font: 16px Arial, sans-serif;
-		line-height: 120%;
-		}
-		H1 {color:#8F2250;font-size:48pt;font-family:Lobster Two;}
-		H2 {font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;}
-	</style>
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body bgcolor="#F0F0F0">
-	<h1>Connecta</h1>
+<body>
+	<h1>
+	<img src="{{ MEDIA_URL }}logo.jpg" align="right" style="width: 10%; height: 10%"/>
+	Connecta 	
+	</h1>
 	<h2>Centro de Promoción Científica</h2>
-    <!-- <img src="{{ MEDIA_URL }}logo.pdf" align="right" style="width: 20%; height: 20%"/> -->
+	<div id="navbar">
+            <ul id="navbarlist">
+                <li id="anb-home"><a href="/inicio/" title="Inicio">Inicio</a></li>
+                <li id="anb-home"><a href="/about/" title="about">¿Quién, qué, cómo?</a></li>
+                <li id="anb-home"><a href="/divulgacion/" title="divulgacion">Divulgación</a></li>
+                <li id="anb-home"><a href="/didactica/" title="didactica">Didáctica</a></li>
+                <li id="anb-home"><a href="/desarrollo/" title="desarrollo">Desarrollo</a></li>
+                <li id="anb-home"><a href="/contacto/" title="contacto">Contacto</a></li>
+            </ul>
+    </div>
+   
     {% block content %}{% endblock %}
     {% block footer %}
-    <!-- <hr> -->
-    <p>Gracias por <FONT FACE="Annie Use Your Telescope">connectarte</FONT></p>
+    <div id="gracias" align="left"> Gracias por connectarte. </div>
+    <div class="addthis_toolbox addthis_default_style">
+     <a class="addthis_button_tweet"></a> 
+</div> 
     {% endblock %}
 </body>
 </html>
+
