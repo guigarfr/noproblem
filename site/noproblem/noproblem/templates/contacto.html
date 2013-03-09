@@ -4,4 +4,28 @@
 
 {% block content %}
 <p>Formulario de contacto</p>
+
+<form>
+	<label for="name">Nombre: </label>
+	<input type="text" id="name" value="" size="30" maxlength="40" /> <br/>
+	<label for="email">E-mail: </label>
+	<input type="text" id="email" value="correo@electronico.com" size="40" maxlength="40" /><br/>
+	¿Cuál de estos temas describen el motivo de tu contacto?<br />
+	<input type="checkbox" name="chkHab” value="xhtml" />Divulgación <br />
+	<input type="checkbox" name="chkHab" value="CSS" />Didáctica<br />
+	<input type="checkbox" name="chkHab" value="JavaScript" />Desarrollo<br />
+	<input type="checkbox" name="chkHab" value="aspnet" />Otros<br />
+	<label for="content">Mensaje: </label><br/>
+	<textarea id="content" cols="50" rows="6">
+	</textarea>
+<!--
+	<form action=”http://www.example.com/imageUpload.jsp” method=”post”
+			name=”fromImageUpload” enctype=”multipart/form-data”>
+		<input type=”file” name=”fileUpload” accept=”image/*” />
+		<br /><br /><input type=”submit” value=”Submit” />
+	</form>
+	-->
+	<br /><br /><input type="submit" value="Enviar" />
+
+</form>
 {% endblock %}
