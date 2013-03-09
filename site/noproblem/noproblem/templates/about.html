@@ -4,6 +4,22 @@
 
 {% block content %}
 <p>Connecta es un centro de promoción bla bla bla</p>
-<div align="center"><iframe width="560" height="315" 
-src="http://www.youtube.com/embed/YRpYQ3KDtwY?rel=0" frameborder="0" allowfullscreen></iframe></div>
+
+<div align="center">
+	<iframe width="560" height="315" 
+		src="http://www.youtube.com/embed/YRpYQ3KDtwY?rel=0"
+		frameborder="0" allowfullscreen />
+</div>
+
+<!-- Otra forma de embeber un video: parámetro object. dices el tipo y busca un reproductor adecuado.
+<div align="center">
+<object width="560" height="315" type="application/x-shockwave-flash"
+	data="http://www.youtube.com/v/YRpYQ3KDtwY">
+	<param name="movie" value="http://www.youtube.com/v/YRpYQ3KDtwY" />
+	<param name="wmode" value="transparent" />
+</object>
+</div>
+-->
+
+
 {% endblock %}
