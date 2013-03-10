@@ -9,7 +9,7 @@ padding-right: 15px !important; padding-left: 15px !important; list-style: none;
 
 /*#logotit li.first { padding: 10px 10px 10px 750px; }*/
 
-#poslogo {position:fixed;
+#poslogo {position:absolute;
 top:30px;
 right:5px;}
 
