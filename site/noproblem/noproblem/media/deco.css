@@ -1,5 +1,8 @@
 #navbar { height: 40px !important; padding: 0px 15px 5px !important; background: #C0C0C0 !important; 
-border-bottom: 2px #8F2250 solid !important;}
+border-bottom: 2px #8F2250 none !important;
+position:absolute;
+top:103px;
+right:8px;}
 #navbarlist { display: inline; float: right !important; list-style: none; margin: 0 !important; 
 padding: 0 !important;}
 #navbarlist li { float: left !important; font-size: 14px !important;line-height: 45px !important; 
@@ -10,32 +13,45 @@ padding-right: 15px !important; padding-left: 15px !important; list-style: none;
 /*#logotit li.first { padding: 10px 10px 10px 750px; }*/
 
 #poslogo {position:absolute;
-top:30px;
-right:5px;}
+top:20px;
+right:760px;}
+
+div.hr {
+  height: 2px;
+  background: #8F2250;
+  color:#8F2250;
+}
+div.hr hr {
+  display: none;
+}
 
 #contact{margin-left: auto;
 	margin-right: 800px;
 	width: 6em;}
 
 .efectologo {
- width: 110px;
- height:110px;
+ width: 115px;
+ height:115px;
  display:block;
  /*background:transparent url('logo.jpg') center top no-repeat;*/
+ background-color: #F0F0F0;
  background-position: center top;
  background-repeat: no-repeat;
- background-image: url('logo.jpg');
+ background-image: url('logo1.png');
  background-size: 90px;
 }
 
 .efectologo:hover {
-   background-image: url('arbol.jpg');
+   background-color: #F0F0F0;
+   background-image: url('arbol1.png');
 }
 
+#sometitles{font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;}
 
 body{
 		background: #F0F0F0;
-		font: 16px Verdana, sans-serif;
+		/*font: 16px Verdana, sans-serif;*/
+		font: 16px Trebuchet MS, Trebuchet, Helvetica, Arial;
 		line-height: 120%;
 }
 h1 {
@@ -50,3 +66,4 @@ h2 {
 ul {
         list-style: square;
 }
+
