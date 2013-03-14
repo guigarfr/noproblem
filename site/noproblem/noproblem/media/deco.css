@@ -1,8 +1,9 @@
+/*barra de navegación*/
 #navbar { height: 40px !important; padding: 0px 15px 5px !important; background: #C0C0C0 !important; 
-border-bottom: 2px #8F2250 none !important;
+ border:solid 2px; border-color: #000000;
 position:absolute;
-top:103px;
-right:8px;}
+top:95px;
+right:50px;}
 #navbarlist { display: inline; float: right !important; list-style: none; margin: 0 !important; 
 padding: 0 !important;}
 #navbarlist li { float: left !important; font-size: 14px !important;line-height: 45px !important; 
@@ -10,16 +11,13 @@ padding-right: 15px !important; padding-left: 15px !important; list-style: none;
 #navbarlist li a { color: #000000; font-weight: bold !important; text-decoration: none !important; }
 #navbarlist li a:hover { color: white !important;}
 
-/*#logotit li.first { padding: 10px 10px 10px 750px; }*/
 
-#poslogo {position:absolute;
-top:20px;
-right:760px;}
+
 
 div.hr {
   height: 2px;
-  background: #8F2250;
-  color:#8F2250;
+  background: #000000;
+  color:#000000;
 }
 div.hr hr {
   display: none;
@@ -29,12 +27,15 @@ div.hr hr {
 	margin-right: 800px;
 	width: 6em;}
 
+#poslogo {position:absolute;
+top:20px;
+right:710px;}
+
 .efectologo {
  width: 115px;
  height:115px;
  display:block;
- /*background:transparent url('logo.jpg') center top no-repeat;*/
- background-color: #F0F0F0;
+ background-color: white;
  background-position: center top;
  background-repeat: no-repeat;
  background-image: url('logo1.png');
@@ -42,17 +43,23 @@ div.hr hr {
 }
 
 .efectologo:hover {
-   background-color: #F0F0F0;
+   background-color: white;
    background-image: url('arbol1.png');
 }
 
 #sometitles{font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;}
 
 body{
-		background: #F0F0F0;
-		/*font: 16px Verdana, sans-serif;*/
-		font: 16px Trebuchet MS, Trebuchet, Helvetica, Arial;
+		/*background: #F0F0F0;*/
+		background:white;
+		font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
 		line-height: 120%;
+		margin-top: 0px;
+      margin-right: 50px;
+      margin-bottom: 50px;
+      margin-left: 50px;
+      border:solid 2px;
+      border-color:#F0F0F0;
 }
 h1 {
 	color:#8F2250;font-size:48pt;font-family:Lobster Two;
@@ -66,4 +73,9 @@ h2 {
 ul {
         list-style: square;
 }
+
+
+#cuadro{
+border:none;
+width:400px;}
 

@@ -1,0 +1,143 @@
+/*Como hacer un hover con lista del tamaño de la pantalla y definiendo recuadros*/
+/* 
+#ddd {
+position: relative;
+width: 1000px;
+height: 728px;
+background: #F0F0F0 url('hola.png') no-repeat;
+background-size: 500px;
+background-position: center top;
+padding: 0;
+}
+#ddd li {
+display: block;
+position: absolute;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+#ddd a {
+display: block;
+text-indent: -9999px;
+text-decoration: none;
+outline: none;
+cursor: default;
+}
+#div {
+border:solid;border-color:red;
+left: 310px;
+top: 200px;
+}
+#did {
+border:solid;border-color:blue;
+left: 380px;
+top: 92px;
+z-index: 30;
+}
+#des {border:solid;
+left: 520px; 
+top: 160px; 
+z-index: 10;}
+
+#div a {
+width: 160px;
+height: 90px;
+}
+#did a {
+width: 160px;
+height: 60px;
+}
+#des a {
+width: 160px;
+height: 60px;
+}
+#div a:hover {
+background: url('hola2.png') -298px -439px no-repeat;
+}
+#did a:hover {
+background: url('hola3.png') -298px -439px no-repeat;
+}
+#des a:hover {
+background: url('hola4.png') -298px -439px no-repeat;
+}
+ */
+ /*SU HTML ES:
+ <ul id="ddd">
+ <li id="nth-of-type(1)"><a href="/divulgacion/" title="">Divulgación</a></li>
+ <li id="nth-of-type(2)"><a href="/didactica/" title="">Didáctica</a></li>
+ <li id="nth-of-type(3)"><a href="/desarrollo/" title="">Desarrollo</a></li>
+ </ul> 
+ */
+ 
+ 
+ 
+/*Cómo hacer hover sobre imagen creando un background que cambia pulsando sobre elementos de lista externa*/
+/*
+body {
+ display:block;
+ background-color: #F0F0F0;
+ background-position: center top;
+ background-repeat: no-repeat;
+ background-image: url('hola.png');
+ background-size: 600px;
+ font: 16px Trebuchet MS, Trebuchet, Helvetica, Arial;
+ line-height: 120%;
+} 
+
+#ddd a {
+display: block;
+text-indent: -9999px;
+text-decoration: none;
+outline: none;
+cursor: default;
+}
+
+li:nth-of-type(1) {
+border:solid;border-color:red;
+left: 310px;
+top: 200px;
+z-index: 10;
+}
+li:nth-of-type(2) {
+border:solid;border-color:blue;
+left: 380px;
+top: 92px;
+z-index: 30;
+}
+li:nth-of-type(3) {border:solid;
+left: 520px; 
+top: 160px; 
+z-index: 10;}
+
+
+
+a:hover:before {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0; bottom: 0; left: 0; right: 0;
+        z-index: -1;
+}
+li:nth-of-type(1) a:hover:before {
+        background: url('hola2.png') no-repeat;
+        background-size:600px;
+        background-position: center top;
+}
+li:nth-of-type(2) a:hover:before {
+        background: url('hola3.png') no-repeat;
+        background-size:600px;
+        background-position: center top;
+}
+li:nth-of-type(3) a:hover:before {
+        background: url('hola4.png') no-repeat;
+        background-size:600px;
+        background-position: center top;
+}
+*/ 
+ /*SU HTML ES:
+<ul id="ddd">
+<li id="div"><a href="#">Divulgación</a></li>
+<li id="did"><a href="#">Didáctica</a></li>
+<li id="des"><a href="#">Desarrollo</a></li>
+</ul> 
+ */

@@ -1,0 +1,51 @@
+body {
+ /*background-color: #F0F0F0;*/
+ background-color: white;
+ font: 16px Trebuchet MS, Trebuchet, Helvetica, Arial;
+ line-height: 120%;
+} 
+
+#fondo{
+position:absolute;
+top:0;
+left:250px;
+}
+
+#rec{border:solid;}
+
+h1 {
+	color:#8F2250;font-size:48pt;font-family:Lobster Two;
+}
+h2 {
+	font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;
+} 
+ul {
+        list-style: none;
+}
+
+#gracias {font-family:Annie Use Your Telescope;font-size:16pt;color:#8F2250;}
+#entrar {font-family:Annie Use Your Telescope;font-size:16pt;color:#8F2250;
+position:absolute;
+right:20px;
+bottom:20px;}
+#entrar a {text-decoration: none; color:#8F2250; }
+#entrar a:hover { color: #C0C0C0;}
+
+#tit{position:absolute;top:30px;}
+#tit2{position:absolute;top:100px;left:10px;z-index:9999}
+
+#poslogo {position:absolute;
+top:19px;
+left:240px;}
+.efectologo {
+ width: 115px;
+ height:115px;
+ display:block;
+ /*background-color: #F0F0F0;*/
+ background-position: center top;
+ background-repeat: no-repeat;
+ background-image: url('logo1.png');
+ background-size: 90px;
+}
+
+

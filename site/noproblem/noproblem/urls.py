@@ -2,13 +2,14 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.views.static import *
 #from noproblem.views import current_datetime, hours_ahead
-from noproblem.views import inicio, about, divulgacion, didactica, desarrollo, contacto
+from noproblem.views import preinicio, inicio, about, divulgacion, didactica, desarrollo, contacto
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+	('^welcome/$', preinicio),
 	('^inicio/$', inicio),
     ('^about/$', about),
     ('^divulgacion/$', divulgacion),

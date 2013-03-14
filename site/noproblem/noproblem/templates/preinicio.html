@@ -1,0 +1,49 @@
+{% extends "base2.html" %}
+
+{% block title %}Connecta{% endblock %}
+
+{% block content %}
+<SCRIPT LANGUAGE="javascript">
+Image1 = new Image(265,406)
+Image1.src = "{{ MEDIA_URL }}logo-arbol-blanco.jpg"
+
+Image2 = new Image(265,406)
+Image2.src = "{{ MEDIA_URL }}arbol-div.jpg"
+
+Image3 = new Image(265,406)
+Image3.src = "{{ MEDIA_URL }}arbol-did.jpg"
+
+Image4 = new Image(265,406)
+Image4.src = "{{ MEDIA_URL }}arbol-des.jpg" 
+</SCRIPT>
+<div id="fondo"><IMG style="z-index:0" NAME="hola" SRC="{{ MEDIA_URL }}logo-arbol-blanco.jpg" width="80%" height="80%" USEMAP="#ep">
+</div>
+<SCRIPT LANGUAGE="javascript">
+
+function zoominagain() {
+document.hola.src = Image4.src; return true;
+}
+
+function zoomin() {
+document.hola.src = Image3.src; return true;
+}
+
+function zoomout() {
+document.hola.src = Image2.src; return true;
+}
+
+function original() {
+document.hola.src = Image1.src; return true; 
+}
+</SCRIPT>
+<MAP NAME="ep">
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="300,400,150" SRC="{{ MEDIA_URL }}arbol-div.jpg" 
+onMouseOver="zoomout()" onMouseOut="original()">
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="300,150,150" SRC="{{ MEDIA_URL }}arbol-did.jpg" 
+onMouseOver="zoomin()" onMouseOut="original()">
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="500,350,150" SRC="{{ MEDIA_URL }}arbol-des.jpgg" 
+onMouseOver="zoominagain()" onMouseOut="original()">
+<AREA SHAPE="default" nohref>
+</MAP>
+<div id="entrar"><a href="/inicio/">Entrar >></a></div>
+{% endblock %}
