@@ -1,22 +1,87 @@
 {% load custom_filters %}
 
+<script language="javascript"> 
+
+var startCount = 0;
+
+function showdata() {
+	var ele = document.getElementById("data");
+	var butt_ini = document.getElementById("muestrabutton");
+	var butt_end = document.getElementById("finishedbutton");
+	ele.style.display = "block";
+	butt_ini.disabled = true;
+	butt_end.disabled = false;
+	window.startCount = new Date();
+} 
+
+function get_time_difference(earlierDate,laterDate)
+{
+       var nTotalDiff = laterDate.getTime() - earlierDate.getTime();
+       var oDiff = new Object();
+ 
+       oDiff.days = Math.floor(nTotalDiff/1000/60/60/24);
+       nTotalDiff -= oDiff.days*1000*60*60*24;
+ 
+       oDiff.hours = Math.floor(nTotalDiff/1000/60/60);
+       nTotalDiff -= oDiff.hours*1000*60*60;
+ 
+       oDiff.minutes = Math.floor(nTotalDiff/1000/60);
+       nTotalDiff -= oDiff.minutes*1000*60;
+ 
+       oDiff.seconds = Math.floor(nTotalDiff/1000);
+ 
+       return oDiff;
+ 
+}
+
+// Function Usage
+function use_time_difference()
+{
+	dateCurrent = new Date();
+	oDiff = get_time_difference(window.startCount, dateCurrent);
+	alert("It has been " + oDiff.minutes + " minutes " + oDiff.seconds + " seconds since the exercise started.");
+}
+
+
+function onClickCheck() {	
+	use_time_difference();
+}
+</script>
 
 
 <h1>{{ prob.title }}</h1>
-La funcion se llama {{ prob.solucion }} y se le pasan los datos con {{ prob.datos }} <br>
+<p>
+La funcion se llama {{ prob.solucion }} y se le pasan los datos con {{ prob.datos }} <br/>
+</p>
 
-Hay {{ num }} resultados en total. <br/>
+<p>
+Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir de este momento empezará a contar el tiempo. <br/> 
+<button id='muestrabutton'
+		type=button
+        onclick="javascript:showdata();">
+        Mostrar datos
+</button>
+</p>
 
-
-{% set data = prob.data %}
-
-Los datos son: 
+<div id='data' style="display: none">
 <ul>
+{% set data = prob.data %}
 {% for d in data %}
 <li>{{ d }}</li>
 {% endfor %}
 </ul>
+</div>
 
 <br />
 
-La solucion es: {{ prob|solve:data }}
+<p> La solucion es: {{ prob|solve:data }} </p>
+
+<button id='finishedbutton'
+		type=button
+        onclick="javascript:onClickCheck();"
+        disabled=true>
+        Enviar resultado
+</button>
+
+
+

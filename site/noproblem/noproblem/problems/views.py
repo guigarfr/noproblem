@@ -3,20 +3,11 @@ from noproblem.problems.models import User, Problem, Solves
 from django.http import HttpResponse
 from django.template import Context, loader
 from django.db.models import F, Count
-from django.shortcuts import render, get_object_or_404
-
+from django.shortcuts import render, get_object_or_404, render_to_response
 from noproblem.problems.forms import UserSubmittedProblemForm, SolverFormSet
-
-from django.forms.models import inlineformset_factory
-
 from django.core.context_processors import csrf
-from django.shortcuts import get_object_or_404, render_to_response
-from django.forms.models import inlineformset_factory
-from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-
-
 
 def index(request):
     latest_prob_list = Problem.objects.order_by('-created_at')[:5]
@@ -28,8 +19,7 @@ def index(request):
 
 def detail(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
-    num = Solves.objects.filter(prob=prob_id).count()
-    return render(request, 'detail.html', {'prob': pr,'num' : num})
+    return render(request, 'detail.html', {'prob': pr})
 
 def stats(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
@@ -43,12 +33,9 @@ def stats(request, prob_id):
                       })
     return HttpResponse(template.render(context))
 
-
-
 def solve(request, prob_id):
-    
     pr = get_object_or_404(Problem, pk=prob_id)
-            
+
     if request.POST:
         
         problem_form = UserSubmittedProblemForm(request.POST, instance=pr)
