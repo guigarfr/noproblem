@@ -47,20 +47,27 @@ right:710px;}
    background-image: url('arbol1.png');
 }
 
-#sometitles{font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;}
+#sometitles{font-weight:normal;font-size:14pt;font-family:Annie Use Your Telescope;
+color:#8F2250;}
 
+html{background-color:#F0F0F0;}
 body{
 		/*background: #F0F0F0;*/
 		background:white;
 		font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
-		line-height: 120%;
+		line-height: 130%;
 		margin-top: 0px;
       margin-right: 50px;
-      margin-bottom: 50px;
-      margin-left: 50px;
-      border:solid 2px;
-      border-color:#F0F0F0;
+      margin-bottom: 0px;
+      margin-left: 50px; /*márgenes del body respecto al html completo*/
+      padding: 10px 10px 50px 10px;/*márgenes del texto dentro del body*/
+      border:solid 1px;
+      border-color:black;  
+      border-bottom:none; 
 }
+
+
+
 h1 {
 	color:#8F2250;font-size:48pt;font-family:Lobster Two;
 }
@@ -68,7 +75,8 @@ h2 {
 	font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;
 }
 
-#gracias {font-family:Annie Use Your Telescope;font-size:14pt;color:#8F2250;}
+#gracias {font-family:Annie Use Your Telescope;font-size:14pt;color:#8F2250;
+}
 
 ul {
         list-style: square;
@@ -76,6 +84,9 @@ ul {
 
 
 #cuadro{
-border:none;
-width:400px;}
+border:solid 1px;
+width:500px;
+text-align:justify;
+padding: 5px 5px 5px 5px;
+}
 
