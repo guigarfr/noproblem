@@ -1,4 +1,5 @@
 {% load custom_filters %}
+{% load scientificfilter %}
 
 <script language="javascript"> 
 
@@ -48,12 +49,18 @@ function onClickCheck() {
 }
 </script>
 
-
+<div id="title">
 <h1>{{ prob.title }}</h1>
-<p>
-La funcion se llama {{ prob.solucion }} y se le pasan los datos con {{ prob.datos }} <br/>
-</p>
+<h3>{{ prob.category }}</h3>
+</div>
 
+<div id="wording">
+<p>
+{{ prob.wording|linebreaksbr }}
+</p>
+</div>
+
+<div id="datainfo">
 <p>
 Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir de este momento empezará a contar el tiempo. <br/> 
 <button id='muestrabutton'
@@ -62,6 +69,7 @@ Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir
         Mostrar datos
 </button>
 </p>
+</div>
 
 <div id='data' style="display: none">
 <ul>
@@ -72,16 +80,16 @@ Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir
 </ul>
 </div>
 
-<br />
+<p> La solucion es: {{ prob|solve:data|scientificformat }} </p>
 
-<p> La solucion es: {{ prob|solve:data }} </p>
-
+<div id='senddata'>
 <button id='finishedbutton'
 		type=button
         onclick="javascript:onClickCheck();"
         disabled=true>
         Enviar resultado
 </button>
+</div>
 
 
 
