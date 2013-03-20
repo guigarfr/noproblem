@@ -1,8 +1,9 @@
 {% load custom_filters %}
 
 <div id="title">
-<h1>{{ prob.title }}</h1>
+<h1>Statistics for {{ prob.title }}</h1>
 <h3>{{ prob.category }}</h3>
+<h4>{% now "jS F Y H:i:s" %}</h4>
 </div>
 
 {% if solves_list > 0 %}
@@ -15,11 +16,14 @@
 		times.
 	{% endif %}
 	<br />
+	
+	<!-- Tiempo medio de resolucion del problema -->
+	Average time for solving this problem is {{ avg_time }}
 
 	<!-- Lista de usuarios que lo han solucionado -->
     <ul>
     {% for res in solves_list %}
-        <li>{{ res.user }} at {{ res.date }}
+        <li>{{ res.user }} at {{ res.date }} and solved in {{ res.time }} time.
         {% if res.is_correct %}
         	correct!
         {% else %}

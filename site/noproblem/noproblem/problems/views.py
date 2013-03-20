@@ -10,6 +10,8 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from pygooglechart import PieChart3D, PieChart2D
 from noproblem import settings
+from django.db.models import Avg
+import time,datetime
 
 
 def index(request):
@@ -23,6 +25,11 @@ def index(request):
 def detail(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
     return render(request, 'detail.html', {'prob': pr})
+    
+def addTime(tm1, tm2):
+    fulldate = datetime.datetime(100, 1, 1, tm1.hour, tm1.minute, tm1.second)
+    fulldate = fulldate + datetime.timedelta(hours=tm2.hour,minutes=tm2.minute,seconds=tm2.second)
+    return fulldate.time()
 
 def stats(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
@@ -33,6 +40,14 @@ def stats(request, prob_id):
     nfail = solves_list.count() - nok
     pctg_oks = nok/num
     pctg_fails = 1 - pctg_oks
+    
+    # Calculate average solving time
+    solving_times = solves_list.values_list('time')
+    avg_time = datetime.time(0)
+    for t in solving_times:
+    	avg_time = addTime(avg_time,t[0])    	
+    avg_time = datetime.time(avg_time.hour/num,avg_time.minute/num,avg_time.second/num)
+    
     # Create google pie chart
     chart = PieChart3D(250, 100)
 
@@ -48,6 +63,7 @@ def stats(request, prob_id):
                       'fails': nfail,
                       'pctg_oks': pctg_oks,
                       'pctg_fails': pctg_fails,
+                      'avg_time' : avg_time,
                       'chart_url': chart.get_url(),
                       })
     return HttpResponse(template.render(context))

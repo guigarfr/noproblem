@@ -52,6 +52,7 @@ class Solves(models.Model):
     user = models.ForeignKey(CustomUser)
     prob = models.ForeignKey(Problem)
     date = models.DateTimeField()
+    time = models.TimeField()
     is_correct = models.BooleanField()
 
 
