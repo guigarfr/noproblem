@@ -6,9 +6,9 @@ body {
 } 
 
 #fondo{
-position:absolute;
+/*position:absolute;
 top:50px;
-left:80px;
+left:80px;*/
 }
 
 #rec{border:solid;}

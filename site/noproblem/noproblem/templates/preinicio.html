@@ -15,11 +15,30 @@ Image3.src = "{{ MEDIA_URL }}cuadro.png"
 
 Image4 = new Image(265,406)
 Image4.src = "{{ MEDIA_URL }}luz.png" 
+
+Image5 = new Image(265,406)
+Image5.src = "{{ MEDIA_URL }}div.png" 
+
+Image6 = new Image(265,406)
+Image6.src = "{{ MEDIA_URL }}did.png" 
+
+Image7 = new Image(265,406)
+Image7.src = "{{ MEDIA_URL }}des.png" 
 </SCRIPT>
 <div id="fondo"><IMG style="z-index:3" NAME="hola" SRC="{{ MEDIA_URL }}cable.png" 
 width="90%" height="90%" USEMAP="#ep">
 </div>
 <SCRIPT LANGUAGE="javascript">
+
+function zoom7() {
+document.hola.src = Image7.src; return true;
+}
+function zoom6() {
+document.hola.src = Image6.src; return true;
+}
+function zoom5() {
+document.hola.src = Image5.src; return true;
+}
 
 function zoominagain() {
 document.hola.src = Image4.src; return true;
@@ -38,13 +57,20 @@ document.hola.src = Image1.src; return true;
 }
 </SCRIPT>
 <MAP NAME="ep">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="500,0,50" SRC="{{ MEDIA_URL }}ventana.png" 
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="500,0,80" SRC="{{ MEDIA_URL }}ventana.png" 
 onMouseOver="zoomout()" onMouseOut="original()">
 <AREA SHAPE="circle" ALT="Enlarged right side" COORDS="900,150,150" SRC="{{ MEDIA_URL }}cuadro.png" 
 onMouseOver="zoomin()" onMouseOut="original()">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="1000,350,150" HREF="/inicio/" SRC="{{ MEDIA_URL }}luz.png" 
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="1000,350,150" SRC="{{ MEDIA_URL }}luz.png" 
 onMouseOver="zoominagain()" onMouseOut="original()">
+
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="100,100,150" SRC="{{ MEDIA_URL }}div.png" 
+onMouseOver="zoom5()" onMouseOut="original()">
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="200,400,150" SRC="{{ MEDIA_URL }}did.png" 
+onMouseOver="zoom6()" onMouseOut="original()">
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="400,550,150" SRC="{{ MEDIA_URL }}des.png" 
+onMouseOver="zoom7()" onMouseOut="original()">
 <AREA SHAPE="default" nohref>
 </MAP>
-<div id="entrar"><a href="/inicio/">Entrar >></a></div>
+<div id="entrar"><a href="/inicio/">Connecta >></a></div>
 {% endblock %}
