@@ -3,18 +3,36 @@
 {% block title %}Connecta{% endblock %}
 
 {% block content %}
-<br>
-<form>
+
+
+<div id="div-1a">
+<h2>Mándanos un e-mail o llámanos</h2>
+Connecta es un centro multiplataforma que opera vía web y que abrirá un centro en la ciudad 
+de la Valencia próximamente. Mientras tanto, podrás encontrarnos 
+en algunos de nuestros centros amigos.
+<p>
+Si te interesa alguno de los servicios que ofrecemos, si simplemente quieres información
+o tienes alguna duda, puedes ponerte en contacto con nosotros por teléfono al 617980097
+o a través del siguiente formulario:
+<form id="pos_form">
+<br><br>
+<div id="cuadro">
+<!-- 
 	<fieldset>
 		<legend><em>Información</em></legend>
+ -->
 		<label for="name">Nombre: </label>
 		<input type="text" id="name" value="" size="30" maxlength="40" /> <br/>
 		<label for="email">E-mail: </label>
 		<input type="text" id="email" value="correo@electronico.com" size="40" maxlength="40" /><br/>
+<!-- 
 	</fieldset>
+ -->
 	<br/>
+<!-- 
 	<fieldset>
 		<legend><em>Mensaje</em></legend>
+ -->
 		¿Por cuál de los servicios quieres contactar con nosotros?<br />
 		<input type="checkbox" name="chkHab” value="xhtml" />Divulgación <br />
 		<input type="checkbox" name="chkHab" value="CSS" />Didáctica<br />
@@ -23,7 +41,9 @@
 		<label for="content">Contenido del Mensaje: </label><br/>
 		<textarea id="content" cols="50" rows="6">
 		</textarea>
+<!-- 
 	</fieldset>
+ -->
 <!--
 	<form action=”http://www.example.com/imageUpload.jsp” method=”post”
 			name=”fromImageUpload” enctype=”multipart/form-data”>
@@ -32,7 +52,20 @@
 	</form>
 	-->
 	<br /><br /><input type="submit" value="Enviar" />
-
+</div>
 </form>
+</div>
+
+<div id="div-1b">
+<h2> Nuestros centros amigos</h2>
+<div style="padding-left:100px;"><img src="{{ MEDIA_URL }}equipo.jpg" width="90%" height="90%" align="center"> </img></div>
 <br>
+Nuestros centros amigos son los centros que nos ceden sus instalaciones para realizar algún servicio, 
+por ahora están en Campanar (Valencia), La Canyada (Paterna) y Colinas de San Antonio (San Antonio
+de Beganéber). 
+</div>
+
+<div id="div-1c">
+</div>
+
 {% endblock %}

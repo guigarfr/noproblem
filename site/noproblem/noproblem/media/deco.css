@@ -1,17 +1,23 @@
 /*barra de navegación*/
-#navbar { height: 40px !important; padding: 0px 15px 5px !important; background: #C0C0C0 !important; 
- border:solid 2px; border-color: #000000;
+#navbar { height: 30px; padding: 1px 2px 10px 2px; background: #C0C0C0; 
+ border-left:solid 1px;border-right:solid 1px; border-color: #000000; margin:-11px;
+/* 
 position:absolute;
 top:95px;
-right:50px;}
-#navbarlist { display: inline; float: right !important; list-style: none; margin: 0 !important; 
-padding: 0 !important;}
+right:50px;
+ */}
+#navbarlist { display: inline; float: right !important; list-style: none; margin: 0; 
+padding: 0;}
 #navbarlist li { float: left !important; font-size: 14px !important;line-height: 45px !important; 
 padding-right: 15px !important; padding-left: 15px !important; list-style: none;}
 #navbarlist li a { color: #000000; font-weight: bold !important; text-decoration: none !important; }
 #navbarlist li a:hover { color: white !important;}
 
-
+#poslema{
+position:absolute;
+top:110px;
+right:100px;
+}
 
 
 div.hr {
@@ -29,7 +35,7 @@ div.hr hr {
 
 #poslogo {position:absolute;
 top:20px;
-right:710px;}
+right:690px;}
 
 .efectologo {
  width: 115px;
@@ -47,7 +53,7 @@ right:710px;}
    background-image: url('arbol1.png');
 }
 
-#sometitles{font-weight:normal;font-size:14pt;font-family:Annie Use Your Telescope;
+#sometitles{font-weight:normal;font-size:16pt;font-family:Annie Use Your Telescope;
 color:#8F2250;}
 
 html{background-color:#F0F0F0;}
@@ -57,9 +63,9 @@ body{
 		font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
 		line-height: 130%;
 		margin-top: 0px;
-      margin-right: 50px;
+      margin-right: 70px;
       margin-bottom: 0px;
-      margin-left: 50px; /*márgenes del body respecto al html completo*/
+      margin-left: 70px; /*márgenes del body respecto al html completo*/
       padding: 10px 10px 50px 10px;/*márgenes del texto dentro del body*/
       border:solid 1px;
       border-color:black;  
@@ -84,9 +90,34 @@ ul {
 
 
 #cuadro{
-border:solid 1px;
+border-radius: 10%;
+border:none;
+background-color:#F0F0F0;
 width:500px;
 text-align:justify;
-padding: 5px 5px 5px 5px;
+padding: 25px 25px 25px 25px;
 }
 
+a{
+color: #000000; font-weight: bold !important; text-decoration: none !important;
+}
+a:hover { color:#8F2250;}
+
+/*para dos columnas*/
+#div-1a {
+text-align:justify;
+ float:left;
+ width:500px;
+}
+#div-1b {
+text-align:justify;
+ float:right;
+ width:500px;
+}
+#div-1c {
+ clear:both;
+}
+
+#pos_form{
+padding: 5px 5px 5px 5px;
+}

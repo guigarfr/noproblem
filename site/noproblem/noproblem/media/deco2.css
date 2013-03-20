@@ -7,8 +7,8 @@ body {
 
 #fondo{
 position:absolute;
-top:0;
-left:250px;
+top:50px;
+left:80px;
 }
 
 #rec{border:solid;}
@@ -17,7 +17,7 @@ h1 {
 	color:#8F2250;font-size:48pt;font-family:Lobster Two;
 }
 h2 {
-	font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;
+	font-weight:normal;font-size:48pt;font-family:Annie Use Your Telescope;color:#8F2250;
 } 
 ul {
         list-style: none;
@@ -31,8 +31,9 @@ bottom:20px;}
 #entrar a {text-decoration: none; color:#8F2250; }
 #entrar a:hover { color: #C0C0C0;}
 
-#tit{position:absolute;top:30px;}
-#tit2{position:absolute;top:100px;left:10px;z-index:9999}
+/*#tit{position:absolute;top:30px;}*/
+#tit2{position:absolute;top:800px;left:100px;z-index:3}
+#cable{position:absolute;top:255px;left:-40px;z-index:0;}
 
 #poslogo {position:absolute;
 top:19px;

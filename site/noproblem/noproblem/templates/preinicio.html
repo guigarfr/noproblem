@@ -5,18 +5,19 @@
 {% block content %}
 <SCRIPT LANGUAGE="javascript">
 Image1 = new Image(265,406)
-Image1.src = "{{ MEDIA_URL }}logo-arbol-blanco.jpg"
+Image1.src = "{{ MEDIA_URL }}cable.png"
 
 Image2 = new Image(265,406)
-Image2.src = "{{ MEDIA_URL }}arbol-div.jpg"
+Image2.src = "{{ MEDIA_URL }}ventana.png"
 
 Image3 = new Image(265,406)
-Image3.src = "{{ MEDIA_URL }}arbol-did.jpg"
+Image3.src = "{{ MEDIA_URL }}cuadro.png"
 
 Image4 = new Image(265,406)
-Image4.src = "{{ MEDIA_URL }}arbol-des.jpg" 
+Image4.src = "{{ MEDIA_URL }}luz.png" 
 </SCRIPT>
-<div id="fondo"><IMG style="z-index:0" NAME="hola" SRC="{{ MEDIA_URL }}logo-arbol-blanco.jpg" width="80%" height="80%" USEMAP="#ep">
+<div id="fondo"><IMG style="z-index:3" NAME="hola" SRC="{{ MEDIA_URL }}cable.png" 
+width="90%" height="90%" USEMAP="#ep">
 </div>
 <SCRIPT LANGUAGE="javascript">
 
@@ -37,11 +38,11 @@ document.hola.src = Image1.src; return true;
 }
 </SCRIPT>
 <MAP NAME="ep">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="300,400,150" SRC="{{ MEDIA_URL }}arbol-div.jpg" 
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="500,0,50" SRC="{{ MEDIA_URL }}ventana.png" 
 onMouseOver="zoomout()" onMouseOut="original()">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="300,150,150" SRC="{{ MEDIA_URL }}arbol-did.jpg" 
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="900,150,150" SRC="{{ MEDIA_URL }}cuadro.png" 
 onMouseOver="zoomin()" onMouseOut="original()">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="500,350,150" SRC="{{ MEDIA_URL }}arbol-des.jpgg" 
+<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="1000,350,150" HREF="/inicio/" SRC="{{ MEDIA_URL }}luz.png" 
 onMouseOver="zoominagain()" onMouseOut="original()">
 <AREA SHAPE="default" nohref>
 </MAP>
