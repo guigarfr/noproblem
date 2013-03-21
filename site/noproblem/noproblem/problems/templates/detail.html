@@ -1,3 +1,61 @@
+<style type="text/css">
+#title {
+	color:#8F2250;font-family:Annie Use Your Telescope;
+}
+#title h1 {
+	float: left;
+	text-align: left;
+
+}
+#title h3 {
+	float: right;
+	text-align: left;
+}
+
+div.spacer {
+	clear: both;
+}
+
+body {
+	/*background: #F0F0F0;*/
+	background:white;
+	font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
+	line-height: 130%;
+	margin-top: 0px;
+    margin-right: 90px;
+    margin-bottom: 0px;
+    margin-left: 90px; /*márgenes del body respecto al html completo*/
+    padding: 10px 10px 50px 10px;/*márgenes del texto dentro del body*/
+    border-left:solid 1px;
+    border-right:solid 1px;
+    border-color:black;  
+    border-bottom:none; 
+}
+
+#wording{
+	/*background: #F0F0F0;*/
+    padding: 20px 20px 30px 30px;/*márgenes del texto dentro del body*/
+    border-left:solid 1px;
+    border-right:solid 1px;
+    border-color:black;  
+    border-bottom:solid 1px; 
+	border-top:solid 1px; 
+}
+
+#data,#senddata{
+	text-align:center;
+}
+
+#alldata {
+	text-align: center;
+}
+
+#alldata #data{
+	text-align: left;
+}
+
+</style>
+
 {% load custom_filters %}
 {% load scientificfilter %}
 
@@ -54,6 +112,9 @@ function onClickCheck() {
 <h3>{{ prob.category }}</h3>
 </div>
 
+<div class="spacer">&nbsp;</div>
+
+
 <div id="wording">
 <p>
 {{ prob.wording|linebreaksbr }}
@@ -62,15 +123,16 @@ function onClickCheck() {
 
 <div id="datainfo">
 <p>
-Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir de este momento empezará a contar el tiempo. <br/> 
+Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir de este momento empezará a contar el tiempo. Una vez solucionado el problema, copia el resultado, pulsa el botón "Enviar resultado" y pega el valor en el campo de texto que aparecerá.<br/> 
+</p>
+</div>
+
+<div id='alldata'>
 <button id='muestrabutton'
 		type=button
         onclick="javascript:showdata();">
         Mostrar datos
 </button>
-</p>
-</div>
-
 <div id='data' style="display: none">
 <ul>
 {% set data = prob.data %}
@@ -79,10 +141,12 @@ Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir
 {% endfor %}
 </ul>
 </div>
-
-<p> La solucion es: {{ prob|solve:data|scientificformat }} </p>
+</div>
 
 <div id='senddata'>
+<!--
+<p> La solucion es: {{ prob|solve:data|scientificformat }} </p>
+ -->
 <button id='finishedbutton'
 		type=button
         onclick="javascript:onClickCheck();"

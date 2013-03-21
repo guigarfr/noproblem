@@ -1,10 +1,105 @@
+<style type="text/css">
+#title {
+	color:#8F2250;font-family:Annie Use Your Telescope;
+}
+#title h1 {
+	float: left;
+	text-align: left;
+
+}
+#title h3 {
+	float: right;
+	text-align: left;
+}
+
+#title h4 {
+	clear:both;
+	text-align: left;
+}
+
+div.spacer {
+	clear: both;
+}
+
+body {
+	/*background: #F0F0F0;*/
+	background:white;
+	font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
+	line-height: 130%;
+	margin-top: 0px;
+    margin-right: 90px;
+    margin-bottom: 0px;
+    margin-left: 90px; /*márgenes del body respecto al html completo*/
+    padding: 10px 10px 50px 10px;/*márgenes del texto dentro del body*/
+    border-left:solid 1px;
+    border-right:solid 1px;
+    border-color:black;  
+    border-bottom:none; 
+}
+
+#wording{
+	/*background: #F0F0F0;*/
+    padding: 20px 20px 30px 30px;/*márgenes del texto dentro del body*/
+    border-left:solid 1px;
+    border-right:solid 1px;
+    border-color:black;  
+    border-bottom:solid 1px; 
+	border-top:solid 1px; 
+}
+
+#data,#senddata{
+	text-align:center;
+}
+
+#alldata {
+	text-align: center;
+}
+
+#alldata #data{
+	text-align: left;
+}
+
+#wording ul {
+	position: relative;
+	background-color: #CCC;
+	list-style-type: circle;
+	margin: 10%;
+	padding: 5%;
+	float: none;
+}
+
+
+#wording ul li .user {
+	color:#8F2250
+}
+
+#wording ul li .resok {
+	color: #009900
+}
+
+#wording ul li .resfail {
+	color: #CC0000
+}
+
+#piechart {
+	text-align:center;	
+}
+</style>
+
+
+
 {% load custom_filters %}
 
 <div id="title">
 <h1>Statistics for {{ prob.title }}</h1>
 <h3>{{ prob.category }}</h3>
-<h4>{% now "jS F Y H:i:s" %}</h4>
+<h4>@{% now "jS F Y H:i:s" %}</h4>
 </div>
+
+<div class="spacer">&nbsp;</div>
+
+<div id="wording">
+
 
 {% if solves_list > 0 %}
 
@@ -18,16 +113,21 @@
 	<br />
 	
 	<!-- Tiempo medio de resolucion del problema -->
-	Average time for solving this problem is {{ avg_time }}
+	Average time for solving this problem is {{ avg_time }} <br/>
+    
+    <!-- Grafica porcentaje de correctos/incorrectos -->
+    <div id="piechart">
+    <img src='{{ chart_url }}' alt="Solves chart"/>
+    </div>
 
 	<!-- Lista de usuarios que lo han solucionado -->
     <ul>
     {% for res in solves_list %}
-        <li>{{ res.user }} at {{ res.date }} and solved in {{ res.time }} time.
+        <li><span class="user">{{ res.user }}</span> at {{ res.date }} and solved in {{ res.time }} time.
         {% if res.is_correct %}
-        	correct!
+        	<span class="resok">correct!</span>
         {% else %}
-			failed!
+			<span class="resfail">failed!</span>
 		{% endif %}
 	</li>
     {% endfor %}
@@ -37,7 +137,7 @@
     
     
 {% else %}
-    <p>No results are available. Problem {{ prob.title }} still hasn't been solved</p>
+  <p>No results are available. Problem {{ prob.title }} still hasn't been solved</p>
 {% endif %}
 
-<img src='{{ chart_url }}' alt="Solves chart"/>
+</div>
