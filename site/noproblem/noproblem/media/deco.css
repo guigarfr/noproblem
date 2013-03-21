@@ -35,7 +35,8 @@ div.hr hr {
 
 #poslogo {position:absolute;
 top:20px;
-right:690px;}
+right:675px;
+}
 
 .efectologo {
  width: 115px;
@@ -63,11 +64,12 @@ body{
 		font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
 		line-height: 130%;
 		margin-top: 0px;
-      margin-right: 70px;
+      margin-right: 90px;
       margin-bottom: 0px;
-      margin-left: 70px; /*márgenes del body respecto al html completo*/
+      margin-left: 90px; /*márgenes del body respecto al html completo*/
       padding: 10px 10px 50px 10px;/*márgenes del texto dentro del body*/
-      border:solid 1px;
+      border-left:solid 1px;
+      border-right:solid 1px;
       border-color:black;  
       border-bottom:none; 
 }
@@ -93,7 +95,7 @@ ul {
 border-radius: 10%;
 border:none;
 background-color:#F0F0F0;
-width:500px;
+width:450px;
 text-align:justify;
 padding: 25px 25px 25px 25px;
 }

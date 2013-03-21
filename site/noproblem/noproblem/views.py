@@ -21,6 +21,7 @@ def desarrollo(request):
     
 def contacto(request):
     return render_to_response('contacto.html', context_instance=RequestContext(request))
+    
 
 #import datetime
 # def current_datetime(request):
