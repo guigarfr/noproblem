@@ -112,7 +112,9 @@ function onClickCheck() {
 <h3>{{ prob.category }}</h3>
 </div>
 
-<div class="spacer">&nbsp;</div>
+<div class="spacer">&nbsp;
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+</div>
 
 
 <div id="wording">
@@ -140,20 +142,27 @@ Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir
 <li>{{ d }}</li>
 {% endfor %}
 </ul>
-</div>
-</div>
 
 <div id='senddata'>
+<form action="/problems/{{ prob.id }}/stats/" method="post">
+{% csrf_token %}
+Result: <input type="text" name="result"><br>
 <!--
 <p> La solucion es: {{ prob|solve:data|scientificformat }} </p>
  -->
 <button id='finishedbutton'
-		type=button
+		type="submit"
         onclick="javascript:onClickCheck();"
         disabled=true>
         Enviar resultado
 </button>
+
+</form>
+
 </div>
+</div>
+
+
 
 
 
