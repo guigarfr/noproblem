@@ -12,7 +12,11 @@ urlpatterns = patterns('',
 	('^welcome/$', preinicio),
 	('^inicio/$', inicio),
     ('^about/$', about),
+    
+    # divulgacion/blog debe ir antes porque es mas especifico que divulgacion a secas
+    url(r'^divulgacion/blog/', include('noproblem.blog.urls', namespace="divulgacion/blog")),
     ('^divulgacion/$', divulgacion),
+    
     ('^didactica/$', didactica),
     ('^desarrollo/$', desarrollo),
     ('^contacto/$', contacto),
@@ -22,7 +26,7 @@ urlpatterns = patterns('',
     # url(r'^$', '{{ project_name }}.views.home', name='home'),
     # url(r'^{{ project_name }}/', include('{{ project_name }}.foo.urls')),
     url(r'^problems/', include('noproblem.problems.urls', namespace="problems")), 
-    url(r'^divulgacion/', include('noproblem.blog.urls', namespace="divulgacion")),                     
+                      
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
