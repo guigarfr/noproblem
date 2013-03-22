@@ -13,29 +13,99 @@ from noproblem import settings
 from django.db.models import Avg
 import time,datetime
 
+####################################################
+# 					GLOBAL VARS					   #
+####################################################
+precision = 1e-3
 
-def index(request):
-    latest_prob_list = Problem.objects.order_by('-created_at')[:5]
-    template = loader.get_template('indexpr.html')
-    context = Context({
-                      'latest_prob_list': latest_prob_list,
-                      })
-    return HttpResponse(template.render(context))
+####################################################
+#			  GENERIC PYTHON FUNCTIONS			   #
+####################################################
 
-def detail(request, prob_id):
-    pr = get_object_or_404(Problem, pk=prob_id)
-    return render(request, 'detail.html', {'prob': pr})
-    
 def addTime(tm1, tm2):
     fulldate = datetime.datetime(100, 1, 1, tm1.hour, tm1.minute, tm1.second)
     fulldate = fulldate + datetime.timedelta(hours=tm2.hour,minutes=tm2.minute,seconds=tm2.second)
     return fulldate.time()
 
+####################################################
+#					  VIEWS						   #
+####################################################
+
+def index(request):
+	latest_prob_list = Problem.objects.order_by('-created_at')[:5]
+	
+	#Set context and render call
+	context = Context({
+                      'latest_prob_list': latest_prob_list,
+                      })
+	return render(request, 'indexpr.html', context)
+
+
+def detail(request, prob_id):
+    pr = get_object_or_404(Problem, pk=prob_id)
+    
+    #Set context and render call
+    context = Context({
+                      'prob': pr,
+                      })
+    return render(request, 'detail.html', context)
+    
+def sendresult(request, prob_id, data, result, solving_time):
+
+	# Get problem object from database
+	# Problem already exists as we come from detail view
+	pr = get_object_or_404(Problem, pk=prob_id)
+    
+#	try:
+
+    	# User exists?
+    	#selected_choice = p.choice_set.get(pk=request.POST['choice'])
+    	
+    	# Is date in the future?
+    	
+    	#return render_to_response('polls/detail.html', {
+        #    'poll': p,
+        #    'error_message': "You didn't select a choice.",
+        #}, context_instance=RequestContext(request))
+
+    	
+#    except (KeyError, Problem.DoesNotExist)
+		# Redisplay the poll voting form.
+        #return render_to_response('polls/detail.html', {
+        #    'poll': p,
+        #    'error_message': "You didn't select a choice.",
+        #}, context_instance=RequestContext(request))
+#    else:
+
+	# Set needed variables: result, date, time
+	res_sent = request.POST['result']
+   	when = data
+   	#solving_time = 
+    
+   	# Compute result
+   	res_ok = pr.solve(data)
+    
+   	# Check if result is correct: TODO: deal with float numbers
+   	if res_ok - res_sent < 1e-3:
+   		correct = true
+   	else:
+   		correct = false
+    	
+   	# Add new solve to database
+	s = Solve(user=usr_sent, prob=pr,date=when, time=solving_time, is_correct=correct)
+	s.save()
+	
+	# Always return an HttpResponseRedirect after successfully dealing
+	# with POST data. This prevents data from being posted twice if a
+	# user hits the Back button.
+	return HttpResponseRedirect(reverse('problems.views.stats', args=(pr.id,)))
+
 def stats(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
+    
+    # Compute variables for context
     solves_list = Solves.objects.filter(prob=pr)
     num=solves_list.count()
-    template = loader.get_template('stats.html')
     nok = solves_list.filter(is_correct=1).count()
     nfail = solves_list.count() - nok
     pctg_oks = nok/num
@@ -56,6 +126,8 @@ def stats(request, prob_id):
 
     # Assign the labels to the pie data
     chart.set_pie_labels(['OK', 'Fail'])
+    
+    #Set context and render call
     context = Context({
     				  'prob': pr,
                       'solves_list': solves_list,
@@ -66,7 +138,7 @@ def stats(request, prob_id):
                       'avg_time' : avg_time,
                       'chart_url': chart.get_url(),
                       })
-    return HttpResponse(template.render(context))
+    return render(request, 'stats.html', context)
 
 def solve(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
@@ -86,6 +158,9 @@ def solve(request, prob_id):
         problem_form = UserSubmittedProblemForm(instance=pr)
         solve_formset = SolverFormSet(instance=pr)
     
-    #c.update({"form":problem_form, "formset": solve_formset})
-    return render_to_response('user_solves.html', {"form":problem_form, "formset": solve_formset}, context_instance=RequestContext(request))
-    #return render(request, "user_solves.html", {"form":problem_form, "formset": solve_formset})
+    #Set context and render call
+	context = Context({
+					  'form': problem_form,
+                      'formset': solve_formset,
+                      })
+    return render(request, 'user_solves.html', context)
