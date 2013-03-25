@@ -1,8 +1,5 @@
-from noproblem.problems.models import Problem,User,Area,SubArea,CustomUser
+from noproblem.problems.models import Problem,Area,SubArea,UserProfile
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
-
 
 class NotestAdmin(admin.ModelAdmin):
     #fields = ['titulo', 'categoria', 'crea_date']
@@ -27,20 +24,3 @@ class FlatProbAdmin(admin.ModelAdmin):
 admin.site.register(Problem,NotestAdmin)
 admin.site.register(Area)
 admin.site.register(SubArea)
-
-
-# Define an inline admin descriptor for User model
-# which acts a bit like a singleton
-class UserInline(admin.StackedInline):
-    model = CustomUser
-    can_delete = False
-    verbose_name_plural = 'users'
-
-
-# Define a new User admin
-class UserAdmin(UserAdmin):
-    inlines = (UserInline, )
-
-# Re-register UserAdmin
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)

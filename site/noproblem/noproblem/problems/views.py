@@ -1,5 +1,6 @@
 # Create your views here.
-from noproblem.problems.models import User, Problem, Solves
+from noproblem.accounts.models import UserProfile
+from noproblem.problems.models import Problem, Solves
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, loader
 from django.db.models import F, Count
@@ -106,38 +107,46 @@ def stats(request, prob_id):
     # Compute variables for context
     solves_list = Solves.objects.filter(prob=pr)
     num=solves_list.count()
-    nok = solves_list.filter(is_correct=1).count()
-    nfail = solves_list.count() - nok
-    pctg_oks = nok/num
-    pctg_fails = 1 - pctg_oks
-    
-    # Calculate average solving time
-    solving_times = solves_list.values_list('time')
-    avg_time = datetime.time(0)
-    for t in solving_times:
-    	avg_time = addTime(avg_time,t[0])    	
-    avg_time = datetime.time(avg_time.hour/num,avg_time.minute/num,avg_time.second/num)
-    
-    # Create google pie chart
-    chart = PieChart3D(250, 100)
+    if (num != 0):
+		nok = solves_list.filter(is_correct=1).count()
+		nfail = solves_list.count() - nok
+		pctg_oks = nok/num
+		pctg_fails = 1 - pctg_oks
+		
+		# Calculate average solving time
+		solving_times = solves_list.values_list('time')
+		avg_time = datetime.time(0)
+		for t in solving_times:
+			avg_time = addTime(avg_time,t[0])    	
+		avg_time = datetime.time(avg_time.hour/num,avg_time.minute/num,avg_time.second/num)
+	
+		# Create google pie chart
+		chart = PieChart3D(250, 100)
 
-    # Add some data
-    chart.add_data([nok, nfail])
+		# Add some data
+		chart.add_data([nok, nfail])
 
-    # Assign the labels to the pie data
-    chart.set_pie_labels(['OK', 'Fail'])
+		# Assign the labels to the pie data
+		chart.set_pie_labels(['OK', 'Fail'])
+		
+		#Set context and render call
+		context = Context({
+    				      'prob': pr,
+                      	  'solves_list': solves_list,
+                      	  'oks': nok,
+                      	  'fails': nfail,
+                      	  'pctg_oks': pctg_oks,
+                    	  'pctg_fails': pctg_fails,
+                    	  'avg_time' : avg_time,
+                    	  'chart_url': chart.get_url(),
+                      	  })
+                      
+    else:
+    	context = Context({
+					      'prob': pr,
+                      	  'solves_list': solves_list,
+                      	  })
     
-    #Set context and render call
-    context = Context({
-    				  'prob': pr,
-                      'solves_list': solves_list,
-                      'oks': nok,
-                      'fails': nfail,
-                      'pctg_oks': pctg_oks,
-                      'pctg_fails': pctg_fails,
-                      'avg_time' : avg_time,
-                      'chart_url': chart.get_url(),
-                      })
     return render(request, 'stats.html', context)
 
 def solve(request, prob_id):

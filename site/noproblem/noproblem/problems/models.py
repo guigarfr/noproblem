@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User, UserManager
+from noproblem.accounts.models import UserProfile
 
 # Create your models here.
 class Area (models.Model):
@@ -37,19 +37,8 @@ class Problem (models.Model):
         from noproblem.problems.pyconnecta import probs
         return getattr(probs, self.solucion)(data)
 
-
-
-class CustomUser(User):
-    # Use UserManager to get the create_user method, etc.
-    objects = UserManager()
-    # Our own fields
-    credits = models.IntegerField()
-    def __unicode__(self):
-        return self.username
-
-
 class Solves(models.Model):
-    user = models.ForeignKey(CustomUser)
+    user = models.ForeignKey(UserProfile)
     prob = models.ForeignKey(Problem)
     date = models.DateTimeField()
     time = models.TimeField()

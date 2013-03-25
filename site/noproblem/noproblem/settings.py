@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'noproblem.problems',
+    'noproblem.accounts',
     'django_evolution',
 )
 
@@ -153,3 +154,6 @@ LOGGING = {
         },
     }
 }
+
+
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
