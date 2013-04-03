@@ -9,9 +9,13 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+	(r'^$', preinicio),
 	('^welcome/$', preinicio),
 	('^inicio/$', inicio),
     ('^about/$', about),
+    
+    # Accounts
+    url(r'^accounts/', include('noproblem.accounts.urls', namespace="accounts")), 
     
     # divulgacion/blog debe ir antes porque es mas especifico que divulgacion a secas
     url(r'^divulgacion/blog/', include('noproblem.blog.urls', namespace="divulgacion/blog")),

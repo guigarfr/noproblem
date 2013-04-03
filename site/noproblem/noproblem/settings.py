@@ -155,5 +155,5 @@ LOGGING = {
     }
 }
 
-
+LOGIN_URL = '/accounts/login/'
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'

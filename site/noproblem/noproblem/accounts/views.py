@@ -1,20 +1,32 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib import auth
+from django.shortcuts import render, render_to_response
+from django.http import HttpResponseRedirect
+from django.core.context_processors import csrf
 
-def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            # Redirect to a success page.
+def login_user(request):
+    state = "Please log in below..."
+    username = password = ''
+    redirect_to = request.REQUEST.get('next', '')
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                auth.login(request, user)
+                state = "You're successfully logged in!"
+                return HttpResponseRedirect(redirect_to)
+            else:
+                state = "Your account is not active, please contact the site admin."
         else:
-            # Return a 'disabled account' error message
-    else:
-        # Return an 'invalid login' error message.
+            state = "Your username and/or password were incorrect."
 
+    context = {'state':state, 'username': username}
+    context.update(csrf(request))
+    return render_to_response('auth.html',context)
 
-def logout_view(request):
-    logout(request)
+def logout_user(request):
+    auth.logout(request)
     # Redirect to a success page.
 

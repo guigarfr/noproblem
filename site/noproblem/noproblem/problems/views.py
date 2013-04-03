@@ -13,6 +13,7 @@ from pygooglechart import PieChart3D, PieChart2D
 from noproblem import settings
 from django.db.models import Avg
 import time,datetime
+from django.contrib.auth.decorators import login_required
 
 ####################################################
 # 					GLOBAL VARS					   #
@@ -41,7 +42,7 @@ def index(request):
                       })
 	return render(request, 'indexpr.html', context)
 
-
+@login_required
 def detail(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
     
@@ -51,6 +52,7 @@ def detail(request, prob_id):
                       })
     return render(request, 'detail.html', context)
     
+@login_required
 def sendresult(request, prob_id, data, result, solving_time):
 
 	# Get problem object from database
