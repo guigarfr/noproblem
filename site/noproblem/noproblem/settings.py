@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'noproblem.problems',
     'noproblem.accounts',
     'django_evolution',
+    'noproblem.blog',
 )
 
 # A sample logging configuration. The only tangible logging

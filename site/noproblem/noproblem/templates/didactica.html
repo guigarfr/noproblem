@@ -1,14 +1,52 @@
 {% extends "base.html" %}
 
-{% block title %}Connecta{% endblock %}
+{% block title %}Connecta - Didáctica{% endblock %}
 
 {% block content %}
 
 
 <div id="div-1a">
+<div id="cuadroup">
+<b>Nuestros servicios</b>
+</div>
 <div id="cuadro">
+<div id="sometitles"> Didáctica para estudiantes </div>
+<p>de primaria, secundaria y primeros cursos (generales) universitarios o de ciclos formativos:
+<ul>
+<li>Atención personalizada en <u>grupos reducidos</u> para el trabajo de las materias de ciencias experimentales y matemáticas</li>
+<br>
+<li>Atención personalizada <u>individual</u> para el trabajo de las materias de ciencias experimentales y matemáticas</li>
+<br>
+<li>Dificultades con las matemáticas básicas en las primeras etapas formativas: tratamiento individual y en grupo</li>
+<br>
+<li><i>E-learning</i>: Uso de las aplicaciones didácticas que iremos actualizando en esta web. Contacto Skype para 
+pequeñas consultas</li>
+</ul>
+
+<div id="sometitles"> Para profesores </div>
+
+<ul>
+<li>Desarrollo de aplicaciones didácticas personalizadas</li>
+<br>
+<li>Uso <i>pro</i> de nuestras aplicaciones didácticas a través de esta web</li>
+<br>
+<li>Formación de formadores: cursos intensivos para trabajar técnicas de didáctica de las ciencias
+experimentales</li>
+<br>
+<li>Visitas guiadas y talleres para tus alumnos</li>
+</ul>
+</div>
+<div align="center"><img src="{{ MEDIA_URL }}lluvia.png" width="100%" height="500%" align="center"> </img></div>
+<div align="center"><img src="{{ MEDIA_URL }}suma.png" width="100%" height="500%" align="center"> </img></div>
+<div align="center"><img src="{{ MEDIA_URL }}formula.png" width="100%" height="500%" align="center"> </img></div>
+</div>
+
+
+<div id="div-1b">
+<div id="cuadroup">
 <b>phEC: No lo inventamos nosotros</b>
-<br><br>
+</div>
+<div id="cuadro">
 Numerosos estudios avalan la estrategia de aprendizaje de las ciencias vía la experimentación [1-5],
 no sólo como una "posible elección" sino como una necesidad. Existe un consenso 
 entre los expertos a favor de la sustitución de las estrategias de transmisión-recepción
@@ -37,9 +75,7 @@ progresivamente tanto la autonomía de juicio como la capacidad de participació
 <p> Los expertos señalan la importancia de que este proceso no es ni cerrado ni hermético, esto es, 
 no hay una serie de consignas a seguir que se apliquen por orden con todos y cada uno de los alumnos, 
 pero sí hay unas directrices generales que desde Connecta hemos querido resumir en el "acrónimo" phEC.
-</div>
 <div align="center"><img src="{{ MEDIA_URL }}phec.jpg" width="70%" height="70%" align="center"> </img></div>
-<div id="cuadro">
 [1] M. Rocard et al. Science education now: A renewed pedagogy for the future of europe. 2007.
 <br> [2] Gil-Pérez et al. ¿Cómo promover el interés por la cultura científica? Una propuesta didáctica 
 fundamentada para la educación científica de jóvenes de 15 a 18 años. UNESCO-OREALC, 2005.
@@ -60,36 +96,7 @@ New York: Routledge, 2007.
 </div>
 </div>
 
-<div id="div-1b">
-<h2> Para estudiantes </h2>
->> de primaria, secundaria y primeros cursos (generales) universitarios o de ciclos formativos:
-<ul>
-<li>Atención personalizada en <u>grupos reducidos</u> para el trabajo de las materias de ciencias experimentales y matemáticas</li>
-<br>
-<li>Atención personalizada <u>individual</u> para el trabajo de las materias de ciencias experimentales y matemáticas</li>
-<br>
-<li>Dificultades con las matemáticas básicas en las primeras etapas formativas: tratamiento individual y en grupo</li>
-<br>
-<li><i>E-learning</i>: Uso de las aplicaciones didácticas que iremos actualizando en esta web. Contacto Skype para 
-pequeñas consultas</li>
-</ul>
 
-<h2> Para profesores </h2>
-
-<ul>
-<li>Desarrollo de aplicaciones didácticas personalizadas</li>
-<br>
-<li>Uso <i>pro</i> de nuestras aplicaciones didácticas a través de esta web</li>
-<br>
-<li>Formación de formadores: cursos intensivos para trabar técnicas de didáctica de las ciencias
-experimentales</li>
-<br>
-<li>Visitas guiadas y talleres para tus alumnos</li>
-</ul>
-<div align="center"><img src="{{ MEDIA_URL }}lluvia.png" width="100%" height="500%" align="center"> </img></div>
-<div align="center"><img src="{{ MEDIA_URL }}solo_cable.png" width="100%" height="500%" align="center"> </img></div>
-<div align="center"><img src="{{ MEDIA_URL }}formula.png" width="100%" height="500%" align="center"> </img></div>
-</div>
 <div id="div-1c"></div>
 
 {% endblock %}

@@ -4,6 +4,6 @@ from noproblem.blog import views
 
 urlpatterns = patterns('',
                        # ex: /divulgacion/blog/
-                       url(r'^$', views.index, name='index'),
+                       url(r'^$', views.bloggy, name='blog'),
 )
 

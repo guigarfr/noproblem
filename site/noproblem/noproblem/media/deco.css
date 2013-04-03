@@ -1,24 +1,32 @@
-/*barra de navegación*/
-#navbar { height: 30px; padding: 1px 2px 10px 2px; background: #C0C0C0; 
- border-left:solid 1px;border-right:solid 1px; border-color: #000000; margin:-11px;
-/* 
-position:absolute;
-top:95px;
-right:50px;
- */}
-#navbarlist { display: inline; float: right !important; list-style: none; margin: 0; 
-padding: 0;}
-#navbarlist li { float: left !important; font-size: 14px !important;line-height: 45px !important; 
-padding-right: 15px !important; padding-left: 15px !important; list-style: none;}
-#navbarlist li a { color: #000000; font-weight: bold !important; text-decoration: none !important; }
-#navbarlist li a:hover { color: white !important;}
-
-#poslema{
-position:absolute;
-top:110px;
-right:100px;
+#cuadro2{
+border-radius: 10%;
+border:none;
+background-color:#F0F0F0;
+text-align:left;
+font-family:courier;
+font-size:11pt;
+padding: 25px 25px 25px 25px;
 }
 
+#int{
+list-style: none;
+display:block;
+margin:-11px;
+}
+#int li{float:left;width:200px;height:200px;}
+
+a.showhim {font-weight: normal; text-decoration:none;}
+a.showhim:hover { color:black;}
+
+.showme{ 
+display: none;
+}
+.showhim:hover .showme{
+display : block;
+color:black;
+text-align:center;
+font-weight: bold;
+}
 
 div.hr {
   height: 2px;
@@ -33,10 +41,23 @@ div.hr hr {
 	margin-right: 800px;
 	width: 6em;}
 
-#poslogo {position:absolute;
-top:20px;
-right:675px;
+#tit{
+float:left;
+width:33%;
 }
+
+#poslogo {
+float:left;
+width:27%;
+}
+
+#poslema{
+float:left;
+width:38%;
+padding-top:100px;
+font-weight:normal;font-size:16pt;font-family:Annie Use Your Telescope; color:#8F2250;
+}
+
 
 .efectologo {
  width: 115px;
@@ -54,37 +75,53 @@ right:675px;
    background-image: url('arbol1.png');
 }
 
-#sometitles{font-weight:normal;font-size:16pt;font-family:Annie Use Your Telescope;
-color:#8F2250;}
 
-html{background-color:#F0F0F0;}
+html{background-color:#F0F0F0;
+}
 body{
 		/*background: #F0F0F0;*/
-		background:white;
-		font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
-		line-height: 130%;
-		margin-top: 0px;
+	  background:white;
+      /*font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;*/
+      font-family: Istok Web;
+      font-size:14px;
+	  line-height: 130%;
+	  margin-top: 0px;
       margin-right: 90px;
       margin-bottom: 0px;
       margin-left: 90px; /*márgenes del body respecto al html completo*/
-      padding: 10px 10px 50px 10px;/*márgenes del texto dentro del body*/
+      padding: 10px 20px 50px 20px;/*márgenes del texto dentro del body top right bottom left*/
       border-left:solid 1px;
       border-right:solid 1px;
       border-color:black;  
       border-bottom:none; 
-}
+      
+    
+    width: 1024px;
+   
+
+      }
+
 
 
 
 h1 {
 	color:#8F2250;font-size:48pt;font-family:Lobster Two;
 }
+
 h2 {
-	font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;
+font-weight:normal;font-size:18pt;font-family:Poiret One;
+	/*font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;*/
+}
+
+#sometitles{
+font-weight:bold;font-size:16pt;font-family:Poiret One; color:#8F2250;
+/*font-weight:normal;font-size:16pt;font-family:Annie Use Your Telescope; color:#8F2250;*/
 }
 
 #gracias {font-family:Annie Use Your Telescope;font-size:14pt;color:#8F2250;
 }
+
+
 
 ul {
         list-style: square;
@@ -92,34 +129,163 @@ ul {
 
 
 #cuadro{
-border-radius: 10%;
-border:none;
-background-color:#F0F0F0;
-width:450px;
+border-radius: 0%;
+border:solid 1px;
+border-color:#DCDCDC;
+background-color:none;
+/*#F0F0F0;*/
+/*width:450px;*/
 text-align:justify;
-padding: 25px 25px 25px 25px;
+padding: 20px 20px 20px 20px;
+}
+#cuadroup{
+border-radius: 0%;
+border:solid 1px;
+border-color:#DCDCDC;
+background-color:#DCDCDC;
+text-align:justify;
+padding: 5px 20px 5px 20px;
 }
 
+
 a{
-color: #000000; font-weight: bold !important; text-decoration: none !important;
+color: #000000; font-weight: bold; text-decoration: none;
 }
 a:hover { color:#8F2250;}
 
 /*para dos columnas*/
 #div-1a {
 text-align:justify;
- float:left;
- width:500px;
+float:left;
+width:49%;
 }
 #div-1b {
 text-align:justify;
  float:right;
- width:500px;
+ width:49%;
 }
 #div-1c {
+ clear:both;
+}
+
+/*para dos columnas más desiguales*/
+#diva {
+text-align:justify;
+ float:left;
+ width:68%;
+}
+#divb {
+text-align:justify;
+ float:right;
+ width:30%;
+}
+#divc {
  clear:both;
 }
 
 #pos_form{
 padding: 5px 5px 5px 5px;
 }
+
+#coords{
+font-family:courier;font-size:11px;
+color:#8F2250;
+}
+
+/*nuevo submenu**********************/
+
+  .mi-menu  {
+    border-radius: 5px;
+    list-style-type: none;
+    margin: 0; /* si queremos centrarlo */
+    margin-top:100px;
+    margin-left:-20px;
+    padding: 0;
+    /* la altura y su ancho dependerán de los textos */
+    height: 40px; 
+    width: 104%;
+    /* el color de fondo */
+    background: #696969;
+  }
+
+  /* si es necesario, evitamos que Blogger de problemas con los saltos de línea cuando escribimos el HTML */
+  .mi-menu  br { display:none; }
+
+  /* cada item del menu */
+  .mi-menu  li {
+    display: block;
+    float: left; /* la lista se ve horizontal */
+    height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position:relative;
+    
+  }
+  .mi-menu li a {
+    border-left: 1px solid #000;
+    border-right: 1px solid #666;
+    color: #EEE;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 28px;
+    padding: 0 20px;
+    margin: 6px 0;
+    text-decoration: none;
+  }
+  /* eliminamos los bordes del primer y el último */
+  .mi-menu li:first-child a { border-left: none; }
+  .mi-menu li:last-child a{ border-right: none; }
+  /* efecto hover cambia el color */
+  .mi-menu li:hover > a { color: black; }
+
+  /* los submenús */
+  .mi-menu ul {
+    border-radius: 0 0 5px 5px;
+    left: 0;
+    margin: 0;
+    opacity: 0; /* no son visibles */
+    position: absolute;
+    top: 40px; /* se ubican debajo del enlace principal */
+    /* el color de fondo */
+    background: #A9A9A9;
+    /* animamos su visibildiad */
+    -moz-transition: opacity .25s ease .1s;
+    -webkit-transition: opacity .25s ease .1s;
+    -o-transition: opacity .25s ease .1s;
+    -ms-transition: opacity .25s ease .1s;
+    transition: opacity .25s ease .1s;
+  }
+  /* son visibes al poner el cursor encima */
+  .mi-menu li:hover > ul { opacity: 1; }
+
+   /* cada uno de los items de los submenús */
+  .mi-menu ul li {
+    height: 0; /* no son visibles */
+    overflow: hidden;
+    padding: 0;
+    /* animamos su visibildiad */
+    -moz-transition: height .25s ease .1s;
+    -webkit-transition: height .25s ease .1s;
+    -o-transition: height .25s ease .1s;
+    -ms-transition: height .25s ease .1s;
+    transition: height .25s ease .1s;
+  }
+  .mi-menu li:hover > ul li {
+    height: 36px; /* los mostramos */
+    overflow: visible;
+    padding: 0;
+  }
+  .mi-menu ul li a {
+    border: none;
+    border-bottom: 1px solid #111;
+    margin: 0;
+    /* el ancho dependerá de los textos a utilizar */
+    padding: 5px 20px;
+    width: 100px;
+  }
+  /* el último no tiene un borde */
+  .mi-menu ul li:last-child a { border: none; }
+
+
