@@ -149,7 +149,8 @@ padding: 5px 20px 5px 20px;
 
 
 a{
-color: #000000; font-weight: bold; text-decoration: none;
+color: #000000; 
+font-weight: bold; text-decoration: none;
 }
 a:hover { color:#8F2250;}
 
@@ -191,6 +192,12 @@ padding: 5px 5px 5px 5px;
 font-family:courier;font-size:11px;
 color:#8F2250;
 }
+
+#coords a{font-family:courier;font-size:11px;
+color:#8F2250;font-weight:bold;}
+
+#coords a:hover{font-family:courier;font-size:11px;
+color:black;font-weight:bold;}
 
 /*nuevo submenu**********************/
 
