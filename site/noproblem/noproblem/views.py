@@ -1,5 +1,10 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.mail import send_mail 
+from django.http import HttpResponseRedirect 
+from noproblem.forms import ContactForm
+from django.core.urlresolvers import reverse
+from django.contrib import messages
 
 def preinicio(request):
     return render_to_response('preinicio.html', context_instance=RequestContext(request))
@@ -18,10 +23,23 @@ def didactica(request):
     
 def desarrollo(request):
     return render_to_response('desarrollo.html', context_instance=RequestContext(request))
-    
+
 def contacto(request):
-    return render_to_response('contacto.html', context_instance=RequestContext(request))
-    
+	if request.method == 'POST': 
+		form = ContactForm(request.POST) 
+		if form.is_valid():
+			messages.success(request, 'El formulario ha sido enviado')
+			cd = form.cleaned_data 
+			send_mail( 
+					 'Contacto: ' + cd['nombre'] + ' motivo: ' + cd['motivo'], 
+					 cd['message'], 
+					 cd['email'], 
+					 ['guigarfr@gmail.com'], 
+					 ) 
+			return render_to_response('contacto.html', {'form': form}, context_instance=RequestContext(request)) 
+	else: 
+		form = ContactForm() 
+	return render_to_response('contacto.html', {'form': form}, context_instance=RequestContext(request)) 
 
 #import datetime
 # def current_datetime(request):

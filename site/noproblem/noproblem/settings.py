@@ -158,3 +158,8 @@ LOGGING = {
 
 LOGIN_URL = '/accounts/login/'
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
+# Debug email. To run debug server: python -m smtpd -n -c DebuggingServer localhost:1025
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+
