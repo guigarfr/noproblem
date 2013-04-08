@@ -1,4 +1,0 @@
-AddHandler fcgid-script .fcgi
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} fink instsall gimp
-RewriteRule ^(.*)$ django.fcgi/ [QSA,L]
