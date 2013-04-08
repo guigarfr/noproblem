@@ -105,7 +105,16 @@ function use_time_difference()
 function onClickCheck() {	
 	use_time_difference();
 }
+
+function submitForm() {
+	dateCurrent = new Date();
+	oDiff = get_time_difference(window.startCount, dateCurrent);
+	document.solverform.time.value = oDiff.hours + ":" + oDiff.minutes + ":" + oDiff.seconds;
+    return true;
+}
+
 </script>
+
 
 <div id="title">
 <h1>{{ prob.title }}</h1>
@@ -144,15 +153,16 @@ Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir
 </ul>
 
 <div id='senddata'>
-<form action="/problems/{{ prob.id }}/stats/" method="post">
+<form name="solverform" action="/problems/{{ prob.id }}/send/" method="post">
 {% csrf_token %}
 Result: <input type="text" name="result"><br>
+		<input type="hidden" name="time">
 <!--
 <p> La solucion es: {{ prob|solve:data|scientificformat }} </p>
  -->
 <button id='finishedbutton'
 		type="submit"
-        onclick="javascript:onClickCheck();"
+        onclick="javascript:submitForm();"
         disabled=true>
         Enviar resultado
 </button>

@@ -10,8 +10,10 @@ urlpatterns = patterns('',
                        url(r'^(?P<prob_id>\d+)/$', views.detail, name='detail'),
                        # ex: /problems/5/stats/
                        url(r'^(?P<prob_id>\d+)/stats/$', views.stats, name='stats'),
-                       # ex: /problems/5/stats/
+                       # ex: /problems/5/solve/
                        url(r'^(?P<prob_id>\d+)/solve/$', views.solve, name='solve'),
+                       # ex: /problems/5/send/
+                       url(r'^(?P<prob_id>\d+)/send/$', views.sendresult, name='sendresult'),
 )
 
 #urlpatterns = patterns('',

@@ -14,6 +14,7 @@ from noproblem import settings
 from django.db.models import Avg
 import time,datetime
 from django.contrib.auth.decorators import login_required
+from decimal import Decimal
 
 ####################################################
 # 					GLOBAL VARS					   #
@@ -51,9 +52,9 @@ def detail(request, prob_id):
                       'prob': pr,
                       })
     return render(request, 'detail.html', context)
-    
-@login_required
-def sendresult(request, prob_id, data, result, solving_time):
+
+@login_required    
+def sendresult(request, prob_id):
 
 	# Get problem object from database
 	# Problem already exists as we come from detail view
@@ -80,28 +81,32 @@ def sendresult(request, prob_id, data, result, solving_time):
         #}, context_instance=RequestContext(request))
 #    else:
 
-	# Set needed variables: result, date, time
+	# Set needed variables: user, prob, date, time, is_correct
 	res_sent = request.POST['result']
-   	when = data
-   	#solving_time = 
+   	when = datetime.datetime.today()
+   	solving_time = request.POST['time']
+   	usuario=request.user.get_profile()
     
    	# Compute result
-   	res_ok = pr.solve(data)
+   	# TODO: De momento solo para un resultado, pero es una LISTA!!!!!
+   	res_ok = pr.solve([float(res_sent)])
     
    	# Check if result is correct: TODO: deal with float numbers
-   	if res_ok - res_sent < 1e-3:
-   		correct = true
-   	else:
-   		correct = false
+   	for i in range(len(res_ok)):
+		if res_ok[i] - float(res_sent[i]) < 1e-3:
+			correct = True
+		else:
+			correct = False
+			break
     	
    	# Add new solve to database
-	s = Solve(user=usr_sent, prob=pr,date=when, time=solving_time, is_correct=correct)
+	s = Solves(user=usuario, prob=pr,date=when, time=solving_time, is_correct=correct)
 	s.save()
 	
 	# Always return an HttpResponseRedirect after successfully dealing
 	# with POST data. This prevents data from being posted twice if a
 	# user hits the Back button.
-	return HttpResponseRedirect(reverse('problems.views.stats', args=(pr.id,)))
+	return HttpResponseRedirect(reverse('problems:stats', args=(pr.id,)))
 
 def stats(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
