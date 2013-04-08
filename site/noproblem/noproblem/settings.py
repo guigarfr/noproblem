@@ -160,6 +160,12 @@ LOGIN_URL = '/accounts/login/'
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 # Debug email. To run debug server: python -m smtpd -n -c DebuggingServer localhost:1025
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+#EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
 
+# Correct email
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'connectacpc'
+EMAIL_HOST_PASSWORD = 'gaudenciaenguidanos'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

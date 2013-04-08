@@ -33,8 +33,8 @@ def contacto(request):
 			send_mail( 
 					 'Contacto: ' + cd['nombre'] + ' motivo: ' + cd['motivo'], 
 					 cd['message'], 
-					 cd['email'], 
-					 ['guigarfr@gmail.com'], 
+					 cd.get('email'), 
+					 ['guigarfr@gmail.com','paulatuzon@gmail.com'], 
 					 ) 
 			return render_to_response('contacto.html', {'form': form}, context_instance=RequestContext(request)) 
 	else: 
