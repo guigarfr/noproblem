@@ -164,8 +164,8 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 #EMAIL_PORT = 1025
 
 # Correct email
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'connectacpc'
+EMAIL_HOST = 'smtp.alwaysdata.com'
+EMAIL_HOST_USER = 'paulatuzon@alwaysdata.net'
 EMAIL_HOST_PASSWORD = 'gaudenciaenguidanos'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

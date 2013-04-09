@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.core.mail import send_mail 
+from django.core.mail import send_mail, EmailMessage
 from django.http import HttpResponseRedirect 
 from noproblem.forms import ContactForm
 from django.core.urlresolvers import reverse
@@ -30,12 +30,12 @@ def contacto(request):
 		if form.is_valid():
 			messages.success(request, 'El formulario ha sido enviado')
 			cd = form.cleaned_data 
-			send_mail( 
-					 'Contacto: ' + cd['nombre'] + ' motivo: ' + cd['motivo'], 
-					 cd['message'], 
-					 cd.get('email'), 
-					 ['guigarfr@gmail.com','paulatuzon@gmail.com'], 
-					 ) 
+			email = EmailMessage('[connectacpc] Contacto: ' + cd['nombre'] + ' motivo: ' + cd['motivo'],
+								 cd['message'] + "\n\nEnviado por: " + cd.get('email'),
+								 cd.get('email'),
+								 ['guigarfr@gmail.com','paulatuzon@gmail.com'],
+								 headers={'Reply-To': cd.get('email')})
+			email.send()
 			return render_to_response('contacto.html', {'form': form}, context_instance=RequestContext(request)) 
 	else: 
 		form = ContactForm() 
