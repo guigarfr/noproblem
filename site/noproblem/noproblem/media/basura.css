@@ -1,3 +1,26 @@
+/*Texto rotatorio*/
+/*
+<script type="text/javascript">
+var indice = 0;
+frases = new Array();
+frases[0] = "Centro de Promoción Científica";
+frases[1] = "Tu aula de ciencias";
+indice = Math.random()*(frases.length);
+indice = Math.floor(indice);
+function rotar() {
+if (indice == frases.length) {indice = 0;}
+document.getElementById("rotando").innerHTML = frases[indice];
+indice++;
+setTimeout("rotar();",5000);
+}
+</script>
+<div id="rotando"></div><script type="text/javascript">rotar();</script>
+*/
+
+
+
+
+
 /*Como hacer un hover con lista del tamaño de la pantalla y definiendo recuadros*/
 /* 
 #ddd {
