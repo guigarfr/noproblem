@@ -76,13 +76,14 @@ font-weight:normal;font-size:16pt;font-family:Annie Use Your Telescope; color:#8
  background-color: white;
  background-position: center top;
  background-repeat: no-repeat;
- background-image: url('logo1.png');
+ background-image: url('logo1.gif');
  background-size: 90px;
 }
 
 .efectologo:hover {
    background-color: white;
-   background-image: url('arbol1.png');
+   background-image: url('arbol1.gif');
+   background-size: 90px;
 }
 
 
