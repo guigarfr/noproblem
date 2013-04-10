@@ -24,6 +24,7 @@ def didactica(request):
 def desarrollo(request):
     return render_to_response('desarrollo.html', context_instance=RequestContext(request))
 
+
 def contacto(request):
 	if request.method == 'POST': 
 		form = ContactForm(request.POST) 

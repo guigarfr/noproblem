@@ -4,7 +4,7 @@
 
 {% block content %}
 <div id="cuadro">
-<div align="center"><img src="{{ MEDIA_URL }}welcome2.png" width="100%"  align="center"> </img></div>
+<div align="center"><img src="{{ MEDIA_URL }}welcome.png" width="100%"  align="center"> </img></div>
 </div>
 
 <div style="text-align:left;"><h2>Te interesa Connecta si...</h2></div>
@@ -53,13 +53,31 @@ style="border:none;border-radius:50%;"> </img></div>
 <br>
 
 <div id="cuadroup">
-<b>Connéctate próximamente</b>
+<b>Connecta en tu agenda</b>
 </div>
 
 <div id="cuadro">
 <div align="right"><b>Bar de ciencias</b></div>
-<i>¿Qué es el Higgs?</i>
-<p>Charla-debate dirigida por el Investigador del CSIC Santiago González.
+<i>Què és el Higgs? On l'han trobat?</i>
+<p>Charla-debate dirigida por el Investigador del CSIC Santiago González. 
+<a class="showhimtext"><div>
+Leer más
+<div class="showmetext" id="cuadro">El passat 4 de juliol es va anunciar el descobriment d'una nova partícula, al
+"Large Hadron Collider" (LHC) del CERN, amb enorme importància per a la
+comprensió de l'estructura de la matèria al nivell més bàsic. La confirmació de
+l'existència del bosó de Higgs té per a la física fonamental una rellevància
+equiparable a la que va tenir el descobriment de l'ADN en biologia o l'evidència
+de l'estructura atòmica i molecular en química. A nivell tecnològic suposa una
+fita comparable a l'arribada de l'home a la Lluna, però les seves repercussions
+científiques són molt més importants. És també un exemple paradigmàtic de
+col·laboració internacional, a escala mundial i amb lideratge europeu, unint els
+esforços de tota la comunitat de físics de partícules cap a un gran objectiu comú.
+Quatre dècades d'intens treball científic i desenvolupament d'avançades
+tecnologies han permès confirmar l'existència d'un nou camp de forces, postulat
+el 1964, que pot fer encaixar les últimes peces de l'anomenat "Model Estàndard"
+de les interaccions fonamentals i, potser, obrir una finestra a nous fenòmens de
+naturalesa insospitada.</div></div></a>
+
 <p><div id="coords">L'Ermità Café Cultural, <a href="http://goo.gl/maps/tTIqG">C/ Obispo
 don Jerónimo 4</a>, Valencia, 
 18/04/2013</div>
@@ -113,9 +131,24 @@ En nuestra página de <a href="/welcome/">Bienvenida</a> te proponemos cada sema
 Responde rellenando el formulario de <a href="/contacto/">Contacto</a> y publicamos tu respuesta.
 <br>
 <img src="{{ MEDIA_URL }}bombilla.png" width="100%"  align="center">
+
+<script type="text/javascript">
+var indice = 0;
+frases = new Array();
+frases[0] = "Todavía sin responder";
+frases[1] = "¡Participa!";
+indice = Math.random()*(frases.length);
+indice = Math.floor(indice);
+function rotar() {
+if (indice == frases.length) {indice = 0;}
+document.getElementById("rotando").innerHTML = frases[indice];
+indice++;
+setTimeout("rotar();",2000);
+}
+</script>
+<div id="rotando"></div><script type="text/javascript">rotar();</script>
 </div>
 <p>
-
 <!-- Twitter -->
 
 <a class="twitter-timeline" href="https://twitter.com/connectacpc" data-widget-id="317316659083886593" height="400">

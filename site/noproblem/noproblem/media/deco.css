@@ -15,7 +15,7 @@ margin:-11px;
 }
 #int li{float:left;width:200px;height:200px;}
 
-a.showhim {font-weight: normal; text-decoration:none;}
+a.showhim {font-weight: normal; text-decoration:none; color:black}
 a.showhim:hover { color:black;}
 
 .showme{ 
@@ -26,6 +26,15 @@ display : block;
 color:black;
 text-align:center;
 font-weight: bold;
+}
+
+.showmetext{ 
+display: none;
+}
+.showhimtext:hover .showmetext{
+display : block;
+color:black;
+font-weight: normal;
 }
 
 div.hr {
@@ -114,7 +123,7 @@ font-weight:normal;font-size:18pt;font-family:Poiret One;
 	/*font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;*/
 }
 
-#rotando{font-weight:normal;font-size:18pt;font-family:Poiret One;}
+#rotando{color:#8F2250;}
 
 #sometitles{
 font-weight:bold;font-size:16pt;font-family:Poiret One; color:#8F2250;
@@ -152,10 +161,13 @@ padding: 5px 20px 5px 20px;
 
 
 a{
-color: #000000; 
+color: gray; 
 font-weight: bold; text-decoration: none;
 }
 a:hover { color:#8F2250;}
+
+
+
 
 /*para dos columnas*/
 #div-1a {
