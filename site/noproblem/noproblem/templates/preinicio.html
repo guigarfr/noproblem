@@ -61,7 +61,7 @@ document.hola.src = Image1.src; return true;
 onMouseOver="zoomout()" onMouseOut="original()">
 <AREA SHAPE="circle" ALT="Enlarged right side" COORDS="900,150,150" SRC="{{ MEDIA_URL }}cuadro.png" 
 onMouseOver="zoomin()" onMouseOut="original()">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="1000,350,150" SRC="{{ MEDIA_URL }}luz.png" 
+<AREA href="/inicio/" SHAPE="circle" ALT="Enlarged right side" COORDS="1000,350,150" SRC="{{ MEDIA_URL }}luz.png" 
 onMouseOver="zoominagain()" onMouseOut="original()">
 
 <AREA SHAPE="circle" ALT="Enlarged right side" COORDS="100,100,150" SRC="{{ MEDIA_URL }}div.png" 
@@ -73,4 +73,5 @@ onMouseOver="zoom7()" onMouseOut="original()">
 <AREA SHAPE="default" nohref>
 </MAP>
 <div id="entrar"><a href="/inicio/">Entrar >></a></div>
+
 {% endblock %}

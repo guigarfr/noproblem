@@ -27,9 +27,10 @@ ul {
 
 #gracias {font-family:Annie Use Your Telescope;font-size:16pt;color:#8F2250;}
 #entrar {font-family:Annie Use Your Telescope;font-size:16pt;color:#8F2250;
-position:absolute;
+/*position:absolute;
 right:20px;
-bottom:20px;}
+bottom:20px;*/
+text-align:right;}
 #entrar a {text-decoration: none; color:#8F2250; }
 #entrar a:hover { color: #C0C0C0;}
 
