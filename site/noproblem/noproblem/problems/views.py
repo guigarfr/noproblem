@@ -79,7 +79,7 @@ def sendresult(request, prob_id):
         #    'poll': p,
         #    'error_message': "You didn't select a choice.",
         #}, context_instance=RequestContext(request))
-#    else:
+#    else:		
 
 	# Set needed variables: user, prob, date, time, is_correct
 	res_sent = request.POST['result']
@@ -89,15 +89,23 @@ def sendresult(request, prob_id):
     
    	# Compute result
    	# TODO: De momento solo para un resultado, pero es una LISTA!!!!!
-   	res_ok = pr.solve([float(res_sent)])
-    
-   	# Check if result is correct: TODO: deal with float numbers
-   	for i in range(len(res_ok)):
-		if res_ok[i] - float(res_sent[i]) < 1e-3:
-			correct = True
-		else:
+   	
+   	if( res_sent == ""):
+   		correct = False
+   	else:
+		res_list = map(float, res_sent.split(","))
+		res_ok = pr.solve(res_list)
+		#Is the list the correct size?
+		if( len(res_ok) != len(res_sent) ):
 			correct = False
-			break
+		else:
+			# Check if result is correct: TODO: deal with float numbers
+			for i in range(len(res_ok)):
+				if res_ok[i] - float(res_sent[i]) < 1e-3:
+					correct = True
+				else:
+					correct = False
+					break
     	
    	# Add new solve to database
 	s = Solves(user=usuario, prob=pr,date=when, time=solving_time, is_correct=correct)
