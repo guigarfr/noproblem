@@ -1,3 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Connecta - NoProblem{% endblock %}
+
+{% block content %}
+
+{% load i18n %}
+
 <style type="text/css">
 #title {
 	color:#8F2250;font-family:Annie Use Your Telescope;
@@ -90,30 +98,35 @@ body {
 
 {% load custom_filters %}
 
+
 <div id="title">
-<h1>Statistics for {{ prob.title }}</h1>
+<h1>{% blocktrans with prob.title as title %}
+Statistics for {{ title }}
+{% endblocktrans %}</h1>
 <h3>{{ prob.category }}</h3>
 <h4>@{% now "jS F Y H:i:s" %}</h4>
 </div>
 
-<div class="spacer">&nbsp;</div>
+<div class="spacer">
+</div>
 
 <div id="wording">
-
 
 {% if solves_list %}
 
 	<!-- Imprimo numero de veces solucionado -->
-	Problem {{ prob.title }} has been solved {{ solves_list.count }}
-	{% if num = 1 %}
-		time.
-	{% else %}
-		times.
-	{% endif %}
+	{% blocktrans count solves_list|length as counter with prob.title as title %}
+	Problem {{ title }} has been solved just once.
+	{% plural %}
+	Problem {{ title }} has been solved {{ counter }} times already.
+	{% endblocktrans %} 
 	<br />
 	
 	<!-- Tiempo medio de resolucion del problema -->
-	Average time for solving this problem is {{ avg_time }} <br/>
+	{% blocktrans %}
+	Average time for solving this problem is {{ avg_time }}
+	{% endblocktrans %}
+	<br />
     
     <!-- Grafica porcentaje de correctos/incorrectos -->
     <div id="piechart">
@@ -123,11 +136,14 @@ body {
 	<!-- Lista de usuarios que lo han solucionado -->
     <ul>
     {% for res in solves_list %}
-        <li><span class="user">{{ res.user }}</span> at {{ res.date }} and solved in {{ res.time }} time.
+        <li><span class="user">{{ res.user }}</span>
+        {% blocktrans with res.date as date and res.time as time %}
+        at {{ date }} and solved in {{ time }} time.
+        {% endblocktrans %}
         {% if res.is_correct %}
-        	<span class="resok">correct!</span>
+        	<span class="resok">{% trans "correct!" %}</span>
         {% else %}
-			<span class="resfail">failed!</span>
+			<span class="resfail">{% trans "failed!" %}</span>
 		{% endif %}
 	</li>
     {% endfor %}
@@ -137,7 +153,14 @@ body {
     
     
 {% else %}
-  <p>No results are available. Problem {{ prob.title }} still hasn't been solved</p>
+  <p>
+  {% trans "No results are available." %}
+  {% blocktrans with prob.title as title %}
+  Problem {{ title }} still hasn't been solved
+  {% endblocktrans %}
+  </p>
 {% endif %}
 
 </div>
+
+{% endblock %}

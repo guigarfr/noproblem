@@ -1,0 +1,120 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-12 14:25+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: templates/detail.html:141
+msgid "Mostrar datos"
+msgstr ""
+
+#: templates/detail.html:142
+msgid "Enviar resultado"
+msgstr ""
+
+#: templates/detail.html:146
+#, python-format
+msgid ""
+" Haz click en el botón \"%(show_data_button)s\" para ver los datos del "
+"problema "
+msgstr "Click the \"%(show_data_button)s\" to see the problem data"
+
+#: templates/detail.html:147
+msgid "A partir de este momento empezará a contar el tiempo"
+msgstr "The time will start counting from that moment"
+
+#: templates/detail.html:148
+#, python-format
+msgid ""
+" Una vez solucionado el problema, copia el resultado, pulsa el botón "
+"\"%(sendres_button)s\" y pega el valor/es obtenidos en el campo de texto que "
+"aparecerá "
+msgstr ""
+"Once you've solved the problem, copy the result, press the "
+"\"%(sendres_button)s\" and paste the result/s you got in the text fieldthat "
+"just appeared"
+
+#: templates/stats.html:103
+#, python-format
+msgid ""
+"\n"
+"Statistics for %(title)s\n"
+msgstr ""
+"\n"
+"Estadísticas para %(title)s\n"
+
+#: templates/stats.html:118
+#, python-format
+msgid ""
+"\n"
+"\tProblem %(title)s has been solved just once.\n"
+"\t"
+msgid_plural ""
+"\n"
+"\tProblem %(title)s has been solved %(counter)s times already.\n"
+"\t"
+msgstr[0] ""
+"\n"
+"\tEl problema %(title)s sólo se ha resuelto una vez.\n"
+"\t"
+msgstr[1] ""
+"\n"
+"El problema %(title)s ya se ha resuelto %(counter)s veces.\t"
+
+#: templates/stats.html:126
+#, python-format
+msgid ""
+"\n"
+"\tAverage time for solving this problem is %(avg_time)s\n"
+"\t"
+msgstr ""
+"\n"
+"El tiempo medio de resolución para este problema es %(avg_time)s\t"
+
+#: templates/stats.html:140
+#, python-format
+msgid ""
+"\n"
+"        at %(date)s and solved in %(time)s time.\n"
+"        "
+msgstr ""
+"\n"
+"        el %(date)s y tardó en resolverlo %(time)s.\n"
+"        "
+
+#: templates/stats.html:144
+msgid "correct!"
+msgstr "¡correcto!"
+
+#: templates/stats.html:146
+msgid "failed!"
+msgstr "!incorrecto!"
+
+#: templates/stats.html:157
+msgid "No results are available."
+msgstr "No hay resultados disponibles"
+
+#: templates/stats.html:158
+#, python-format
+msgid ""
+"\n"
+"  Problem %(title)s still hasn't been solved\n"
+"  "
+msgstr ""
+"\n"
+"  El problema %(title)s todavía no ha sido resuelto\n"
+"  "

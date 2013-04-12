@@ -169,3 +169,11 @@ EMAIL_HOST_USER = 'paulatuzon@alwaysdata.net'
 EMAIL_HOST_PASSWORD = 'gaudenciaenguidanos'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+#LANGUAGES
+ugettext = lambda s:s
+LANGUAGES = (
+    ('es', ugettext('Spanish')),
+    ('en', ugettext('English')),
+)
+

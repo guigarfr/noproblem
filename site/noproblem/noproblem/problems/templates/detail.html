@@ -1,3 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Connecta - NoProblem{% endblock %}
+
+{% block content %} 
+{% load custom_filters %}
+{% load scientificfilter %}
+{% load i18n %}
+
 <style type="text/css">
 #title {
 	color:#8F2250;font-family:Annie Use Your Telescope;
@@ -55,9 +64,6 @@ body {
 }
 
 </style>
-
-{% load custom_filters %}
-{% load scientificfilter %}
 
 <script language="javascript"> 
 
@@ -121,7 +127,7 @@ function submitForm() {
 <h3>{{ prob.category }}</h3>
 </div>
 
-<div class="spacer">&nbsp;
+<div class="spacer">
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 </div>
 
@@ -132,9 +138,14 @@ function submitForm() {
 </p>
 </div>
 
+{% trans "Mostrar datos" as show_data_button %}
+{% trans "Enviar resultado" as sendres_button %}
+
 <div id="datainfo">
 <p>
-Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir de este momento empezará a contar el tiempo. Una vez solucionado el problema, copia el resultado, pulsa el botón "Enviar resultado" y pega el valor en el campo de texto que aparecerá.<br/> 
+{% blocktrans %} Haz click en el botón "{{ show_data_button }}" para ver los datos del problema {% endblocktrans %}.
+{% trans "A partir de este momento empezará a contar el tiempo" %}. 
+{% blocktrans %} Una vez solucionado el problema, copia el resultado, pulsa el botón "{{ sendres_button }}" y pega el valor/es obtenidos en el campo de texto que aparecerá {% endblocktrans %}.<br/> 
 </p>
 </div>
 
@@ -142,12 +153,11 @@ Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir
 <button id='muestrabutton'
 		type=button
         onclick="javascript:showdata();">
-        Mostrar datos
+        {{ show_data_button }}
 </button>
 <div id='data' style="display: none">
 <ul>
-{% set data = prob.data %}
-{% for d in data %}
+{% for d in prob.data %}
 <li>{{ d }}</li>
 {% endfor %}
 </ul>
@@ -157,20 +167,19 @@ Haz click en el botón "Mostrar datos" para ver los datos del problema. A partir
 {% csrf_token %}
 Result: <input type="text" name="result"><br>
 		<input type="hidden" name="time">
-<!--
-<p> La solucion es: {{ prob|solve:data|scientificformat }} </p>
- -->
 <button id='finishedbutton'
 		type="submit"
         onclick="javascript:submitForm();"
         disabled=true>
-        Enviar resultado
+        {{ sendres_button }}
 </button>
 
 </form>
 
 </div>
 </div>
+
+{% endblock %}
 
 
 
