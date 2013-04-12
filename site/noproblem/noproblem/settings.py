@@ -123,7 +123,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'noproblem.problems',
     'noproblem.accounts',
-    'django_evolution',
+    # 'django_evolution',
     'noproblem.blog',
 )
 
