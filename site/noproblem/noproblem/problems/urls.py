@@ -14,6 +14,8 @@ urlpatterns = patterns('',
                        url(r'^(?P<prob_id>\d+)/solve/$', views.solve, name='solve'),
                        # ex: /problems/5/send/
                        url(r'^(?P<prob_id>\d+)/send/$', views.sendresult, name='sendresult'),
+                       # ex: /problems/user_detail/
+                       url(r'^user_detail/$', views.user_detail, name='user_detail'),
 )
 
 #urlpatterns = patterns('',

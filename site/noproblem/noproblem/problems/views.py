@@ -12,7 +12,7 @@ from django.core.urlresolvers import reverse
 from pygooglechart import PieChart3D, PieChart2D
 from noproblem import settings
 from django.db.models import Avg
-import time,datetime
+import time, datetime, operator
 from django.contrib.auth.decorators import login_required
 from decimal import Decimal
 
@@ -52,6 +52,84 @@ def detail(request, prob_id):
                       'prob': pr,
                       })
     return render(request, 'detail.html', context)
+
+@login_required 
+def user_detail(request):
+	# Obtener lista de problemas global
+	solved_problems=Solves.objects.select_related('user').filter(user=1)
+	all_problems = Problem.objects.all()
+	n_problems = Problem.objects.count()
+	
+	# Numero de resoluciones correctas e incorrectas global
+	n_ok = solved_problems.filter(is_correct = True).count()
+	n_nok = solved_problems.count() - n_ok
+	if (n_ok > 0):
+		n_pct_ok = n_ok / n_problems
+	else:
+		n_pct_ok = 0
+	if (n_nok > 0):
+		n_pct_nok = n_nok / n_problems
+	else:
+		n_pct_nok = 0
+		
+	# Numero de resoluciones correctas e incorrectas para cada problema
+	n_solved = [0] * n_problems
+	n_solved_ok = [0] * n_problems
+	for i in range(0,solved_problems.count()):
+		pr_id=solved_problems[i].prob.id-1
+		n_solved[pr_id] = n_solved[pr_id]+1
+		n_solved_ok[pr_id] = n_solved_ok[pr_id]+solved_problems[i].is_correct
+		n_solved_false = map(operator.sub, n_solved, n_solved_ok)
+		
+	n_solved_total = sum(x > 0 for x in n_solved)
+	n_solved_total_ok = sum(x > 0 for x in n_solved_ok)
+
+	# Porcentajes de resolucion de cada problema
+	n_solved_pct_ok = [0.0] * n_problems
+	for i in range(0,n_problems):
+		if(n_solved[i] == 0):
+			n_solved_pct_ok[i] = 0
+		else:
+			n_solved_pct_ok[i] = 1.0 * n_solved_ok[i] / n_solved[i]	
+	n_solved_pct_nok = map(lambda x: 1 - x, n_solved_pct_ok)
+	
+	# Lista de identificadores de todos los problemas
+	id_prob_all=map(lambda x: x-1, Problem.objects.values_list('id',flat=True))
+	id_prob_solved_ok=map(lambda x: x-1, solved_problems.filter(is_correct=True).values_list('prob',flat=True).distinct())
+	id_prob_tosolve = map(lambda x: int(x), set(id_prob_all) - set(id_prob_solved_ok))
+	
+	# Lista de identificadores de los problemas resueltos
+	id_prob_all=Problem.objects.values_list('id',flat=True)
+
+
+	# Vector de listas de resoluciones
+	if (n_solved_total > 0):
+		solved_list_by_problem=n_problems * [None]
+		for i in range(0,n_problems):
+			solved_list_by_problem[i] = solved_problems.filter(prob=i+1)
+	else:
+		solved_list_by_problem = []
+
+	# Vector de identificador de problema por resolver
+	if (n_solved_total > 0):
+		solved_list_by_problem=n_problems * [None]
+		for i in range(0,n_problems):
+			solved_list_by_problem[i] = solved_problems.filter(prob=i+1)
+
+
+    #Set context and render call
+	context = Context({
+					  'num_resueltos': n_solved_total,
+					  'num_resueltos_ok': n_solved_total_ok,
+					  'prob_list': all_problems,
+					  'prob_unsolved_id': id_prob_tosolve,
+					  'tasa_acierto_por_problema': n_solved_pct_ok,
+					  'tasa_acierto_global': n_pct_ok,
+					  'nprob': n_problems,
+                      'sprob_list_list': solved_list_by_problem,
+                      })
+	return render(request, 'user_detail.html', context)
+
 
 @login_required    
 def sendresult(request, prob_id):
