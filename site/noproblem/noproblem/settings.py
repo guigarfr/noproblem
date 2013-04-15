@@ -125,7 +125,10 @@ INSTALLED_APPS = (
     'noproblem.accounts',
     # 'django_evolution',
     'noproblem.blog',
+    'noproblem.google_analytics',
 )
+
+GOOGLE_ANALYTICS_MODEL = True
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

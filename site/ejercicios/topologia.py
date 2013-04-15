@@ -1,5 +1,6 @@
 
 lista=[[1],[2,1],[3,1],[4,1],[5,2,3],[6,2,3],[7,3],[8,3],[9,7,1]]
+lista2=[[1],[2,1],[3,1],[4,1],[5,2,3],[6,2,3],[7,3],[8,3],[9,7,1],[10,1,2,3,8,9]]
 
 def genera_pares(prob_padres):
 #prob_padres es una lista (que llamamos lista arriba) 
@@ -13,7 +14,8 @@ def genera_pares(prob_padres):
 				pares.append(par)
 	return pares
 
-def numero_problemas(cuantos):
+def numero_problemas(prob_padres):
+	cuantos=len(prob_padres)
 #cuantos es un entero que te dice cuantos problemas hay en total para hacer el arbol
 	elementos=[]
 	for i in range (0,cuantos):
@@ -93,23 +95,40 @@ def topological_sort(items, partial_order):
 
 #sorted es un lista donde cada elemento no tiene como padre ninguno de los elementos que van detras de el en la lista
 
-############################a partir de aqui falta por acabar
 
-def genera_niveles(pares,orden)
+def genera_niveles(pares,orden):
 #pares es la lista de pares que devuelve la funcion genera_pares
 #orden es la lista que devuelve la funcion topological_sort
-	niveles=[]
-	for i in orden:
-		cont=0
-		for j in pares:
-			if i!=j[1]:
-			cont=cont+1
-		if cont==len(pares): #hemos encontrado un nodo padre
-			niveles.append([0,i])
-		
-			
+	niveles={1:0}
+	#niveles.update({'item3': 3})
+	#he creado una lista donde por defecto cada elemento de orden esta en un nivel
+	for i in range (1,len(orden)):
+		guarda=[]
+		for n in range (1,i+1):
+			for j in pares:
+				if j==[orden[i-n],orden[i]]:
+					guarda.append(orden[i-n])	
+		take=max(guarda)
+		new=niveles[take]
+		niveles.update({orden[i] : new+1})
+	return niveles	
+	
+pares=genera_pares(lista2)
+elementos=numero_problemas(lista2)
+order=topological_sort(elementos,pares)
+print pares
+print elementos
+print order
+print genera_niveles(pares,order)
+#niveles es un diccionario donde que te dice cada elemento en que nivel esta
 
-
-
+###Resumen:
+###La funcion genera_pares tiene como input la lista donde el primer elemento es el label del problema 
+#y los demas son los problemas de los que depende. el output son los pares (padre,hijo)
+###La funcion numero_problemas tiene como output una lista desde 0 al numero de problemas que tengamos, 
+#esta lista la requiere la funcion topological_sort que nos bajamos de internet
+###La funcion general_niveles tiene como input el output de la funcion topological_sort (una lista
+#donde cada elemento depende de alguno de los anteriores pero no de los posteriores) y la lista de pares,
+#y tiene como output el diccionario que te dice cada nodo en que nivel esta {nodo:nivel}
 
 
