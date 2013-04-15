@@ -27,6 +27,10 @@ def set_var(parser, token):
  
 register.tag('set', set_var)
 
+@register.filter
+def lookup(d, key):
+    return d[key]
+
 
 @register.filter
 def solve(obj, data):
