@@ -75,7 +75,7 @@ def detail(request, prob_id):
 @login_required 
 def user_detail(request):
 	# Obtener lista de problemas global
-	solved_problems=Solves.objects.select_related('user').filter(user=1)
+	solved_problems=Solves.objects.select_related('user').filter(user=request.user)
 	all_problems = Problem.objects.all()
 	n_problems = Problem.objects.count()
 	
