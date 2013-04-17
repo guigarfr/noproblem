@@ -26,12 +26,12 @@ class Problem (models.Model):
     solucion = models.CharField(max_length=200)
     def __unicode__(self):
         return self.title
-
-    def data(self):
-        "Returns the data needed to solve a problem"
+    def get_children(self):
+    	return Problem.objects.filter(requirements=self).all()
+	def data(self):
+		"Returns the data needed to solve a problem"
         from noproblem.problems.pyconnecta import probs
         return getattr(probs, self.datos)()
-
     def solve(self,data):
         "Returns the data needed to solve a problem"
         from noproblem.problems.pyconnecta import probs
