@@ -15,7 +15,7 @@ from django.db.models import Avg
 import time, datetime, operator
 from django.contrib.auth.decorators import login_required
 from decimal import Decimal
-from noproblem.problems.models import Problem
+from noproblem.problems.utils.dbqueries import *
 
 ####################################################
 # 					GLOBAL VARS					   #
@@ -116,10 +116,11 @@ def user_detail(request):
 	id_prob_all=map(lambda x: x-1, Problem.objects.values_list('id',flat=True))
 	id_prob_solved_ok=map(lambda x: x-1, solved_problems.filter(is_correct=True).values_list('prob',flat=True).distinct())
 	id_prob_tosolve = map(lambda x: int(x), set(id_prob_all) - set(id_prob_solved_ok))
+	id_prob_cansolve = map(lambda x: x.id-1, get_problems_cansolve(request.user))
+	id_prob_nextsolve = list(set(id_prob_tosolve) - set(id_prob_cansolve))
 	
 	# Lista de identificadores de los problemas resueltos
 	id_prob_all=Problem.objects.values_list('id',flat=True)
-
 
 	# Vector de listas de resoluciones
 	if (n_solved_total > 0):
@@ -142,6 +143,8 @@ def user_detail(request):
 					  'num_resueltos_ok': n_solved_total_ok,
 					  'prob_list': all_problems,
 					  'prob_unsolved_id': id_prob_tosolve,
+					  'prob_cansolve_id': id_prob_cansolve,
+					  'prob_nextsolve_id': id_prob_nextsolve,
 					  'tasa_acierto_por_problema': n_solved_pct_ok,
 					  'tasa_acierto_global': n_pct_ok,
 					  'nprob': n_problems,

@@ -141,9 +141,14 @@ Aquí tienes tus envíos de resultados:
 Estos son los próximos a realizar:
 <div id="tosolveproblemlist" class="problemlist">
 	<ul>
-	{% for i in prob_unsolved_id %}
+	{% for i in prob_cansolve_id %}
 		{% with prob_list|lookup:i as problem %}
-		<li> <a href=/problems/{{problem.id}}>Problem {{ problem.title }}</a> </li>
+		<li id='cansolve'> <a href=/problems/{{problem.id}}>Problem {{ problem.title }}</a> </li>
+		{% endwith %}
+	{% endfor %}
+	{% for i in prob_nextsolve_id %}
+		{% with prob_list|lookup:i as problem %}
+		<li id='cantsolve'> Problem {{ problem.title }} </li>
 		{% endwith %}
 	{% endfor %}
 	</ul>
