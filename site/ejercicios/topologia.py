@@ -1,6 +1,7 @@
 
 lista=[[1],[2,1],[3,1],[4,1],[5,2,3],[6,2,3],[7,3],[8,3],[9,7,1]]
 lista2=[[1],[2,1],[3,1],[4,1],[5,2,3],[6,2,3],[7,3],[8,3],[9,7,1],[10,1,2,3,8,9]]
+lista3=[[1], [2, 1], [3, 1], [4, 1,7], [5, 3, 4], [6, 5],[7]]
 
 def genera_pares(prob_padres):
 #prob_padres es una lista (que llamamos lista arriba) 
@@ -33,19 +34,19 @@ def topological_sort(items, partial_order):
        Returns a list of the items in one of the possible orders, or None
        if partial_order contains a loop.
     """
-
+	
     def add_node(graph, node):
         """Add a node to the graph if not already exists."""
         if not graph.has_key(node):
             graph[node] = [0] # 0 = number of arcs coming into this node.
-
+	
     def add_arc(graph, fromnode, tonode):
         """Add an arc to a graph. Can create multiple arcs.
            The end nodes must already exist."""
         graph[fromnode].append(tonode)
         # Update the count of incoming arcs in tonode.
         graph[tonode][0] = graph[tonode][0] + 1
-
+	
     # step 1 - create a directed graph with an arc a->b for each input
     # pair (a,b).
     # The graph is represented by a dictionary. The dictionary contains
@@ -63,10 +64,10 @@ def topological_sort(items, partial_order):
         add_node(graph, v)
     for a,b in partial_order:
         add_arc(graph, a, b)
-
+	
     # Step 2 - find all roots (nodes with zero incoming arcs).
-    roots = [node for (node,nodeinfo) in graph.items() if nodeinfo[0] == 0]
-
+	roots = [node for (node,nodeinfo) in graph.items() if nodeinfo[0] == 0]
+	
     # step 3 - repeatedly emit a root and remove it from the graph. Removing
     # a node may convert some of the node's direct children into roots.
     # Whenever that happens, we append the new roots to the list of
@@ -99,28 +100,29 @@ def topological_sort(items, partial_order):
 def genera_niveles(pares,orden):
 #pares es la lista de pares que devuelve la funcion genera_pares
 #orden es la lista que devuelve la funcion topological_sort
-	niveles={1:0}
+	niveles={orden[0]:0}
 	#niveles.update({'item3': 3})
 	#he creado una lista donde por defecto cada elemento de orden esta en un nivel
 	for i in range (1,len(orden)):
-		guarda=[]
+		guarda=[-1]
 		for n in range (1,i+1):
 			for j in pares:
 				if j==[orden[i-n],orden[i]]:
-					guarda.append(orden[i-n])	
+					guarda.append(niveles[orden[i-n]])
 		take=max(guarda)
-		new=niveles[take]
+		#new=niveles[take]
+		new=take
 		niveles.update({orden[i] : new+1})
 	return niveles	
 	
-pares=genera_pares(lista2)
-elementos=numero_problemas(lista2)
+pares=genera_pares(lista3)
+elementos=numero_problemas(lista3)
 order=topological_sort(elementos,pares)
 print pares
 print elementos
 print order
 print genera_niveles(pares,order)
-#niveles es un diccionario donde que te dice cada elemento en que nivel esta
+#niveles es un diccionario que te dice cada elemento en que nivel esta
 
 ###Resumen:
 ###La funcion genera_pares tiene como input la lista donde el primer elemento es el label del problema 
