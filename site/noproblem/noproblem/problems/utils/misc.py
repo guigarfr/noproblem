@@ -41,6 +41,8 @@ def topological_sort(problem_list):
     # Whenever that happens, we append the new roots to the list of
     # current roots.
     sorted = []
+    root_level = [0] * len(roots)
+    sorted_level = []
     while len(roots) != 0:
         # If len(roots) is always 1 when we get here, it means that
         # the input describes a complete ordering and there is only
@@ -52,13 +54,16 @@ def topological_sort(problem_list):
         # this operation must be done in O(1) time.
         root = roots.pop()
         sorted.append(root)
+        thislevel = root_level.pop()
+        sorted_level.append(thislevel)
         for child in root.get_children():
         	if child in problem_list:
         		arcs_array[child.id] = arcs_array[child.id] - 1
         		if arcs_array[child.id] == 0:
         			roots.append(child)
+        			root_level.append(thislevel+1)
         del arcs_array[root.id]
     if len(arcs_array.items()) != 0:
         # There is a loop in the input.
         return None
-    return sorted
+    return (sorted,sorted_level)
