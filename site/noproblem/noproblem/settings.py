@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     'noproblem.accounts',
     # 'django_evolution',
     'noproblem.blog',
+    'noproblem.agenda'
 )
 
 

@@ -57,83 +57,32 @@ style="border:none;border-radius:50%;"> </img></div>
 </div>
 
 <div id="cuadro">
-<div align="right"><b>Bar de ciencias</b></div>
-<i>Què és el Higgs? On l'han trobat?</i>
-<p>Charla-debate dirigida por el Profesor de la Universitat de València Santiago González de la Hoz
-sobre el reciente descubrimiento del Higgs. 
-<br>La duración aproximada de la charla y el debate es de una hora en total.
-<a class="showhimtext"><div>
+{% if ultimos_eventos %}
+	{% for evento in ultimos_eventos %}
+<div align="right"><b>{{evento.tipo}}</b></div>
+<i>{{ evento.titulo }}</i>
+<p>{{ evento.contenido_generico|linebreaksbr }}
+	{% if evento.contenido_especifico %}
+<a class="showhimtext">
+<div>
 Leer más
-<div class="showmetext" id="cuadro">El passat 4 de juliol es va anunciar el descobriment d'una nova partícula, al
-"Large Hadron Collider" (LHC) del CERN, amb enorme importància per a la
-comprensió de l'estructura de la matèria al nivell més bàsic. La confirmació de
-l'existència del bosó de Higgs té per a la física fonamental una rellevància
-equiparable a la que va tenir el descobriment de l'ADN en biologia o l'evidència
-de l'estructura atòmica i molecular en química. A nivell tecnològic suposa una
-fita comparable a l'arribada de l'home a la Lluna, però les seves repercussions
-científiques són molt més importants. És també un exemple paradigmàtic de
-col·laboració internacional, a escala mundial i amb lideratge europeu, unint els
-esforços de tota la comunitat de físics de partícules cap a un gran objectiu comú.
-Quatre dècades d'intens treball científic i desenvolupament d'avançades
-tecnologies han permès confirmar l'existència d'un nou camp de forces, postulat
-el 1964, que pot fer encaixar les últimes peces de l'anomenat "Model Estàndard"
-de les interaccions fonamentals i, potser, obrir una finestra a nous fenòmens de
-naturalesa insospitada.</div></div></a>
+<div class="showmetext" id="cuadro">
+{{ evento.contenido_especifico|linebreaksbr }}
+</div></div></a>
+	{% endif %}
+<p><div id="coords">{{evento.fecha_ini|date:'H:i'}}-{{evento.fecha_final|date:'H:i'}}. 
+{{evento.lugar}},
+{% if evento.enlace_direccion %}
+ <a href="{{evento.enlace_direccion}}"> {{evento.direccion}}</a>,
+{% endif %}
+ {{evento.ciudad}}, 
+{{evento.fecha_ini|date:'d-m-Y'}}</div>
+<br>
+	{% endfor %}
+{% else %}
+<p>No hay próximos eventos.
+{% endif %}
 
-<p><div id="coords">20:00 h. L'Ermità Café Cultural, <a href="http://goo.gl/maps/tTIqG">C/ Obispo
-don Jerónimo 4</a>, Valencia, 
-18/04/2013</div>
-
-<p>
-<div align="right"><b>Taller infantil</b></div>
-<i>Mira mamà, sóc un electró!</i>
-<p>Taller con dinamización teatral sobre las partículas partículas elementales y las fuerzas. 
-El taller tiene como objetivo la presentación de estos componentes fundamentales de la materia
-y el aprendizaje de algunas de sus propiedades.
-<br>Duración aproximada de media hora.
-<p><div id="coords">TBA, Valencia, 
-27/04/2013</div>
-
-<p>
-<div align="right"><b>Bar de ciencias</b></div>
-<i>Biología sintética</i>
-<p>Charla-debate dirigida por Manel Porcar Miralles, Investigador del Institut Cavanilles
-de Biodiversitat i Biologia Evolutiva de la Universitat de València.
-<p><div id="coords">20:00 h. L'Ermità Café Cultural, <a href="http://goo.gl/maps/tTIqG">C/ Obispo
-don Jerónimo 4</a>, Valencia, 
-09/05/2013</div>
-
-
-<!-- 
-<p>
-<div align="right"><b>Taller infantil</b></div>
-<i>Fenómenos colectivos</i>
-<p>Taller con dinamización teatral sobre los fenómenos colectivos. 
-El taller tiene como objetivo el aprendizaje sobre los sistemas complejos y las consecuencias
-de la interacción de muchas "partículas" en ejemplos concretos como la transmisión de un virus o 
-los fenómenos meteorológicos.
-<p><div id="coords">EXPOCIENCIA (Parc Científic, UV), Burjassot, 
-25/05/2013</div>
- -->
-
-<p>
-<div align="right"><b>Taller infantil</b></div>
-<i>Las siete pruebas</i>
-<p>En este taller propondremos siete preguntas/experimentos diferentes donde los participantes (individualmente o en grupo) 
-pondrán a prueba sus habilidades científicas. El taller tiene como objetivo 
-acercar a los participantes a algunos conocimientos básicos de la física vía la experimentación y las tentativas de resolución. 
-<br>Duración aproximada de media hora.
-<p><div id="coords">De 10:00 a 13:00 h. EXPOCIENCIA (Parc Científic, UV), Burjassot, 
-25/05/2013</div>
-
-<p>
-<div align="right"><b>Presentación Connecta</b></div>
-<i>Didáctica de las ciencias, nuevas y no tan nuevas herramientas</i>
-<p>Presentación del proyecto Connecta sobre la estrategia de aprendizaje phEC de las ciencias
-experimentales y matemáticas y del desarrollo de <i>software</i> didáctico.
-<br>Duración aproximada de una hora.
-<p><div id="coords">TBA, Valencia, 
-29/05/2013</div>
 
 </div>
 </div>

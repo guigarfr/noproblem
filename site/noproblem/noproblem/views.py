@@ -1,16 +1,24 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from django.core.mail import send_mail, EmailMessage
 from django.http import HttpResponseRedirect 
 from noproblem.forms import ContactForm
 from django.core.urlresolvers import reverse
 from django.contrib import messages
+from noproblem.agenda.models import Evento
+from django.template import Context
+import datetime
 
 def preinicio(request):
     return render_to_response('preinicio.html', context_instance=RequestContext(request))
 
 def inicio(request):
-    return render_to_response('inicio.html', context_instance=RequestContext(request))
+	hoy=datetime.datetime.now().date()
+	ultimos_eventos = Evento.objects.filter(fecha_ini__gte=hoy).order_by('fecha_ini')[:5]
+	context = Context({
+					  'ultimos_eventos':ultimos_eventos,
+					  })
+	return render(request,'inicio.html',context)
 
 def about(request):
     return render_to_response('about.html', context_instance=RequestContext(request))
