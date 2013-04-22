@@ -61,13 +61,13 @@ style="border:none;border-radius:50%;"> </img></div>
 	{% for evento in ultimos_eventos %}
 <div align="right"><b>{{evento.tipo}}</b></div>
 <i>{{ evento.titulo }}</i>
-<p>{{ evento.contenido_generico|linebreaksbr }}
+<p>{{ evento.contenido_generico|safe|linebreaksbr }}
 	{% if evento.contenido_especifico %}
 <a class="showhimtext">
 <div>
 Leer más
 <div class="showmetext" id="cuadro">
-{{ evento.contenido_especifico|linebreaksbr }}
+{{ evento.contenido_especifico|safe|linebreaksbr }}
 </div></div></a>
 	{% endif %}
 <p><div id="coords">{{evento.fecha_ini|date:'H:i'}}-{{evento.fecha_final|date:'H:i'}}. 
