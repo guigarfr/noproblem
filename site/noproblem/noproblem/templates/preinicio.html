@@ -3,75 +3,41 @@
 {% block title %}Connecta{% endblock %}
 
 {% block content %}
-<SCRIPT LANGUAGE="javascript">
-Image1 = new Image(265,406)
-Image1.src = "{{ MEDIA_URL }}cable.gif"
 
-Image2 = new Image(265,406)
-Image2.src = "{{ MEDIA_URL }}ventana.png"
 
-Image3 = new Image(265,406)
-Image3.src = "{{ MEDIA_URL }}cuadro.gif"
+<h1>Connecta</h1>
+<h2>Centro de Promoción Científica</h2>
 
-Image4 = new Image(265,406)
-Image4.src = "{{ MEDIA_URL }}luz.gif" 
+<div align="center"><img src="{{ MEDIA_URL }}logopalo.jpg" width="20%"  align="left"> </img></div>
 
-Image5 = new Image(265,406)
-Image5.src = "{{ MEDIA_URL }}div.gif" 
-
-Image6 = new Image(265,406)
-Image6.src = "{{ MEDIA_URL }}did.gif" 
-
-Image7 = new Image(265,406)
-Image7.src = "{{ MEDIA_URL }}des.gif" 
-</SCRIPT>
-<div id="fondo"><IMG style="z-index:3" NAME="hola" SRC="{{ MEDIA_URL }}cable.gif" 
-width="100%"  USEMAP="#ep">
+<div id="div-1a">
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="font-family:Poiret One;font-size:18pt;">Connecta Empresa</div>
+<p><div style="font-family:Poiret One;">Proyectos de transferencia</div>
+<div style="font-family:Poiret One;">Gestión de cursos y conferencias</div>
+<div style="font-family:Poiret One;">Recursos web</div>
+<div style="font-family:Poiret One;">Divulgación</div>
+<p><div style="font-family:Poiret One;font-size:12pt;width:110%;"><a href="/inicio/">Entrar</a></div>
 </div>
-<SCRIPT LANGUAGE="javascript">
 
-function zoom7() {
-document.hola.src = Image7.src; return true;
-}
-function zoom6() {
-document.hola.src = Image6.src; return true;
-}
-function zoom5() {
-document.hola.src = Image5.src; return true;
-}
+<div id="div-1b">
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="font-family:Poiret One;font-size:18pt;">Connecta -te</div>
+<p><div style="font-family:Poiret One;">Aula de ciencias</div>
+<div style="font-family:Poiret One;">Didáctica para primaria y secundaria</div>
+<div style="font-family:Poiret One;">Grupos de innovación y programación</div>
+<div style="font-family:Poiret One;">Software didáctico</div>
+</div>
 
-function zoominagain() {
-document.hola.src = Image4.src; return true;
-}
-
-function zoomin() {
-document.hola.src = Image3.src; return true;
-}
-
-function zoomout() {
-document.hola.src = Image2.src; return true;
-}
-
-function original() {
-document.hola.src = Image1.src; return true; 
-}
-</SCRIPT>
-<MAP NAME="ep">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="500,0,80" SRC="{{ MEDIA_URL }}ventana.png" 
-onMouseOver="zoomout()" onMouseOut="original()">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="900,150,150" SRC="{{ MEDIA_URL }}cuadro.png" 
-onMouseOver="zoomin()" onMouseOut="original()">
-<AREA href="/inicio/" SHAPE="circle" ALT="Enlarged right side" COORDS="1000,350,150" SRC="{{ MEDIA_URL }}luz.png" 
-onMouseOver="zoominagain()" onMouseOut="original()">
-
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="100,100,150" SRC="{{ MEDIA_URL }}div.png" 
-onMouseOver="zoom5()" onMouseOut="original()">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="200,400,150" SRC="{{ MEDIA_URL }}did.png" 
-onMouseOver="zoom6()" onMouseOut="original()">
-<AREA SHAPE="circle" ALT="Enlarged right side" COORDS="400,550,150" SRC="{{ MEDIA_URL }}des.png" 
-onMouseOver="zoom7()" onMouseOut="original()">
-<AREA SHAPE="default" nohref>
-</MAP>
-<div id="entrar"><a href="/inicio/">Entrar >></a></div>
+<div id="div-1c">
+</div>
 
 {% endblock %}

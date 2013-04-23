@@ -86,6 +86,31 @@ font-weight:normal;font-size:16pt;font-family:Annie Use Your Telescope; color:#8
    background-size: 90px;
 }
 
+.aula {
+ width: 982px;
+ height:220px;
+ display:block;
+ background-color: white;
+ background-position: center top;
+ background-repeat: no-repeat;
+ background-image: url('welcome.jpg');
+ background-size: 982px;
+}
+
+.aula:hover {
+   background-color: white;
+   background-image: url('aulaciencias.jpg');
+   background-size: 982px;
+}
+/* 
+.aula {-moz-transition: all 1s ease-in-out;
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;}
+ */
+
+
+
 
 html{background-color:#F0F0F0;
 }
@@ -125,6 +150,7 @@ font-weight:normal;font-size:18pt;font-family:Poiret One;
 }
 
 #rotando{color:#8F2250;}
+
 
 #sometitles{
 font-weight:bold;font-size:16pt;font-family:Poiret One; color:#8F2250;

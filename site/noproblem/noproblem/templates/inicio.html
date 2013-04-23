@@ -3,9 +3,19 @@
 {% block title %}Connecta{% endblock %}
 
 {% block content %}
+
+
+
 <div id="cuadro">
 <div align="center"><img src="{{ MEDIA_URL }}welcome.jpg" width="100%"  align="center"> </img></div>
 </div>
+
+<!-- 
+<div id="cuadro">
+<div class="aula"></div>
+</div>
+ -->
+
 
 <div style="text-align:left;"><h2>Te interesa Connecta si...</h2></div>
 <br>
@@ -76,7 +86,7 @@ Leer más
  <a href="{{evento.enlace_direccion}}"> {{evento.direccion}}</a>,
 {% endif %}
  {{evento.ciudad}}, 
-{{evento.fecha_ini|date:'d-m-Y'}}</div>
+{{evento.fecha_ini|date:'d-m-Y'}}.</div>
 <br>
 	{% endfor %}
 {% else %}
@@ -90,19 +100,21 @@ Leer más
 <div id="divb">
 
 <div id="cuadroup">
-<b>Pregunta semanal</b>
+<b>Encén la bombeta</b>
 </div>
 <div id="cuadro">
-En nuestra página de <a href="/welcome/">Bienvenida</a> te proponemos una pregunta al encender la bombilla.
-Participa y responde rellenando el formulario de <a href="/contacto/">Contacto</a>; publicamos la primera respuesta acertada.
+Cada setmana proposem una pregunta.
+Participa i respon emplenant el formulari de <a href="/contacto/">Contacte</a>; publiquem la primera resposta encertada.
 <br>
-<a href="/welcome/"><img src="{{ MEDIA_URL }}bombilla.png" width="100%"  align="center"></a>
+
+
+<img src="{{ MEDIA_URL }}bombilla.jpg" width="100%"  align="center">
 
 <script type="text/javascript">
 var indice = 0;
 frases = new Array();
-frases[0] = "Todavía sin responder";
-frases[1] = "¡Participa!";
+frases[0] = "Encara sense respondre";
+frases[1] = "Participa!";
 indice = Math.random()*(frases.length);
 indice = Math.floor(indice);
 function rotar() {

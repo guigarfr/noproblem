@@ -1,16 +1,14 @@
 body {
  /*background-color: #F0F0F0;*/
  background-color: white;
- font: 16px Trebuchet MS, Trebuchet, Helvetica, Arial;
+ font-family: Istok Web;
  line-height: 120%;
-  width: 1024px;
-text-align:center;  
+  /*width: 1024px;*/
+text-align:left;  
 } 
 
-#fondo{
-/*position:absolute;
-top:50px;
-left:80px;*/
+.verticalLine {
+    border-left:thick solid black;
 }
 
 #rec{border:solid;}
@@ -19,7 +17,7 @@ h1 {
 	color:#8F2250;font-size:48pt;font-family:Lobster Two;
 }
 h2 {
-	font-weight:normal;font-size:48pt;font-family:Annie Use Your Telescope;color:#8F2250;
+	font-weight:normal;font-size:18pt;font-family:Poiret One;
 } 
 ul {
         list-style: none;
@@ -34,22 +32,29 @@ text-align:right;}
 #entrar a {text-decoration: none; color:#8F2250; }
 #entrar a:hover { color: #C0C0C0;}
 
-/*#tit{position:absolute;top:30px;}*/
-#tit2{position:absolute;top:800px;left:100px;z-index:3}
-#cable{position:absolute;top:255px;left:-40px;z-index:0;}
+a{
+color: #8F2250; 
+font-weight: bold; text-decoration: none;
+}
+a:hover { color:gray;}
 
-#poslogo {position:absolute;
-top:19px;
-left:240px;}
-.efectologo {
- width: 115px;
- height:115px;
- display:block;
- /*background-color: #F0F0F0;*/
- background-position: center top;
- background-repeat: no-repeat;
- background-image: url('logo1.gif');
- background-size: 90px;
+
+#div-1a {
+margin-top:100px;
+text-align:right;
+float:left;
+width:42%;
+}
+#div-1b {
+margin-top:100px;
+text-align:left;
+border-left:solid 1px #8F2250;
+ float:right;
+ width:35%;
+ padding-left:10px;
+}
+#div-1c {
+ clear:both;
 }
 
 
