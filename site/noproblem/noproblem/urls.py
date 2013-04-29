@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     #(r'^time/plus/(\d{1,2})/$', hours_ahead),
     # url(r'^$', '{{ project_name }}.views.home', name='home'),
     # url(r'^{{ project_name }}/', include('{{ project_name }}.foo.urls')),
+    url(r'^preguntas/', include('noproblem.preguntas.urls', namespace="preguntas")),
     url(r'^problems/', include('noproblem.problems.urls', namespace="problems")), 
                       
     # Uncomment the admin/doc line below to enable admin documentation:

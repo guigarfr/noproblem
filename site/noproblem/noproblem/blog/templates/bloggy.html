@@ -19,12 +19,18 @@ id=682043&amp;hash=d7081396ff680e5b549b49d624a87dc4"></script>
 <b>Encén la bombeta</b>
 </div>
 <div id="cuadro">
-Nom d'usuari:
-<br>
 <img src="{{ MEDIA_URL }}bombilla.jpg" width="100%" height="100%" align="center">
-Resposta:
 </div>
+hola
+ {% load preg_tags %}
+ <div id="leftnav">
+        {% block left_nav %}
+            {% ultimas_preguntas %}
+        {% endblock %}
+     </div>
+
 </div>
+
 
 
 <div id="divc">

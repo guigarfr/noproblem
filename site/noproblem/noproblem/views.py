@@ -6,6 +6,7 @@ from noproblem.forms import ContactForm
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from noproblem.agenda.models import Evento
+from noproblem.preguntas.models import Pregunta
 from django.template import Context
 import datetime
 
@@ -31,7 +32,6 @@ def didactica(request):
     
 def desarrollo(request):
     return render_to_response('desarrollo.html', context_instance=RequestContext(request))
-
 
 def contacto(request):
 	if request.method == 'POST': 

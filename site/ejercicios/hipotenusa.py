@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 #++++++++++++++++hiponetusa+++++++++++++
 #Dados los dos catetos, halla la hipotenusa.
 
@@ -17,7 +19,7 @@ def hipotenusa_datos():
     return lista
 
 def hipotenusa(lista):
-    return sqrt(pow(lista[0],2)+lista[1]**2)
+    return [sqrt(pow(lista[0],2)+lista[1]**2)]
 
 #++++++++++++++++trenes velocidad constante++++++++++
 #De dos ciudades que estan a una distancia de d km salen dos trenes respectivamente, si el primero va a una velocidad
@@ -36,7 +38,7 @@ def trenes(lista):
 	lista[1]=lista[1]*3.6
 	t=lista[2]/(lista[1]+lista[0])
 	x=lista[0]*t
-	return (x,t)
+	return [x,t]
 
 #++++++++++++++++plano inclinado 1++++++++++
 #Desde una altura de 50 cm soltamos un objeto situado en un plano inclinado 30 con la horizontal. 
@@ -58,7 +60,7 @@ def plano1(lista):
 	espacio=(float(lista[0])/100.0)/math.sin(math.radians(lista[1]))
 	t=sqrt(2*espacio/a)
 	v=a*t
-	return v
+	return [v]
 	
  
 #++++++++++++++++objeto hacia arriba++++++++++
@@ -77,7 +79,7 @@ def altura_datos():
 def altura(lista):
 	t=sqrt(lista[0]*2.0/constantes.G)
 	v=t*constantes.G
-	return v
+	return [v]
 	
 	
 #++++++++++++++++frenada++++++++++
@@ -95,7 +97,7 @@ def frenada(lista):
 	decel=6.0
 	t=sqrt(lista[0]*2.0/decel)
 	v=decel*t*3.6
-	return v
+	return [v]
 	
 #++++++++++velocidadMedia+++++++++++++++
 #Una bici va a 5m/s durante 5 minutos y luego cambia a una velocidad media de 8 m/s durante los siguientes 10 minutos. 
@@ -113,7 +115,7 @@ def velm_datos():
 def velm(lista):
 	d=lista[0]*lista[2]*60+lista[1]*lista[3]*60
 	vm=float(d)/(lista[2]*60+lista[3]*60)
-	return (d,vm)
+	return [d,vm]
  
  
 #++++++++++Valor minimo mu++++++++++++++
@@ -136,7 +138,7 @@ def mumin(lista):
 	lista[1]=float(lista[1])
 	lista[2]=float(lista[2])
 	mu=math.tan(math.radians(lista[0]))*((lista[2]/(lista[1]-lista[2]))+1)
-	return mu
+	return [mu]
 	
  
 #++++++++++Rozamiento agua++++++++++++++
@@ -163,15 +165,67 @@ def gota(lista):
 	densidad=1000.0
 	masa=densidad*(4.0/3.0)*math.pi*r**3
 	v=masa*constantes.G/gamma
-	return v
+	return [v]
  
- 
- 
- 
- 
- 
+###############Distancia entre dos piedras que caen###############
+#En un comic, Mary Jane se cae de lo alto de un edificio, tres segundos despues, Spiderman se tira
+#tras ella para rescatarla. A Spiderman no le queda mucha tela de aranya para 
+#coger a Mary Jane antes de que choque contra el suelo, crees que este problema
+#empeora las cosas segun pasa el tiempo?
 
+def no_datos():
+	return []
 
+def spiderman(no_datos):
+	return ['s']
+ 
+##############plano inclinado plano recto coef rozamiento misma distancia en cada plano##############
+#Un coche se desliza sin motor por una cuesta hacia abajo de 30 grados de inclinacion, averigua 
+#el coeficiente dinamico de rozamiento del coche con la superficie si tras la pendiente
+#el coche sigue deslizandose por un tramo horizontal la misma distancia que ha recorrido en la pendiente.
+#pag 90 libro fisica cou
+ 
+def caucho_datos():
+	lista=[]
+	alpha=randint(10,60)
+	lista.append(alpha)
+	return lista
+
+def caucho(lista):
+	mu=float(math.sin(math.radians(lista[0])))/(float(1+math.cos(math.radians(lista[0]))))
+	return mu
+
+################ascensor y cuerpo en él####################
+#Una persona de 60 kg está en un ascensor cuyo suelo está bastante frágil y no soporta una fuerza superior
+#a 620 N sobre él. Si el ascensor sube a una velocidad constante de 1 m/s, ¿se romperá el suelo? s/n. 
+#¿Y si sube con una aceleración de 1 m/s^2? ¿Y si desciende con una aceleración de 1 m/s^2?
+
+def ascensor_datos():
+	lista=[]
+	kilos=randint(50,100)
+	suelo=randint(520,1020)
+	lista.extend([kilos,suelo])
+	return lista
+
+def ascensor(lista):
+	respuesta=[]
+	F1=lista[0]*10
+	F2=lista[0]*10+lista[0]
+	F3=lista[0]*10-lista[0]
+	if F1 < lista[1]:
+		respuesta.append('n')
+	else:
+		respuesta.append('s')
+	if F2 < lista[1]:
+		respuesta.append('n')
+	else:
+		respuesta.append('s')
+	if F3 < lista[1]:
+		respuesta.append('n')
+	else:
+		respuesta.append('s')
+	return respuesta
+		
 
 
 
