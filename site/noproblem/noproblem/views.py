@@ -6,7 +6,6 @@ from noproblem.forms import ContactForm
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from noproblem.agenda.models import Evento
-from noproblem.preguntas.models import Pregunta
 from django.template import Context
 import datetime
 
