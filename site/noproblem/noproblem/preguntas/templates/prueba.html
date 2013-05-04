@@ -1,17 +1,26 @@
 
 <head>
-	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}deco2.css" />
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}deco.css" />
 	<link href=' http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' type='text/css'>
 	<link href=' http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 </head>
 
-
+<br>
+<div id="cuadroup">
+<b>Preguntes anteriors</b>
+</div>
+<div id="cuadro">
 {% for preg in ultimas %}
-<div style="font-family: Istok Web;"><b>{{preg.cuestion}}</b></div>
+{{preg.cuestion}}
 <p>
 <div style="font-family:courier;font-size:11px;color:#8F2250;">
 {{preg.fecha}}
 </div>
+<br>
 {% endfor %}
+<br>
+<div id="coords" style="color:black;">Si hi ha preguntes no contestades, anima't a contestar-les enviant una resposta 
+a <a href="/contacto/">Contacte</a>.</div>
+</div>

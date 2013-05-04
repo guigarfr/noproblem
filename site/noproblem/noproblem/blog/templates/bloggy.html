@@ -4,30 +4,67 @@
 
 {% block content %}
 
-<div id="diva">
+<div id="divaa">
 
-<script type="text/javascript" src="http://output34.rssinclude.com/output?type=js&amp;
+<script type="text/javascript" src="http://output46.rssinclude.com/output?type=js&amp;
 id=682043&amp;hash=d7081396ff680e5b549b49d624a87dc4"></script>
-
-
 
 
 </div>
 
-<div id="divb">
+<div id="divbb">
 <div id="cuadroup">
 <b>Encén la bombeta</b>
 </div>
 <div id="cuadro">
 <img src="{{ MEDIA_URL }}bombilla.jpg" width="100%" height="100%" align="center">
 </div>
+
+<!-- ultimos eventos -->
+<br>
+<div id="cuadroup">
+<b>Events anteriors</b>
+</div>
+
+<div id="cuadro">
+{% if ultimos_eventos %}
+	{% for evento in ultimos_eventos %}
+<div align="right"><b>{{evento.tipo}}</b></div>
+<br>
+<i>{{ evento.titulo }}</i>
+<p>{{ evento.contenido_generico|safe|linebreaksbr }}
+	{% if evento.contenido_especifico %}
+<a class="showhimtext">
+<div>
+Leer más
+<div class="showmetext" id="cuadro">
+{{ evento.contenido_especifico|safe|linebreaksbr }}
+</div></div></a>
+	{% endif %}
+<p><div id="coords">{{evento.fecha_ini|date:'H:i'}}-{{evento.fecha_final|date:'H:i'}}. 
+{{evento.lugar}},
+{% if evento.enlace_direccion %}
+ <a href="{{evento.enlace_direccion}}"> {{evento.direccion}}</a>,
+{% endif %}
+ {{evento.ciudad}}, 
+{{evento.fecha_ini|date:'d-m-Y'}}.</div>
+<br>
+	{% endfor %}
+{% else %}
+<p>No hay próximos eventos.
+{% endif %}
+
+</div>
+<!-- fin ultimos eventos -->
+
+<!-- ultimas preguntas -->
 {% load preg_tags %}
  <div id="leftnav">
         {% block left_nav %}
             {% ultimas_preguntas %}
         {% endblock %}
-     </div>
-
+</div>
+<!-- fin ultimas preguntas -->
 </div>
 
 
