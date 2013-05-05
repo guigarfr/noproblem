@@ -95,12 +95,14 @@ font-weight:normal;font-size:16pt;font-family:Annie Use Your Telescope; color:#8
  background-repeat: no-repeat;
  background-image: url('welcome.jpg');
  background-size: 982px;
+ color:transparent;
 }
 
 .aula:hover {
    background-color: white;
-   background-image: url('aulaciencias.jpg');
+   background-image: url('evento.jpg');
    background-size: 982px;
+   color:white;
 }
 /* 
 .aula {-moz-transition: all 1s ease-in-out;
