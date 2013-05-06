@@ -16,6 +16,7 @@ import time, datetime, operator
 from django.contrib.auth.decorators import login_required
 from decimal import Decimal
 from noproblem.problems.utils.dbqueries import *
+from noproblem.problems.utils.misc import topological_sort
 
 ####################################################
 # 					GLOBAL VARS					   #
@@ -30,24 +31,6 @@ def addTime(tm1, tm2):
     fulldate = datetime.datetime(100, 1, 1, tm1.hour, tm1.minute, tm1.second)
     fulldate = fulldate + datetime.timedelta(hours=tm2.hour,minutes=tm2.minute,seconds=tm2.second)
     return fulldate.time()
-    
-def dependencias_toporder(lista_problemas):
-	# Puedo contar el numero de problemas asi:
-	n_problems = lista_problemas.count()
-	# Puedo acceder a atributos, por ejemplo la dependencia, asi:
-	reqs=lista_problemas.select_related('requirements')
-	lista=[]
-	for i in range (0,n_problems):
-		reqsdei=req[i].requirements.all()
-		n_depend=reqsdei.count()
-		if (n_depend==0):
-			lista.append([lista_problemas[i].id])
-		else:
-			sublista=[]
-			for j in range (0,n_depend):
-				sublista.append(reqsdei[j].id)
-			lista.append([lista_problemas[i].id] + sublista)
-	return lista
 
 ####################################################
 #					  VIEWS						   #
@@ -61,6 +44,16 @@ def index(request):
                       'latest_prob_list': latest_prob_list,
                       })
 	return render(request, 'indexpr.html', context)
+
+
+def tree(request):
+    prlist = Problem.objects.all()
+    
+    #Set context and render call
+    context = Context({
+                      'pr_list': prlist,
+                      })
+    return render(request, 'tree.html', context)
 
 @login_required
 def detail(request, prob_id):

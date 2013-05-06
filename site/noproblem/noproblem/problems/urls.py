@@ -16,6 +16,8 @@ urlpatterns = patterns('',
                        url(r'^(?P<prob_id>\d+)/send/$', views.sendresult, name='sendresult'),
                        # ex: /problems/user_detail/
                        url(r'^user_detail/$', views.user_detail, name='user_detail'),
+                       # ex: /problems/tree/
+                       url(r'^tree/$', views.tree, name='tree'),
 )
 
 #urlpatterns = patterns('',
