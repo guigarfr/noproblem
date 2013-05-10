@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 from decimal import Decimal
 from noproblem.problems.utils.dbqueries import *
 from noproblem.problems.utils.misc import topological_sort
+from noproblem.problems.utils.sugiyama import problem_get_node_positions, sugiyama_graph_drawing_layering
 
 ####################################################
 # 					GLOBAL VARS					   #
@@ -47,11 +48,15 @@ def index(request):
 
 
 def tree(request):
-    prlist = Problem.objects.all()
-    
+    prlist = problem_get_node_positions(Problem.objects.all())
+    layers = sugiyama_graph_drawing_layering(Problem.objects.all())
+    map(lambda x:list(x),layers)
+    numlayers = len(layers)
     #Set context and render call
     context = Context({
                       'pr_list': prlist,
+                      'layer_list': layers,
+                      'nlayers': numlayers,
                       })
     return render(request, 'tree.html', context)
 

@@ -35,3 +35,17 @@ def lookup(d, key):
 @register.filter
 def solve(obj, data):
 	return obj.solve(data)
+
+@register.filter
+def keyvalue(dict, key):    
+    return dict[key]
+
+@register.filter
+def multiplyperfactor(num,fac):    
+    return int(num*fac)
+
+@register.filter
+def add(num,fac):    
+    return num+fac
+
+

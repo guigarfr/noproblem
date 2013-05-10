@@ -153,7 +153,7 @@ def problem_get_node_positions(myprob):
 	#Agrego los del nodo/s raiz
 	newdict = dict(zip(mylist[i],mypos))
 	mydict = dict(mydict.items() + newdict.items())
-	print mydict
+	return mydict
 	
 	#
 	# NORMALIZAR DISTANCIAS PARA QUE LA MINIMA SEA n
@@ -162,6 +162,6 @@ def problem_get_node_positions(myprob):
 	mylist = sorted(list(set(mydict.values())))
 	newmin = min([j-i for i, j in zip(mylist[:-1], mylist[1:])])
 	if(newmin < 1):
-		mydict = dict([ (k,v/newmin) for (k,v) in mydict.items() ]).values()
+		mydict = dict([ (k,v*1.0/newmin) for (k,v) in mydict.items() ])
 	
 	return mydict
