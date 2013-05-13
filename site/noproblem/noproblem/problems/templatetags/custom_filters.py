@@ -48,4 +48,8 @@ def multiplyperfactor(num,fac):
 def add(num,fac):    
     return num+fac
 
+@register.filter
+def substract(num,fac):    
+    return num-fac
+
 

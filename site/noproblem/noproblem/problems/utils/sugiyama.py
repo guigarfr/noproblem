@@ -140,9 +140,15 @@ def problem_get_node_positions(myprob):
 	mypos = range(0,len(mylist[0]))
 	i = 0
 	mydict = dict()
+	leveldict = dict()
 	
 	for i in range(0,len(mylist)-1):
-		print "Estoy en " + str(i)
+		print "Estoy en el nivel" + str(i)
+		
+		# START NIVELES
+		leveldict = dict(leveldict.items() + dict(zip(mylist[i],[len(mylist)-i]*len(mylist[i]))).items())
+		# END NIVELES
+		
 		newdict = dict(zip(mylist[i],mypos))
 		mydict = dict(mydict.items() + newdict.items())
 		print mydict
@@ -151,9 +157,17 @@ def problem_get_node_positions(myprob):
 		i = i + 1
 	
 	#Agrego los del nodo/s raiz
+	leveldict = dict(leveldict.items() + dict(zip(mylist[i],[len(mylist)-i]*len(mylist[i]))).items())
 	newdict = dict(zip(mylist[i],mypos))
+	
 	mydict = dict(mydict.items() + newdict.items())
-	return mydict
+	
+	# Uno ambos diccionarios
+	newdict = dict()
+	for prob in myprob:
+		newdict[prob] = (mydict[prob],leveldict[prob]-1)
+	
+	return newdict
 	
 	#
 	# NORMALIZAR DISTANCIAS PARA QUE LA MINIMA SEA n

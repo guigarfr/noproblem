@@ -24,24 +24,27 @@ div {
 
 
 
-{% if pr_list %}
-	{{ pr_list }}
+{% if pr_dict %}
+	{{ pr_dict }}
     <ul>
-    {% for prob,v in pr_list.items %}
-    	{{ prob }} {{ v }}
+    {% for prob,v in pr_dict.items %}
         <li><a href="/problems/{{ prob.id }}/">{{ prob.title }} has {{ prob.get_children.count }} {{ prob.get_children.count|pluralize:"child,children" }}</a></li>
+        {{ prob.title }} is to be in position ({{pr_dict|keyvalue:prob|lookup:0}} , {{pr_dict|keyvalue:prob|lookup:1}})
     {% endfor %}
     </ul>
 {% else %}
     <p>No problems are available.</p>
 {% endif %}
 
-
-
 	{% for layer in layer_list %}
+		{% with layer_list|length|add:-1 as nlayers %}
 		{% for prob in layer %}
-			{{ prob.id }} in layer {{ forloop.parentloop.counter }} translate {{ pr_list|keyvalue:prob|multiplyperfactor:40 }} and {{ forloop.parentloop.counter|add:-1|multiplyperfactor:35 }}<br/>
+			{% set depth = forloop.parentloop.counter %}
+			{% with nlayers|substract:depth|add:1 as thisdepth %}
+				{{ prob.id }} in layer {{ depth }} has depth {{ pr_dict|keyvalue:prob|lookup:1 }} translate {{ pr_dict|keyvalue:prob|lookup:0|multiplyperfactor:40 }} and {{ pr_dict|keyvalue:prob|lookup:1|multiplyperfactor:35 }}<br/>
+			{% endwith %}
 		{% endfor %}
+		{% endwith %}
 	{% endfor %}
 	
 <div id="tree_wrapper">
@@ -54,18 +57,26 @@ div {
 		</marker>
 	</defs>
 	
-{% for layer in layer_list %}
-	{% for prob in layer %}
-		{% set depth = forloop.parentloop.counter %}
+	{% for prob,v in pr_dict.items %}
 	<g id="problem{{prob.id}}"
-	   transform="translate({{ pr_list|keyvalue:prob|multiplyperfactor:450 }} {{ forloop.parentloop.counter|add:-1|multiplyperfactor:140 }} )" 
+	   transform="translate({{ v|lookup:0|multiplyperfactor:450 }} {{ v|lookup:1|multiplyperfactor:140 }} )" 
 	   class="node solved" data-content="Solved by 5651 (correct ratio 69.5%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Counting DNA Nucleotides”">
 		<a href="/problems/{{prob.id}}/">
 			<ellipse fill="none" stroke="black" cx="80" cy="80" rx="70" ry="50"></ellipse>
 			<text text-anchor="middle" x="80" y="80" font-family="Times Roman,serif" font-size="14.00">{{prob.title}}</text>
 		</a>
 	</g>
+		{% for child in prob.get_children %}
+	<g id="edge15" class="edge" >
+		<path marker-end='url(#head)' stroke-width='0.5' fill='none' stroke='gray'
+		d='M {{ v|lookup:0|multiplyperfactor:450|add:80 }},{{ v|lookup:1|multiplyperfactor:140|add:130 }}
+			{{ pr_dict|keyvalue:child|lookup:0|multiplyperfactor:450|add:80 }} {{ pr_dict|keyvalue:child|lookup:1|multiplyperfactor:140|add:30 }}' />
+		<circle transform="translate({{ v|lookup:0|multiplyperfactor:450 }} {{ v|lookup:1|multiplyperfactor:140 }} )" cx="80" cy="130" r="1" stroke="#000" stroke-width="1" />
+		<circle transform="translate({{ pr_dict|keyvalue:child|lookup:0|multiplyperfactor:450 }} {{ pr_dict|keyvalue:child|lookup:1|multiplyperfactor:140 }} )"
+		cx="80" cy="30" r="1" stroke="#ACA" stroke-width="1" />
+	</g>
 	{% endfor %}
+
 {% endfor %}
 		
 	<g id="edge15" class="edge">
@@ -75,34 +86,6 @@ div {
 </svg>
 </div>
 
-<div id="tree_wrapper">
-<svg width="1024pt" height="768pt" viewBox="0.00 0.00 2110.65 4106.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" original-width="2814" style="width:100%; height:50%">
-<g id="graph" class="graph" transform="scale(1 1) rotate(0) translate(4 4102)">
-	<polygon fill="white" stroke="white" points="-4,5 -4,-4102 2107.65,-4102 2107.65,5 -4,5"></polygon>
-	
-	<g id="problem116" class="node solved" data-content="Solved by 5651 (correct ratio 69.5%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Counting DNA Nucleotides”">
-		<a href="/problems/dna/">
-			<ellipse fill="none" stroke="black" cx="1236.88" cy="-4016" rx="32.8565" ry="18"></ellipse>
-			<text text-anchor="middle" x="1236.88" y="-4011.9" font-family="Times Roman,serif" font-size="14.00">DNA</text>
-		</a>
-	</g>
 
-	<g id="problem118" class="node solved" data-content="Solved by 4916 (correct ratio 86.8%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Transcribing DNA into RNA”">
-		<a href="/problems/rna/">
-			<ellipse fill="none" stroke="black" cx="1236.88" cy="-3688" rx="32.157" ry="18"></ellipse>
-			<text text-anchor="middle" x="1236.88" y="-3683.9" font-family="Times Roman,serif" font-size="14.00">RNA</text>
-		</a>
-	</g>
-	
-	<g id="edge15" class="edge">
-		
-		<path fill="none" stroke="gray" stroke-width="0.5" d="M1236.88,-3997.9C1236.88,-3943.58 1236.88,-3781.67 1236.88,-3716.07"></path>
-		<polygon fill="gray" stroke="gray" points="1240.38,-3716.05 1236.88,-3706.05 1233.38,-3716.05 1240.38,-3716.05"></polygon>
-	</g>
-</g>
-
-</svg>
-<br class="clear"/>
-</div>
 
 {% endblock %}

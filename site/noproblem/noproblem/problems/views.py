@@ -48,13 +48,13 @@ def index(request):
 
 
 def tree(request):
-    prlist = problem_get_node_positions(Problem.objects.all())
+    dictposic = problem_get_node_positions(Problem.objects.all())
     layers = sugiyama_graph_drawing_layering(Problem.objects.all())
     map(lambda x:list(x),layers)
     numlayers = len(layers)
     #Set context and render call
     context = Context({
-                      'pr_list': prlist,
+                      'pr_dict': dictposic,
                       'layer_list': layers,
                       'nlayers': numlayers,
                       })
