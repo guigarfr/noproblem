@@ -52,4 +52,8 @@ def add(num,fac):
 def substract(num,fac):    
     return num-fac
 
+@register.filter
+def half(num):    
+    return num/2
+
 

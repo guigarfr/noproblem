@@ -23,7 +23,7 @@ div {
 </style>
 
 
-
+<!--
 {% if pr_dict %}
 	{{ pr_dict }}
     <ul>
@@ -46,43 +46,56 @@ div {
 		{% endfor %}
 		{% endwith %}
 	{% endfor %}
-	
+-->
+
 <div id="tree_wrapper">
 
+{% with 35 as xradio and 25 as yradio %}
+{% with 50 as centerx and 50 as centery %}
+{% with 400 as factorx and 80 as factory %}
+{% with 9 as textsize %}
 <svg id="problem-tree" width="100%" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" ">
 	<defs>
-		<marker id='head' orient='auto' markerWidth='20' markerHeight='30'
-				refX='20' refY='15'>
-			<path d='M0,0 V30 L20,15 Z' fill='red' />
+		{% with 15 as markerlength and 10 as markerwidth %}
+		<marker id='head' orient='auto' markerWidth='{{markerlength}}' markerHeight='{{markerwidth}}'
+				refX='{{markerlength}}' refY='{{markerwidth|half}}'>
+			<path d='M0,0 V{{markerwidth}} L{{markerlength}},{{markerwidth|half}} Z' fill='red' />
 		</marker>
+		{% endwith %}
 	</defs>
 	
 	{% for prob,v in pr_dict.items %}
-	<g id="problem{{prob.id}}"
-	   transform="translate({{ v|lookup:0|multiplyperfactor:450 }} {{ v|lookup:1|multiplyperfactor:140 }} )" 
-	   class="node solved" data-content="Solved by 5651 (correct ratio 69.5%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Counting DNA Nucleotides”">
-		<a href="/problems/{{prob.id}}/">
-			<ellipse fill="none" stroke="black" cx="80" cy="80" rx="70" ry="50"></ellipse>
-			<text text-anchor="middle" x="80" y="80" font-family="Times Roman,serif" font-size="14.00">{{prob.title}}</text>
-		</a>
-	</g>
 		{% for child in prob.get_children %}
 	<g id="edge15" class="edge" >
 		<path marker-end='url(#head)' stroke-width='0.5' fill='none' stroke='gray'
-		d='M {{ v|lookup:0|multiplyperfactor:450|add:80 }},{{ v|lookup:1|multiplyperfactor:140|add:130 }}
-			{{ pr_dict|keyvalue:child|lookup:0|multiplyperfactor:450|add:80 }} {{ pr_dict|keyvalue:child|lookup:1|multiplyperfactor:140|add:30 }}' />
-		<circle transform="translate({{ v|lookup:0|multiplyperfactor:450 }} {{ v|lookup:1|multiplyperfactor:140 }} )" cx="80" cy="130" r="1" stroke="#000" stroke-width="1" />
-		<circle transform="translate({{ pr_dict|keyvalue:child|lookup:0|multiplyperfactor:450 }} {{ pr_dict|keyvalue:child|lookup:1|multiplyperfactor:140 }} )"
-		cx="80" cy="30" r="1" stroke="#ACA" stroke-width="1" />
+		d='M {{ v|lookup:0|multiplyperfactor:factorx|add:centerx }},{{ v|lookup:1|multiplyperfactor:factory|add:centery|add:yradio }}
+			{{ pr_dict|keyvalue:child|lookup:0|multiplyperfactor:factorx|add:centerx }} {{ pr_dict|keyvalue:child|lookup:1|multiplyperfactor:factory|add:centery|substract:yradio }}' />
+		<!--
+		<circle transform="translate({{ v|lookup:0|multiplyperfactor:factorx }} {{ v|lookup:1|multiplyperfactor:factory }} )" cx="{{centerx}}" cy="{{centery|add:yradio}}" r="1" stroke="#000" stroke-width="1" />
+		<circle transform="translate({{ pr_dict|keyvalue:child|lookup:0|multiplyperfactor:factorx }} {{ pr_dict|keyvalue:child|lookup:1|multiplyperfactor:factory }} )"
+		cx="{{centerx}}" cy="{{centery|substract:yradio}}" r="1" stroke="#ACA" stroke-width="1" />
+		-->
+	</g>
+		{% endfor %}
+
+	{% endfor %}
+	
+	{% for prob,v in pr_dict.items %}
+	<g id="problem{{prob.id}}"
+	   transform="translate({{ v|lookup:0|multiplyperfactor:factorx }} {{ v|lookup:1|multiplyperfactor:factory }} )" 
+	   class="node solved" data-content="Solved by 5651 (correct ratio 69.5%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Counting DNA Nucleotides”">
+		<a href="/problems/{{prob.id}}/">
+			<ellipse fill="#FFF" stroke="black" cx="{{centerx}}" cy="{{centery}}" rx="{{xradio}}" ry="{{yradio}}"></ellipse>
+			{% with textsize|half as halftext %}
+			<text text-anchor="middle" x="{{centerx}}" y="{{centery|add:halftext}}" font-family="Times Roman,serif" font-size="{{textsize}}pt">{{prob.title}}</text>
+			{% endwith %}
+		</a>
 	</g>
 	{% endfor %}
-
-{% endfor %}
-		
-	<g id="edge15" class="edge">
-		<path marker-end='url(#head)' stroke-width='0.5' fill='none' stroke='gray' d='M 512,130 512,180' />
-	</g>
-
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
 </svg>
 </div>
 
