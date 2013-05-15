@@ -20,6 +20,15 @@ div {
 .clear {
 	clear:both;
 }
+
+.solved {
+	fill: maroon;
+}
+
+.solved ellipse {
+	fill: honeydew;
+	-webkit-transition: all 350ms;
+}
 </style>
 
 
@@ -59,7 +68,7 @@ div {
 		{% with 15 as markerlength and 10 as markerwidth %}
 		<marker id='head' orient='auto' markerWidth='{{markerlength}}' markerHeight='{{markerwidth}}'
 				refX='{{markerlength}}' refY='{{markerwidth|half}}'>
-			<path d='M0,0 V{{markerwidth}} L{{markerlength}},{{markerwidth|half}} Z' fill='red' />
+			<path d='M0,0 V{{markerwidth}} L{{markerlength}},{{markerwidth|half}} Z' fill='black' />
 		</marker>
 		{% endwith %}
 	</defs>
