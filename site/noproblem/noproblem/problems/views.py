@@ -48,17 +48,60 @@ def index(request):
 
 
 def tree(request):
-    dictposic = problem_get_node_positions(Problem.objects.all())
-    layers = sugiyama_graph_drawing_layering(Problem.objects.all())
-    map(lambda x:list(x),layers)
-    numlayers = len(layers)
-    #Set context and render call
-    context = Context({
-                      'pr_dict': dictposic,
+	#Parametros dibujo svg:
+	xradio=35
+	yradio=25
+	centerx=50
+	centery=50
+	
+	dictposic = problem_get_node_positions(Problem.objects.all())
+	layers = sugiyama_graph_drawing_layering(Problem.objects.all())
+	map(lambda x:list(x),layers)
+	numlayers = len(layers)
+	
+	# Minimum difference between nodes in the same level
+	nlevel = max([x[1] for x in dictposic.values()])+1
+	levelmin = [9999999999999]*nlevel
+    
+	for i in range(0,nlevel):
+		xelems = sorted(list(set([t[0] for t in dictposic.values() if t[1] == i])))
+		if len(xelems)>1:
+			levelmin[i] = min([b-a for a, b in zip(xelems[:-1], xelems[1:])])
+		else:
+			levelmin[i] = xelems[0]
+		print xelems,levelmin[i]
+	xminlevel = min(levelmin)	
+	print "El minimo era " + str(xminlevel)
+	
+	# Si mis elipses tienen radio (rx,ry), para que su distancia minima en x sea rx
+	myfactor=(centerx+xradio)*1.0/xminlevel
+	newdict = dict([(x , (y[0]*myfactor,y[1])) for x,y in dictposic.items()])
+#	{% with 35 as xradio and 25 as yradio %}
+# 	{% with 50 as centerx and 50 as centery %}
+# 	{% with 250 as factorx and 100 as factory %}
+# 	{% with 9 as textsize %}
+	#Max and min x position and min difference
+	xmax = dictposic.items()[0][1][0]
+	xmin = dictposic.items()[0][1][0]
+	for p,v in dictposic.items():
+		if v[0] > xmax:
+			xmax = v[0]
+		if v[0] < xmin:
+			xmin = v[0]
+	# Number of levels
+	nlevel = max([x[1] for x in dictposic.values()])+1
+	#Set context and render call
+	context = Context({
+                      'pr_dict': newdict,
                       'layer_list': layers,
                       'nlayers': numlayers,
+                      'xlimits': (xmin,xmax),
+                      'xradio': xradio,
+                      'yradio': yradio,
+                      'centerx': centerx,
+                      'centery': centery,
                       })
-    return render(request, 'tree.html', context)
+	return render(request, 'tree.html', context)
 
 @login_required
 def detail(request, prob_id):

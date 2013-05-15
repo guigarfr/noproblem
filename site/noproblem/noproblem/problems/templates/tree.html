@@ -59,9 +59,7 @@ div {
 
 <div id="tree_wrapper">
 
-{% with 35 as xradio and 25 as yradio %}
-{% with 50 as centerx and 50 as centery %}
-{% with 400 as factorx and 80 as factory %}
+{% with 1 as factorx and 100 as factory %}
 {% with 9 as textsize %}
 <svg id="problem-tree" width="100%" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" ">
 	<defs>
@@ -101,8 +99,6 @@ div {
 		</a>
 	</g>
 	{% endfor %}
-{% endwith %}
-{% endwith %}
 {% endwith %}
 {% endwith %}
 </svg>
