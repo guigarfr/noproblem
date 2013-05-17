@@ -4,20 +4,68 @@
 
 {% block content %}
 
-
-
 <!-- 
 <div id="cuadro">
 <div align="center"><img src="{{ MEDIA_URL }}welcome.jpg" width="100%"  align="center"> </img></div>
 </div>
  -->
 
+<!-- 
 <div id="cuadro">
 <div class="aula">
-<div style="padding-left:690px;padding-top:140px;font-family:courier;">
+<!~~ 
+<div style="padding-left:70%;padding-top:14%;font-family:courier;">
 Bar de Ciències<br>Dijous 9 de Maig a les 20 h<br>Biologia Sintètica amb Manel Porcar
 <br>Més info baix, <i>Connecta tu agenda</i></div>
+ ~~>
 </div>
+</div>
+ -->
+
+<div id="slider">
+<input checked type="radio" name="slider" id="slide1" />
+<input type="radio" name="slider" id="slide2" />
+<input type="radio" name="slider" id="slide3" />
+<input type="radio" name="slider" id="slide4" />
+<input type="radio" name="slider" id="slide5" />
+<div id="slides">
+<div id="overflow">
+<div class="inner">
+<article><div class="info">
+<h5></h5>
+<a href="#"></a></div>
+<img src="{{ MEDIA_URL }}welcome.jpg" />
+</article>
+<article><div class="info">
+<h5></h5>
+<a href="#"></a></div>
+<img src="{{ MEDIA_URL }}bdc3.jpg" />
+</article>
+<article><div class="info">
+Taller infantil
+<br>Parc Científic UV
+<br>25 de Maig 10:00-13:30
+<br>
+<a style="color:white;" href="http://www.pcuv.es/es/Expociencia2013/Expociencia-2013.html">Expociencia 2013</a></div>
+<img src="{{ MEDIA_URL }}expociencia.jpg" />
+</article>
+<article><div class="info">
+<h5></h5>
+<a href="#"></a></div>
+<img src="{{ MEDIA_URL }}welcome.jpg" />
+</article>
+<article><div class="info">
+<h5></h5>
+<a href="#"></a></div>
+<img src="{{ MEDIA_URL }}bdc3.jpg" />
+</article>
+</div>
+</div>
+</div>
+<div id="controls">
+<label for="slide1"></label><label for="slide2"></label><label for="slide3"></label><label for="slide4"></label><label for="slide5"></label></div>
+<div id="active">
+<label for="slide1"></label><label for="slide2"></label><label for="slide3"></label><label for="slide4"></label><label for="slide5"></label></div>
 </div>
 
 
@@ -77,12 +125,11 @@ style="border:none;border-radius:50%;"> </img></div>
 <i>{{ evento.titulo }}</i>
 <p>{{ evento.contenido_generico|safe|linebreaksbr }}
 	{% if evento.contenido_especifico %}
-<a class="showhimtext">
-<div>
-Leer más
+<div class="showhimtext">
+<div style="color:gray;"><b>Leer más</b></div>
 <div class="showmetext" id="cuadro">
 {{ evento.contenido_especifico|safe|linebreaksbr }}
-</div></div></a>
+</div></div>
 	{% endif %}
 <p><div id="coords">{{evento.fecha_ini|date:'H:i'}}-{{evento.fecha_final|date:'H:i'}}. 
 {{evento.lugar}},
@@ -110,8 +157,6 @@ Leer más
 Cada setmana proposem una pregunta.
 Participa i respon emplenant el formulari de <a href="/contacto/">Contacte</a>; publiquem la primera resposta encertada.
 <br>
-
-
 <img src="{{ MEDIA_URL }}bombilla.jpg" width="100%"  align="center">
 
 <script type="text/javascript">

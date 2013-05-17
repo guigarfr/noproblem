@@ -254,7 +254,42 @@ def distpos(lista):
 	dist2 = adelante + atras2
 	resul.extend([dist1,dist2])
 	return resul
+
+#################trabajo realizado al subir escaleras o ascensor####################
+#Calcula el trabajo (en Julios) que realizas al subir las escaleras de un tercer piso si tu masa es 
+#70 kg y la altura total es de 10 metros. Calcula el coste de la energía eléctrica que 
+#consumes si subes en ascensor (despreciando toda clase de pérdidas), teniendo en cuenta
+#que la masa del ascensor es de unos 300 kg y que el kW*hora de energía eléctrica
+#se cobra a 0.18 euros
+
+def subirtercero_datos():
+	lista=[]
+	piso=randint(2,8)
+	metros=float(piso)*3.3
+	masa = randint(60,100)
+	masa_elevator=randint(200,500)
+	paracoste=randint(18,20)
+	coste=float(paracoste)/100.0
+	lista.extend([metros,masa,masa_elevator,coste])
+	return lista
+
+def subirtercero(lista):
+	resul=[]
+	apie=lista[1]*constantes.G*lista[0]
+	enascensor=(lista[1]+lista[2])*constantes.G*lista[0]
+	vale=lista[3]*enascensor/3600000
+	resul.extend([apie,vale])
+	return resul 
+
+
 	
+
+
+
+
+
+
+
 
 
 

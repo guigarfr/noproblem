@@ -14,10 +14,17 @@
 <div id="cuadro">
 {% for preg in ultimas %}
 {{preg.cuestion}}
-<p>
 <div style="font-family:courier;font-size:11px;color:#8F2250;">
 {{preg.fecha}}
 </div>
+{% if preg.respuesta %}
+<div class="showhimtext">
+<div style="color:gray;"><b>Resposta{% if preg.usuario %} per cortesia de {{preg.usuario}}{% endif %}</b></div>
+<div class="showmetext" style="font-size:11px;">
+{{preg.respuesta}}
+</div></div>
+{% endif %}
+
 <br>
 {% endfor %}
 <br>

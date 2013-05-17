@@ -223,6 +223,69 @@ experimentales y matemáticas y del desarrollo de <i>software</i> didáctico.
  
  *******************/
  
+ /***********pase de imagenes con miniaturas*****************/
+/***********************galeria imagenes***********************/
+/*CSS*/
+/*#galeria, #galeria * {box-sizing:border-box,-moz-box-sizing:border-box}
+#galeria {
+border: 1px solid #EAEAEA;  
+padding: 10px;
+padding-bottom: 0;
+background: white;  
+width: 982px;  
+}
+#galeria_miniaturas {
+display: table;
+margin: 0 auto;
+}
+#imgGaleria {
+border: 1px solid #F2F2F2;  
+padding: 3px;
+width: 982px; 
+height: 220px; 
+}
+.miniatura {
+width:  60px;  
+height:  60px;  
+float: left;
+cursor: pointer;
+padding: 5px;
+margin: 10px 5px;
+}
+.miniatura:hover {
+opacity:.8;  
+-moz-opacity:.8;
+-khtml-opacity:.8;
+filter:alpha(opacity=80);
+}
+.miniatura:active {
+opacity:1;
+-moz-opacity:1;
+-khtml-opacity:1;
+filter:alpha(opacity=80);
+}
+*/
+/*html*/
+/* 
+<div id="galeria">
+<div id="galeria_imagen">
+<img id="imgGaleria" src="{{ MEDIA_URL }}welcome.jpg" /></div>
+<div id="galeria_miniaturas">
+<img class="miniatura" onclick="javascript:document.getElementById('imgGaleria').src='{{ MEDIA_URL }}bdc3.jpg'
+;" src="{{ MEDIA_URL }}bdc3.jpg" />
+<img class="miniatura" onclick="javascript:document.getElementById('imgGaleria').src='{{ MEDIA_URL }}welcome.jpg'
+;" src="{{ MEDIA_URL }}welcome.jpg" />
+<img class="miniatura" onclick="javascript:document.getElementById('imgGaleria').src='{{ MEDIA_URL }}bdc3.jpg'
+;" src="{{ MEDIA_URL }}bdc3.jpg" />
+<img class="miniatura" onclick="javascript:document.getElementById('imgGaleria').src='{{ MEDIA_URL }}welcome.jpg'
+;" src="{{ MEDIA_URL }}welcome.jpg" />
+<img class="miniatura" onclick="javascript:document.getElementById('imgGaleria').src='{{ MEDIA_URL }}bdc3.jpg'
+;" src="{{ MEDIA_URL }}bdc3.jpg" />
+</div>
+</div>
+ */
+/****fin pase de imagenes con miniaturas********/
+ 
  
  
  
