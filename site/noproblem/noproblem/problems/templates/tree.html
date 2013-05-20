@@ -21,14 +21,17 @@ div {
 	clear:both;
 }
 
-.solved {
-	fill: maroon;
-}
-
-.solved ellipse {
-	fill: honeydew;
+g ellipse {
 	-webkit-transition: all 350ms;
 }
+
+g.node ellipse {
+	fill: mistyrose;
+}
+g.node.solved ellipse {
+	fill: honeydew;
+}
+
 </style>
 
 
@@ -61,7 +64,7 @@ div {
 
 {% with 1 as factorx and 100 as factory %}
 {% with 9 as textsize %}
-<svg id="problem-tree" width="100%" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" ">
+<svg id="problem-tree" width="100%" height="600" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" ">
 	<defs>
 		{% with 15 as markerlength and 10 as markerwidth %}
 		<marker id='head' orient='auto' markerWidth='{{markerlength}}' markerHeight='{{markerwidth}}'
@@ -90,7 +93,12 @@ div {
 	{% for prob,v in pr_dict.items %}
 	<g id="problem{{prob.id}}"
 	   transform="translate({{ v|lookup:0|multiplyperfactor:factorx }} {{ v|lookup:1|multiplyperfactor:factory }} )" 
-	   class="node solved" data-content="Solved by 5651 (correct ratio 69.5%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Counting DNA Nucleotides”">
+	   {% if prob|issolved:user %}
+	   class="node solved"
+	   {% else %}
+	   class="node"
+	   {% endif %}
+	   data-content="Solved by 5651 (correct ratio 69.5%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Counting DNA Nucleotides”">
 		<a xlink:href="/problems/{{prob.id}}/">
 			<ellipse fill="#FFF" stroke="black" cx="{{centerx}}" cy="{{centery}}" rx="{{xradio}}" ry="{{yradio}}"></ellipse>
 			{% with textsize|half as halftext %}

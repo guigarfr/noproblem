@@ -38,6 +38,8 @@ class Problem (models.Model):
         "Returns the data needed to solve a problem"
         from noproblem.problems.pyconnecta import probs
         return getattr(probs, self.solucion)(data)
+    def solved_by_user(self,usr):
+    	return Solves.objects.filter(user=usr, prob=self, is_correct=1).exists()
 
 class Solves(models.Model):
     user = models.ForeignKey(UserProfile)
