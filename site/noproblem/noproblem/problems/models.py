@@ -14,38 +14,38 @@ class SubArea (models.Model):
         return u'%s (%s)' % (self.name, self.area.name)
 
 class Problem (models.Model):
-    category = models.ForeignKey(SubArea)
-    title = models.CharField(max_length=200)
-    wording = models.TextField()
-    points = models.IntegerField()
-    #crea_date = models.DateTimeField('fecha de creacion')
-    created_at = models.DateTimeField(auto_now_add = True)
-    updated_at = models.DateTimeField(auto_now = True)
-    requirements = models.ManyToManyField('Problem',blank=True,null=True)
-    datos = models.CharField(max_length=200)
-    solucion = models.CharField(max_length=200)
-    def __unicode__(self):
-        return self.title
-    def get_children(self):
-    	return Problem.objects.filter(requirements=self).all()
-    def get_parents(self):
-    	return Problem.objects.filter(id__in=[o.id for o in Problem.objects.all() if self in o.get_children()])
-    def degree_out(self):
-    	return self.get_children().count()
-    def degree_in(self):
-    	return self.get_parents().count()
+	category = models.ForeignKey(SubArea)
+	title = models.CharField(max_length=200)
+	wording = models.TextField()
+	points = models.IntegerField()
+	#crea_date = models.DateTimeField('fecha de creacion')
+	created_at = models.DateTimeField(auto_now_add = True)
+	updated_at = models.DateTimeField(auto_now = True)
+	requirements = models.ManyToManyField('Problem',blank=True,null=True)
+	datos = models.CharField(max_length=200)
+	solucion = models.CharField(max_length=200)
+	def __unicode__(self):
+		return self.title
+	def get_children(self):
+		return Problem.objects.filter(requirements=self).all()
+	def get_parents(self):
+		return Problem.objects.filter(id__in=[o.id for o in Problem.objects.all() if self in o.get_children()])
+	def degree_out(self):
+		return self.get_children().count()
+	def degree_in(self):
+		return self.get_parents().count()
 	def data(self):
 		"Returns the data needed to solve a problem"
-        from noproblem.problems.pyconnecta import probs
-        return getattr(probs, self.datos)()
-    def solve(self,data):
-        "Returns the data needed to solve a problem"
-        from noproblem.problems.pyconnecta import probs
-        return getattr(probs, self.solucion)(data)
-    def solved_by_user(self,usr):
-    	return Solves.objects.filter(user=usr, prob=self, is_correct=1).exists()
-    def is_next_to_solve(self,usr):
-    	return any([o.solved_by_user(usr) for o in self.get_parents()])
+		from noproblem.problems.pyconnecta import probs
+		return getattr(probs, self.datos)()
+	def solve(self,data):
+		"Solves a problem given the needed data"
+		from noproblem.problems.pyconnecta import probs
+		return getattr(probs, self.solucion)(data)
+	def solved_by_user(self,usr):
+		return Solves.objects.filter(user=usr, prob=self, is_correct=1).exists()
+	def is_next_to_solve(self,usr):
+		return any([o.solved_by_user(usr) for o in self.get_parents()])
 
 class Solves(models.Model):
     user = models.ForeignKey(UserProfile)

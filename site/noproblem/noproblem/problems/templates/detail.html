@@ -8,37 +8,19 @@
 {% load i18n %}
 
 <style type="text/css">
-#title {
-	color:#8F2250;font-family:Annie Use Your Telescope;
-}
 #title h1 {
 	float: left;
 	text-align: left;
 
 }
 #title h3 {
+	color:#8F2250;font-family:Annie Use Your Telescope;
 	float: right;
 	text-align: left;
 }
 
 div.spacer {
 	clear: both;
-}
-
-body {
-	/*background: #F0F0F0;*/
-	background:white;
-	font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
-	line-height: 130%;
-	margin-top: 0px;
-    margin-right: 90px;
-    margin-bottom: 0px;
-    margin-left: 90px; /*márgenes del body respecto al html completo*/
-    padding: 10px 10px 50px 10px;/*márgenes del texto dentro del body*/
-    border-left:solid 1px;
-    border-right:solid 1px;
-    border-color:black;  
-    border-bottom:none; 
 }
 
 #wording{
@@ -51,7 +33,7 @@ body {
 	border-top:solid 1px; 
 }
 
-#data,#senddata{
+#problemdata,#senddata{
 	text-align:center;
 }
 
@@ -59,7 +41,7 @@ body {
 	text-align: center;
 }
 
-#alldata #data{
+#alldata #problemdata{
 	text-align: left;
 }
 
@@ -70,7 +52,7 @@ body {
 var startCount = 0;
 
 function showdata() {
-	var ele = document.getElementById("data");
+	var ele = document.getElementById("problemdata");
 	var butt_ini = document.getElementById("muestrabutton");
 	var butt_end = document.getElementById("finishedbutton");
 	ele.style.display = "block";
@@ -116,6 +98,7 @@ function submitForm() {
 	dateCurrent = new Date();
 	oDiff = get_time_difference(window.startCount, dateCurrent);
 	document.solverform.time.value = oDiff.hours + ":" + oDiff.minutes + ":" + oDiff.seconds;
+	document.solverform.prdata.value = JSON.stringify({{ probdata }});
     return true;
 }
 
@@ -155,9 +138,9 @@ function submitForm() {
         onclick="javascript:showdata();">
         {{ show_data_button }}
 </button>
-<div id='data' style="display: none">
+<div id='problemdata' style="display: none">
 <ul>
-{% for d in prob.data %}
+{% for d in probdata %}
 <li>{{ d }}</li>
 {% endfor %}
 </ul>
@@ -167,6 +150,7 @@ function submitForm() {
 {% csrf_token %}
 Result: <input type="text" name="result"><br>
 		<input type="hidden" name="time">
+		<input type="hidden" name="prdata">
 <button id='finishedbutton'
 		type="submit"
         onclick="javascript:submitForm();"

@@ -107,9 +107,13 @@ def tree(request):
 def detail(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
     
+    # Problem data
+    mydata = pr.data()
+    
     #Set context and render call
     context = Context({
                       'prob': pr,
+                      'probdata': mydata,
                       })
     return render(request, 'detail.html', context)
 
@@ -176,8 +180,7 @@ def user_detail(request):
 		solved_list_by_problem=n_problems * [None]
 		for i in range(0,n_problems):
 			solved_list_by_problem[i] = solved_problems.filter(prob=i+1)
-
-
+	
     #Set context and render call
 	context = Context({
 					  'num_resueltos': n_solved_total,
@@ -196,6 +199,7 @@ def user_detail(request):
 
 @login_required    
 def sendresult(request, prob_id):
+	import ast
 
 	# Get problem object from database
 	# Problem already exists as we come from detail view
@@ -224,40 +228,64 @@ def sendresult(request, prob_id):
 
 	# Set needed variables: user, prob, date, time, is_correct
 	res_sent = request.POST['result']
-   	when = datetime.datetime.today()
+	print res_sent
+	print isinstance(res_sent,float)
+	if res_sent:
+		res_sent=ast.literal_eval(res_sent)
+		try:
+			res_sent=list( res_sent )
+		except TypeError:
+			res_sent=[res_sent]
+		
+	else:
+		res_sent=[]
+	when = datetime.datetime.today()
    	solving_time = request.POST['time']
    	usuario=request.user.get_profile()
+   	problem_data=request.POST['prdata']
+   	if problem_data[0]=='[':
+   		problem_data = ast.literal_eval(request.POST['prdata'])
+   		map(str,problem_data)
    	
-   	if not is_number(res_sent):
-   		pr = get_object_or_404(Problem, pk=prob_id)
-   		context = Context({
-   			'prob': pr,
-            'error_message': "You have to send a number. Try again",
-        })
-        return render(request, "detail.html", context)
-
-    
-    
    	# Compute result
    	# TODO: De momento solo para un resultado, pero es una LISTA!!!!!
    	
-   	if( res_sent == ""):
+   	if( res_sent == []):
    		correct = False
    	else:
-		res_list = map(float, res_sent.split(","))
-		res_ok = pr.solve(res_list)
+		print problem_data
+		res_ok = pr.solve(problem_data)
+		print "Resultados",res_sent,res_ok
+		print "L1",len(res_ok)
+		print "L2",len(res_sent)
 		#Is the list the correct size?
 		if( len(res_ok) != len(res_sent) ):
+			print "Listas de distintos tamanyos"
 			correct = False
 		else:
 			# Check if result is correct: TODO: deal with float numbers
+			correct = False
 			for i in range(len(res_ok)):
-				if res_ok[i] - float(res_sent[i]) < 1e-3:
-					correct = True
+				if isinstance(res_ok[i], str):
+					print "Es str"
+					if res_ok[i] == res_sent[i]:
+						correct = True
+					else:
+						correct = False
+						break
 				else:
-					correct = False
-					break
-    	
+					print "Es numero"
+					if res_ok[i] - float(res_sent[i]) < 1e-3:
+						correct = True
+					else:
+						correct = False
+						break
+    
+	# If not resolved before, add points to user
+	if not pr.solved_by_user(usuario):
+		usuario.credits = usuario.credits+pr.points
+		usuario.save()
+    
    	# Add new solve to database
 	s = Solves(user=usuario, prob=pr,date=when, time=solving_time, is_correct=correct)
 	s.save()
