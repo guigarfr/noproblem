@@ -1,5 +1,12 @@
 from noproblem.problems.models import Problem
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 def topological_sort(problem_list):
     """Perform topological sort.
        items is a list of items to be sorted.

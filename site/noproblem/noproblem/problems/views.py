@@ -16,7 +16,7 @@ import time, datetime, operator
 from django.contrib.auth.decorators import login_required
 from decimal import Decimal
 from noproblem.problems.utils.dbqueries import *
-from noproblem.problems.utils.misc import topological_sort
+from noproblem.problems.utils.misc import topological_sort, is_number
 from noproblem.problems.utils.sugiyama import problem_get_node_positions, sugiyama_graph_drawing_layering
 
 ####################################################
@@ -200,7 +200,7 @@ def sendresult(request, prob_id):
 	# Get problem object from database
 	# Problem already exists as we come from detail view
 	pr = get_object_or_404(Problem, pk=prob_id)
-    
+	
 #	try:
 
     	# User exists?
@@ -227,6 +227,16 @@ def sendresult(request, prob_id):
    	when = datetime.datetime.today()
    	solving_time = request.POST['time']
    	usuario=request.user.get_profile()
+   	
+   	if not is_number(res_sent):
+   		pr = get_object_or_404(Problem, pk=prob_id)
+   		context = Context({
+   			'prob': pr,
+            'error_message': "You have to send a number. Try again",
+        })
+        return render(request, "detail.html", context)
+
+    
     
    	# Compute result
    	# TODO: De momento solo para un resultado, pero es una LISTA!!!!!
