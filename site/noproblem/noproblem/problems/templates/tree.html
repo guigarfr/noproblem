@@ -91,7 +91,7 @@ div {
 	<g id="problem{{prob.id}}"
 	   transform="translate({{ v|lookup:0|multiplyperfactor:factorx }} {{ v|lookup:1|multiplyperfactor:factory }} )" 
 	   class="node solved" data-content="Solved by 5651 (correct ratio 69.5%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Counting DNA Nucleotides”">
-		<a href="/problems/{{prob.id}}/">
+		<a xlink:href="/problems/{{prob.id}}/">
 			<ellipse fill="#FFF" stroke="black" cx="{{centerx}}" cy="{{centery}}" rx="{{xradio}}" ry="{{yradio}}"></ellipse>
 			{% with textsize|half as halftext %}
 			<text text-anchor="middle" x="{{centerx}}" y="{{centery|add:halftext}}" font-family="Times Roman,serif" font-size="{{textsize}}pt">{{prob.title}}</text>
