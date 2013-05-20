@@ -28,8 +28,12 @@ class Problem (models.Model):
         return self.title
     def get_children(self):
     	return Problem.objects.filter(requirements=self).all()
+    def get_parents(self):
+    	return Problem.objects.filter(id__in=[o.id for o in Problem.objects.all() if prob in o.get_children()])
     def degree_out(self):
     	return self.get_children().count()
+    def degree_in(self):
+    	return self.get_parents().count()
 	def data(self):
 		"Returns the data needed to solve a problem"
         from noproblem.problems.pyconnecta import probs
