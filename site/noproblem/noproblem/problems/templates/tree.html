@@ -26,10 +26,13 @@ g ellipse {
 }
 
 g.node ellipse {
-	fill: mistyrose;
+	fill: WhiteSmoke;
 }
 g.node.solved ellipse {
 	fill: honeydew;
+}
+g.node.tosolve ellipse {
+	fill: mistyrose;
 }
 
 </style>
@@ -93,18 +96,24 @@ g.node.solved ellipse {
 	{% for prob,v in pr_dict.items %}
 	<g id="problem{{prob.id}}"
 	   transform="translate({{ v|lookup:0|multiplyperfactor:factorx }} {{ v|lookup:1|multiplyperfactor:factory }} )" 
-	   {% if prob|issolved:user %}
+	   {% if user.is_authenticated and prob|issolved:user %}
 	   class="node solved"
+	   {% elif user.is_authenticated and prob|nexttosolve:user %}
+	   class="node tosolve"
 	   {% else %}
 	   class="node"
 	   {% endif %}
 	   data-content="Solved by 5651 (correct ratio 69.5%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Counting DNA Nucleotides”">
+	   {% if user.is_authenticated and prob|nexttosolve:user or prob|issolved:user %}
 		<a xlink:href="/problems/{{prob.id}}/">
+		{% endif %}
 			<ellipse fill="#FFF" stroke="black" cx="{{centerx}}" cy="{{centery}}" rx="{{xradio}}" ry="{{yradio}}"></ellipse>
 			{% with textsize|half as halftext %}
 			<text text-anchor="middle" x="{{centerx}}" y="{{centery|add:halftext}}" font-family="Times Roman,serif" font-size="{{textsize}}pt">{{prob.title}}</text>
 			{% endwith %}
+		{% if user.is_authenticated and prob|nexttosolve:user or prob|issolved:user %}
 		</a>
+		{% endif %}
 	</g>
 	{% endfor %}
 {% endwith %}

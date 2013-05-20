@@ -29,7 +29,7 @@ class Problem (models.Model):
     def get_children(self):
     	return Problem.objects.filter(requirements=self).all()
     def get_parents(self):
-    	return Problem.objects.filter(id__in=[o.id for o in Problem.objects.all() if prob in o.get_children()])
+    	return Problem.objects.filter(id__in=[o.id for o in Problem.objects.all() if self in o.get_children()])
     def degree_out(self):
     	return self.get_children().count()
     def degree_in(self):
@@ -44,6 +44,8 @@ class Problem (models.Model):
         return getattr(probs, self.solucion)(data)
     def solved_by_user(self,usr):
     	return Solves.objects.filter(user=usr, prob=self, is_correct=1).exists()
+    def is_next_to_solve(self,usr):
+    	return any([o.solved_by_user(usr) for o in self.get_parents()])
 
 class Solves(models.Model):
     user = models.ForeignKey(UserProfile)

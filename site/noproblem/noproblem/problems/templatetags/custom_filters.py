@@ -55,9 +55,12 @@ def substract(num,fac):
 @register.filter
 def half(num):    
     return num/2
-    
+
 @register.filter
 def issolved(obj, user):
 	return obj.solved_by_user(user)
 
+@register.filter
+def nexttosolve(obj, user):
+	return obj.is_next_to_solve(user)
 
