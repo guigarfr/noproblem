@@ -81,13 +81,14 @@ def tree(request):
 # 	{% with 250 as factorx and 100 as factory %}
 # 	{% with 9 as textsize %}
 	#Max and min x position and min difference
-	xmax = dictposic.items()[0][1][0]
-	xmin = dictposic.items()[0][1][0]
-	for p,v in dictposic.items():
+	xmax = newdict.items()[0][1][0]
+	xmin = newdict.items()[0][1][0]
+	for p,v in newdict.items():
 		if v[0] > xmax:
 			xmax = v[0]
 		if v[0] < xmin:
 			xmin = v[0]
+	mywidth=xmax-xmin
 	# Number of levels
 	nlevel = max([x[1] for x in dictposic.values()])+1
 	#Set context and render call
@@ -95,7 +96,7 @@ def tree(request):
                       'pr_dict': newdict,
                       'layer_list': layers,
                       'nlayers': numlayers,
-                      'xlimits': (xmin,xmax),
+                      'svgwidth': mywidth,
                       'xradio': xradio,
                       'yradio': yradio,
                       'centerx': centerx,

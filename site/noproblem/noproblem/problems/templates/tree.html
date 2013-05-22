@@ -64,10 +64,9 @@ g.node.tosolve ellipse {
 -->
 
 <div id="tree_wrapper">
-
 {% with 1 as factorx and 100 as factory %}
 {% with 9 as textsize %}
-<svg id="problem-tree" width="100%" height="{{nlayers|multiplyperfactor:factory}}" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" ">
+<svg id="problem-tree" width="{{svgwidth|add:centerx|add:centerx|multiplyperfactor:factorx}}" height="{{nlayers|multiplyperfactor:factory}}" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" ">
 	<defs>
 		{% with 15 as markerlength and 10 as markerwidth %}
 		<marker id='head' orient='auto' markerWidth='{{markerlength}}' markerHeight='{{markerwidth}}'
