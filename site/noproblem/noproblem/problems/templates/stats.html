@@ -116,17 +116,24 @@ Statistics for {{ title }}
 
 	<!-- Imprimo numero de veces solucionado -->
 	{% blocktrans count solves_list|length as counter with prob.title as title %}
-	Problem {{ title }} has been solved just once.
+	Problem {{ title }} has been tried to solve just once
 	{% plural %}
-	Problem {{ title }} has been solved {{ counter }} times already.
-	{% endblocktrans %} 
+	Problem {{ title }} has been tried to solve {{ counter }} times already
+	{% endblocktrans %}
+	{% if oks %}
+	{% blocktrans %}, being solved correctly {{ oks }} of them.{% endblocktrans %}
+	{% else %}
+	.
+	{% endif %}
 	<br />
 	
 	<!-- Tiempo medio de resolucion del problema -->
+	{% if nok %}
 	{% blocktrans %}
 	Average time for solving this problem is {{ avg_time }}
 	{% endblocktrans %}
 	<br />
+	{% endif %}
     
     <!-- Grafica porcentaje de correctos/incorrectos -->
     <div id="piechart">

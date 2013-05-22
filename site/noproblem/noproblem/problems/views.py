@@ -231,7 +231,7 @@ def sendresult(request, prob_id):
 	res_sent = request.POST['result']
 	print res_sent
 	print isinstance(res_sent,float)
-	if res_sent:
+	if res_sent and not res_sent.isalpha():
 		res_sent=ast.literal_eval(res_sent)
 		try:
 			res_sent=list( res_sent )
@@ -298,22 +298,32 @@ def sendresult(request, prob_id):
 
 def stats(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
+    context = Context({'prob': pr})
     
     # Compute variables for context
     solves_list = Solves.objects.filter(prob=pr)
+    context['solves_list'] = solves_list
     num=solves_list.count()
+    
     if (num != 0):
 		nok = solves_list.filter(is_correct=1).count()
 		nfail = solves_list.count() - nok
 		pctg_oks = nok/num
 		pctg_fails = 1 - pctg_oks
+		context['oks'] = nok
+		context['fails'] = nfail
+		context['pctg_oks'] = pctg_oks
+		context['pctg_fails'] = pctg_fails
 		
 		# Calculate average solving time
-		solving_times = solves_list.values_list('time')
+		solving_times = solves_list.filter(is_correct=1).values_list('time')
 		avg_time = datetime.time(0)
-		for t in solving_times:
-			avg_time = addTime(avg_time,t[0])    	
-		avg_time = datetime.time(avg_time.hour/num,avg_time.minute/num,avg_time.second/num)
+		if len(solving_times):
+			for t in solving_times:
+				avg_time = addTime(avg_time,t[0])
+			mygm=time.gmtime((avg_time.hour*3600.0+avg_time.minute*60+avg_time.second)/nok)
+			avg_time = datetime.time(mygm.tm_hour, mygm.tm_min, mygm.tm_sec)
+			context['avg_time'] = avg_time
 	
 		# Create google pie chart
 		chart = PieChart3D(250, 100)
@@ -324,24 +334,8 @@ def stats(request, prob_id):
 		# Assign the labels to the pie data
 		chart.set_pie_labels(['OK', 'Fail'])
 		
-		#Set context and render call
-		context = Context({
-    				      'prob': pr,
-                      	  'solves_list': solves_list,
-                      	  'oks': nok,
-                      	  'fails': nfail,
-                      	  'pctg_oks': pctg_oks,
-                    	  'pctg_fails': pctg_fails,
-                    	  'avg_time' : avg_time,
-                    	  'chart_url': chart.get_url(),
-                      	  })
-                      
-    else:
-    	context = Context({
-					      'prob': pr,
-                      	  'solves_list': solves_list,
-                      	  })
-    
+		context['chart_url'] = chart.get_url()
+	    
     return render(request, 'stats.html', context)
 
 def solve(request, prob_id):
