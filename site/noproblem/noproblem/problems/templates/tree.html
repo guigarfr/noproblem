@@ -109,6 +109,9 @@ g.node.tosolve ellipse {
 			<ellipse fill="#FFF" stroke="black" cx="{{centerx}}" cy="{{centery}}" rx="{{xradio}}" ry="{{yradio}}"></ellipse>
 			{% with textsize|half as halftext %}
 			<text text-anchor="middle" x="{{centerx}}" y="{{centery|add:halftext}}" font-family="Times Roman,serif" font-size="{{textsize}}pt">{{prob.title}}</text>
+			<!-- <text id="popup{{prob.id}}" x="{{centerx|add:xradio|add:3}}" y="{{centery|add:halftext}}" font-size="{{textsize}}pt" fill="black" visibility="hidden">Problema {{prob.id}}
+				<set attributeName="visibility" from="hidden" to="visible" begin="problem{{prob.id}}.mouseover" end="problem{{prob.id}}.mouseout"/>
+			</text> -->
 			{% endwith %}
 		{% if user.is_authenticated and prob|nexttosolve:user or prob|issolved:user %}
 		</a>
