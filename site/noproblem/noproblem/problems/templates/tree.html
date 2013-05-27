@@ -76,21 +76,34 @@ g.node.tosolve ellipse {
 		{% endwith %}
 	</defs>
 	
+	{% for e in edges %}
+		{% if e|lookup:2 %}
+	<g id="edge15" class="edge" >
+		<path marker-end='url(#head)' stroke-width='0.5' fill='none' stroke='gray'
+		d='M {{ e|lookup:1|lookup:0|multiplyperfactor:factorx|add:centerx }},{{ e|lookup:1|lookup:1|multiplyperfactor:factory|add:centery|add:yradio }}
+			{{ e|lookup:0|lookup:0|multiplyperfactor:factorx|add:centerx }} {{ e|lookup:0|lookup:1|multiplyperfactor:factory|add:centery|substract:yradio }}' />
+	</g>
+		{% else %}
+	<g id="edge15" class="edge" >
+		<path marker-end='url(#head)' stroke-width='0.5' fill='none' stroke='gray'
+		d='M {{ e|lookup:1|lookup:0|multiplyperfactor:factorx|add:centerx }},{{ e|lookup:1|lookup:1|multiplyperfactor:factory|add:centery|add:yradio }}
+			{{ e|lookup:0|lookup:0|multiplyperfactor:factorx|add:centerx }} {{ e|lookup:0|lookup:1|multiplyperfactor:factory|add:centery|substract:yradio }}' />
+	</g>
+		{% endif %}
+	{% endfor %}
+	
+	<!--
 	{% for prob,v in pr_dict.items %}
 		{% for child in prob.get_children %}
 	<g id="edge15" class="edge" >
 		<path marker-end='url(#head)' stroke-width='0.5' fill='none' stroke='gray'
 		d='M {{ v|lookup:0|multiplyperfactor:factorx|add:centerx }},{{ v|lookup:1|multiplyperfactor:factory|add:centery|add:yradio }}
 			{{ pr_dict|keyvalue:child|lookup:0|multiplyperfactor:factorx|add:centerx }} {{ pr_dict|keyvalue:child|lookup:1|multiplyperfactor:factory|add:centery|substract:yradio }}' />
-		<!--
-		<circle transform="translate({{ v|lookup:0|multiplyperfactor:factorx }} {{ v|lookup:1|multiplyperfactor:factory }} )" cx="{{centerx}}" cy="{{centery|add:yradio}}" r="1" stroke="#000" stroke-width="1" />
-		<circle transform="translate({{ pr_dict|keyvalue:child|lookup:0|multiplyperfactor:factorx }} {{ pr_dict|keyvalue:child|lookup:1|multiplyperfactor:factory }} )"
-		cx="{{centerx}}" cy="{{centery|substract:yradio}}" r="1" stroke="#ACA" stroke-width="1" />
-		-->
 	</g>
 		{% endfor %}
 
 	{% endfor %}
+	-->
 	
 	{% for prob,v in pr_dict.items %}
 	<g id="problem{{prob.id}}"

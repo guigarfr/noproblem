@@ -18,6 +18,8 @@ from decimal import Decimal
 from noproblem.problems.utils.dbqueries import *
 from noproblem.problems.utils.misc import topological_sort, is_number
 from noproblem.problems.utils.sugiyama import problem_get_node_positions, sugiyama_graph_drawing_layering
+from math import atan
+from collections import defaultdict
 
 ####################################################
 # 					GLOBAL VARS					   #
@@ -54,11 +56,45 @@ def tree(request):
 	centerx=50
 	centery=50
 	
-	dictposic = problem_get_node_positions(Problem.objects.all())
-	layers = sugiyama_graph_drawing_layering(Problem.objects.all())
+	problist = Problem.objects.all()
+	dictposic = problem_get_node_positions(problist)
+	layers = sugiyama_graph_drawing_layering(problist)
 	map(lambda x:list(x),layers)
 	numlayers = len(layers)
 	
+	dictlayers={}
+	i=0
+	for layer in layers:
+		for prob in layer:
+			dictlayers[prob] = i
+		i=i+1
+	
+	edgemoddict = {}
+	for p in problist:
+		anglelist = []
+		angledict = defaultdict(list)
+		for padre in p.get_parents():
+			pos = dictposic[p]
+			pospadre = dictposic[padre]
+			if pospadre[0] == pos[0]:
+				angle = 0
+			else:
+				angle = atan(1.0*(pospadre[1] - pos[1])/(pospadre[0] - pos[0]))
+			print 'Problem ' + p.title + ' has angle ' + str(angle) + ' with his parent ' + padre.title
+			anglelist.append((p,padre,angle, dictlayers[prob]))
+			angledict[angle].append(padre)
+			edgemoddict[(p,padre)] = False
+		# Evaluo los padres a ver si coinciden en angulo
+		for a,plist in angledict.items():
+			if len(plist)>1:
+				layerp = map(lambda x: dictlayers[x], plist)
+				print "Angulo " + str(a) + " problemas " + str(plist)
+				print "Capas " + str(layerp)
+				amodificar = plist[min([i for i, j in enumerate(layerp) if j == max(layerp)])]
+				print "Quiero modificar el padre " + str(amodificar)
+				edgemoddict[(p,amodificar)] = True
+	print "Lista de caminos a modificar " + str(edgemoddict)
+				
 	# Minimum difference between nodes in the same level
 	nlevel = max([x[1] for x in dictposic.values()])+1
 	levelmin = [9999999999999]*nlevel
@@ -74,8 +110,16 @@ def tree(request):
 	print "El minimo era " + str(xminlevel)
 	
 	# Si mis elipses tienen radio (rx,ry), para que su distancia minima en x sea rx
-	myfactor=(centerx+xradio)*1.0/xminlevel
+	myfactor=1
+	if xminlevel:
+		myfactor=(centerx+xradio)*1.0/xminlevel
 	newdict = dict([(x , (y[0]*myfactor,y[1])) for x,y in dictposic.items()])
+	
+	edges=[]
+	for probs,tocurve in edgemoddict.items():
+		edges.append((newdict[probs[0]],newdict[probs[1]],tocurve))
+	
+	print "Nuevos caminos: " + str(edges)
 #	{% with 35 as xradio and 25 as yradio %}
 # 	{% with 50 as centerx and 50 as centery %}
 # 	{% with 250 as factorx and 100 as factory %}
@@ -101,7 +145,9 @@ def tree(request):
                       'yradio': yradio,
                       'centerx': centerx,
                       'centery': centery,
+                      'edges': edges,
                       })
+	print "A renderizar"
 	return render(request, 'tree.html', context)
 
 @login_required
