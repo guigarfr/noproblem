@@ -76,13 +76,28 @@ g.node.tosolve ellipse {
 		{% endwith %}
 	</defs>
 	
+	{% set last = 1 %}
 	{% for e in edges %}
 		{% if e|lookup:2 %}
+			{% if last > 0 %}
 	<g id="edge15" class="edge" >
 		<path marker-end='url(#head)' stroke-width='0.5' fill='none' stroke='gray'
 		d='M {{ e|lookup:1|lookup:0|multiplyperfactor:factorx|add:centerx }},{{ e|lookup:1|lookup:1|multiplyperfactor:factory|add:centery|add:yradio }}
+		   C {{ e|lookup:1|lookup:0|multiplyperfactor:factorx|add:centerx|add:centerx|add:5 }},{{ e|lookup:1|lookup:1|multiplyperfactor:factory|add:centery|add:yradio }}
+		   {{ e|lookup:0|lookup:0|multiplyperfactor:factorx|add:centerx|add:centerx|add:5 }} {{ e|lookup:0|lookup:1|multiplyperfactor:factory|add:centery|substract:yradio }}
 			{{ e|lookup:0|lookup:0|multiplyperfactor:factorx|add:centerx }} {{ e|lookup:0|lookup:1|multiplyperfactor:factory|add:centery|substract:yradio }}' />
 	</g>
+				{% set last = 0 %}
+			{% else %}
+	<g id="edge15" class="edge" >
+		<path marker-end='url(#head)' stroke-width='0.5' fill='none' stroke='gray'
+		d='M {{ e|lookup:1|lookup:0|multiplyperfactor:factorx|add:centerx }},{{ e|lookup:1|lookup:1|multiplyperfactor:factory|add:centery|add:yradio }}
+		   C {{ e|lookup:1|lookup:0|multiplyperfactor:factorx|add:centerx|substract:centerx|substract:5 }},{{ e|lookup:1|lookup:1|multiplyperfactor:factory|add:centery|add:yradio }}
+		   {{ e|lookup:0|lookup:0|multiplyperfactor:factorx|add:centerx|substract:centerx|substract:5 }} {{ e|lookup:0|lookup:1|multiplyperfactor:factory|add:centery|substract:yradio }}
+			{{ e|lookup:0|lookup:0|multiplyperfactor:factorx|add:centerx }} {{ e|lookup:0|lookup:1|multiplyperfactor:factory|add:centery|substract:yradio }}' />
+	</g>
+				{% set last = 1 %}
+			{% endif %}
 		{% else %}
 	<g id="edge15" class="edge" >
 		<path marker-end='url(#head)' stroke-width='0.5' fill='none' stroke='gray'
