@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_problems.html" %}
 
 {% block title %}Connecta - NoProblem{% endblock %}
 
@@ -7,99 +7,16 @@
 {% load scientificfilter %}
 {% load i18n %}
 
-<style type="text/css">
-#title {
-	color:#8F2250;font-family:Annie Use Your Telescope;
-}
-#title h1 {
-	float: left;
-	text-align: left;
 
-}
-#title h3 {
-	float: right;
-	text-align: left;
-}
+<br>
 
-div.spacer {
-	clear: both;
-}
-
-body {
-	/*background: #F0F0F0;*/
-	background:white;
-	font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
-	line-height: 130%;
-	margin-top: 0px;
-    margin-right: 90px;
-    margin-bottom: 0px;
-    margin-left: 90px; /*márgenes del body respecto al html completo*/
-    padding: 10px 10px 50px 10px;/*márgenes del texto dentro del body*/
-    border-left:solid 1px;
-    border-right:solid 1px;
-    border-color:black;  
-    border-bottom:none; 
-}
-
-#wording{
-	/*background: #F0F0F0;*/
-    padding: 20px 20px 30px 30px;/*márgenes del texto dentro del body*/
-    border-left:solid 1px;
-    border-right:solid 1px;
-    border-color:black;  
-    border-bottom:solid 1px; 
-	border-top:solid 1px; 
-}
-
-#data,#senddata{
-	text-align:center;
-}
-
-#alldata {
-	text-align: center;
-}
-
-#alldata #data{
-	text-align: left;
-}
-
-.resfail {
-	color: #CC0000
-}
-
-.resok {
-	color: #009900
-}
-
-#num {
-	font-weight: bold;
-	font-size:110%
-}
-
-</style>
-
-
-<div id="title">
-<h1>{% blocktrans with user.get_profile.user.username as username %} Problems list for user {{ username }} {% endblocktrans %}</h1>
-<h3>@{% now "jS F Y H:i:s" %}</h3>
+<div id="diva">
+<div id="cuadroup">
+<b>¡Hola {{ user.get_profile.user.username }}! Estos son los detalles de tu cuenta:</b>
 </div>
-
-<div class="spacer">
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-</div>
-
-<!-- Contexto:
-					  'num_resueltos': n_solved_total,
-					  'num_resueltos_ok': n_solved_total_ok,
-					  'prob_list': all_problems,
-					  'tasa_acierto_por_problema': n_solved_pct_ok,
-					  'tasa_acierto_global': n_pct_ok,
-					  'nprob': n_problems,
-                      'sprob_list_list': solved_list_by_problem,
-                      -->
-
-<div class="statsinfo">
-Tu usuario tiene un total de <span id="num">{{ user.get_profile.credits }}</span> creditos.<br/>
+<div id="cuadro">
+<div>
+Tienes un total de <span id="num">{{ user.get_profile.credits }}</span> creditos.<br/>
 En este momento tenemos disponibles un total de <span id="num">{{ nprob }}</span> problemas.<br />
 Has intentado resolver <span id="num">{{ num_resueltos }}</span> problemas, de los cuales
 has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</span>.<br />
@@ -163,6 +80,30 @@ Estos son los próximos a realizar:
 <li>{{ d }}</li>
 {% endfor %}
 </ul>
+</div>
+</div>
+
+<div id="divb">
+</div>
+
+<div id="divc">
+</div>
+
+
+<div class="spacer">
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+</div>
+
+<!-- Contexto:
+					  'num_resueltos': n_solved_total,
+					  'num_resueltos_ok': n_solved_total_ok,
+					  'prob_list': all_problems,
+					  'tasa_acierto_por_problema': n_solved_pct_ok,
+					  'tasa_acierto_global': n_pct_ok,
+					  'nprob': n_problems,
+                      'sprob_list_list': solved_list_by_problem,
+                      -->
+
 
 {% endblock %}
 

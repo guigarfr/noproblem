@@ -1,0 +1,19 @@
+{% extends "base0_problems.html" %}
+
+
+
+{% block contentbase %}
+
+<ul class="mi-menu">
+  <li><a href=""> Inicio</a></li>
+  <li><a href=""> Categoría </a></li>
+  <li><a href=""> Puntos: {{ user.get_profile.credits }} </a></li>
+  <li><a href="/didactica/"> Árbol </a></li>
+  <li><a href="/desarrollo/"> Log Out </a></li>
+  <li><a href="/problems/user_detail"> Usuario {{ user.get_profile.user.username }} @{% now "jS F Y H:i:s" %} </a></li>
+
+</ul>
+
+{% block content %}
+{% endblock %}
+{% endblock %}

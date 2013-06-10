@@ -1,0 +1,365 @@
+#cuadro2{
+border-radius: 10%;
+border:none;
+background-color:#F0F0F0;
+text-align:left;
+font-family:courier;
+font-size:11pt;
+padding: 25px 25px 25px 25px;
+}
+
+#int{
+list-style: none;
+display:block;
+margin:-11px;
+}
+#int li{float:left;width:200px;height:200px;}
+
+a.showhim {font-weight: normal; text-decoration:none; color:black}
+a.showhim:hover { color:black;}
+
+.showme{ 
+display: none;
+}
+.showhim:hover .showme{
+display : block;
+color:black;
+text-align:center;
+font-weight: bold;
+}
+
+.showmetext{ 
+display: none;
+}
+.showhimtext:hover .showmetext{
+display : block;
+color:black;
+font-weight: normal;
+}
+
+div.hr {
+  height: 2px;
+  background: #000000;
+  color:#000000;
+}
+div.hr hr {
+  display: none;
+}
+
+#contact{margin-left: auto;
+	margin-right: 800px;
+	width: 6em;}
+
+#tit{
+text-align:left;
+float:left;
+width:85%;
+}
+
+#poslogo {
+float:left;
+width:15%;
+}
+
+
+.efectologo {
+ width: 115px;
+ height:115px;
+ display:block;
+ background-color: white;
+ background-position: center top;
+ background-repeat: no-repeat;
+ background-image: url('logo1.gif');
+ background-size: 90px;
+}
+
+.efectologo:hover {
+   background-color: white;
+   background-image: url('arbol1.gif');
+   background-size: 90px;
+}
+
+#num {
+	font-weight: bold;
+	font-size:110%
+}
+
+.resfail {
+	color: #CC0000
+}
+
+.resok {
+	color: #009900
+}
+
+.aula {
+ width: 982px;
+ height:220px;
+ display:block;
+ background-color: white;
+ background-position: center top;
+ background-repeat: no-repeat;
+ background-image: url('welcome.jpg');
+ background-size: 982px;
+ color:transparent;
+}
+
+.aula:hover {
+   background-color: white;
+   background-image: url('bdc3.jpg');
+   background-size: 982px;
+   color:white;
+}
+/* 
+.aula {-moz-transition: all 1s ease-in-out;
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;}
+ */
+
+
+
+
+html{background-color:#F0F0F0;
+}
+body{
+		/*background: #F0F0F0;*/
+	  background:white;
+      /*font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;*/
+      font-family: Istok Web;
+      font-size:14px;
+	  line-height: 130%;
+	  margin-top: 0px;
+      margin-right: auto;
+      margin-bottom: 0px;
+      margin-left: auto; /*márgenes del body respecto al html completo*/
+      padding: 10px 20px 50px 20px;/*márgenes del texto dentro del body top right bottom left*/
+      border-left:solid 1px;
+      border-right:solid 1px;
+      border-color:black;  
+      border-bottom:none; 
+      text-align:justify;
+    
+    width: 1024px;
+   
+
+      }
+
+
+
+
+h1 {
+	color:#8F2250;font-size:48pt;font-family:Annie Use Your Telescope;
+}
+
+h2 {
+font-weight:normal;font-size:18pt;font-family:Poiret One;
+	/*font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;*/
+}
+
+#rotando{color:#8F2250;}
+
+
+#sometitles{
+font-weight:bold;font-size:16pt;font-family:Poiret One; color:#8F2250;
+/*font-weight:normal;font-size:16pt;font-family:Annie Use Your Telescope; color:#8F2250;*/
+}
+
+#gracias {font-family:Annie Use Your Telescope;font-size:14pt;color:#8F2250;
+}
+
+
+
+ul {
+        list-style: square;
+}
+
+
+#cuadro{
+border-radius: 0%;
+border:solid 1px;
+border-color:#DCDCDC;
+background-color:none;
+/*#F0F0F0;*/
+/*width:450px;*/
+text-align:justify;
+padding: 20px 20px 20px 20px;
+}
+#cuadroup{
+border-radius: 0%;
+border:solid 1px;
+border-color:#DCDCDC;
+background-color:#DCDCDC;
+text-align:justify;
+padding: 5px 20px 5px 20px;
+}
+
+
+a{
+color: gray; 
+font-weight: bold; text-decoration: none;
+}
+a:hover { color:#8F2250;}
+
+
+
+
+/*para dos columnas*/
+#div-1a {
+text-align:justify;
+float:left;
+width:49%;
+}
+#div-1b {
+text-align:justify;
+ float:right;
+ width:49%;
+}
+#div-1c {
+ clear:both;
+}
+
+/*para dos columnas más desiguales*/
+#diva {
+text-align:justify;
+ float:left;
+ width:68%;
+}
+#divaa {
+text-align:justify;
+ float:left;
+ width:58%;
+}
+#divb {
+text-align:justify;
+ float:right;
+ width:30%;
+}
+#divbb {
+text-align:justify;
+ float:right;
+ width:35%;
+}
+#divc {
+ clear:both;
+}
+
+#pos_form{
+padding: 5px 5px 5px 5px;
+}
+
+#coords{
+font-family:courier;font-size:11px;
+color:#8F2250;
+}
+
+#coords a{font-family:courier;font-size:11px;
+color:#8F2250;font-weight:bold;}
+
+#coords a:hover{font-family:courier;font-size:11px;
+color:black;font-weight:bold;}
+
+/*nuevo submenu**********************/
+
+  .mi-menu  {
+    border-radius: 5px;
+    list-style-type: none;
+    margin: 0; /* si queremos centrarlo */
+    margin-top:100px;
+    margin-left:-20px;
+    padding: 0;
+    /* la altura y su ancho dependerán de los textos */
+    height: 40px; 
+    width: 104%;
+    /* el color de fondo */
+    background: #696969;
+  }
+
+  /* si es necesario, evitamos que Blogger de problemas con los saltos de línea cuando escribimos el HTML */
+  .mi-menu  br { display:none; }
+
+  /* cada item del menu */
+  .mi-menu  li {
+    display: block;
+    float: left; /* la lista se ve horizontal */
+    height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position:relative;
+    
+  }
+  .mi-menu li a {
+    border-left: 1px solid #000;
+    border-right: 1px solid #666;
+    color: #EEE;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 28px;
+    padding: 0 20px;
+    margin: 6px 0;
+    text-decoration: none;
+  }
+  /* eliminamos los bordes del primer y el último */
+  .mi-menu li:first-child a { border-left: none; }
+  .mi-menu li:last-child a{ border-right: none; }
+  /* efecto hover cambia el color */
+  .mi-menu li:hover > a { color: black; }
+
+  /* los submenús */
+  .mi-menu ul {
+    border-radius: 0 0 5px 5px;
+    left: 0;
+    margin: 0;
+    opacity: 0; /* no son visibles */
+    position: absolute;
+    top: 40px; /* se ubican debajo del enlace principal */
+    /* el color de fondo */
+    background: #A9A9A9;
+    /* animamos su visibildiad */
+    -moz-transition: opacity .25s ease .1s;
+    -webkit-transition: opacity .25s ease .1s;
+    -o-transition: opacity .25s ease .1s;
+    -ms-transition: opacity .25s ease .1s;
+    transition: opacity .25s ease .1s;
+  }
+  /* son visibes al poner el cursor encima */
+  .mi-menu li:hover > ul { opacity: 1; }
+
+   /* cada uno de los items de los submenús */
+  .mi-menu ul li {
+    height: 0; /* no son visibles */
+    overflow: hidden;
+    padding: 0;
+    /* animamos su visibildiad */
+    -moz-transition: height .25s ease .1s;
+    -webkit-transition: height .25s ease .1s;
+    -o-transition: height .25s ease .1s;
+    -ms-transition: height .25s ease .1s;
+    transition: height .25s ease .1s;
+  }
+  .mi-menu li:hover > ul li {
+    height: 36px; /* los mostramos */
+    overflow: visible;
+    padding: 0;
+  }
+  .mi-menu ul li a {
+    border: none;
+    border-bottom: 1px solid #111;
+    margin: 0;
+    /* el ancho dependerá de los textos a utilizar */
+    padding: 5px 20px;
+    width: 100px;
+  }
+  /* el último no tiene un borde */
+  .mi-menu ul li:last-child a { border: none; }
+  
+/*
+Equivalencias entre nombres de templates:
+- Falta "inicio"
+- indexpr.html es la web de login
+- user_detail.html en la web del usuario con los detalles
+- stats son las estadísticas del problema en concreto (te aparece al resolver el problema)
+- tree es el árbol de los problemas de una categoría
+*/  
