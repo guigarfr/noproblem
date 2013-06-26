@@ -1,10 +1,10 @@
 #cuadro2{
-border-radius: 10%;
+border-radius: 50%;
 border:none;
 background-color:#F0F0F0;
-text-align:left;
+text-align:center;
 font-family:courier;
-font-size:11pt;
+font-size:16pt;
 padding: 25px 25px 25px 25px;
 }
 

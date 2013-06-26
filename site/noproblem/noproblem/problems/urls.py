@@ -18,6 +18,7 @@ urlpatterns = patterns('',
                        url(r'^user_detail/$', views.user_detail, name='user_detail'),
                        # ex: /problems/tree/
                        url(r'^tree/$', views.tree, name='tree'),
+                       url(r'^bienvenida/$', views.bienvenida, name='bienvenida'),
 )
 
 #urlpatterns = patterns('',

@@ -1,6 +1,6 @@
 # Create your views here.
 from noproblem.accounts.models import UserProfile
-from noproblem.problems.models import Problem, Solves
+from noproblem.problems.models import Problem, Solves, Area
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, loader
 from django.db.models import F, Count
@@ -409,7 +409,14 @@ def solve(request, prob_id):
                       })
     return render(request, 'user_solves.html', context)
     
-				
+@login_required 
+def bienvenida(request):
+	categorias=Area.objects.all()
+	context = Context({
+					 'categorias': categorias,	
+					 'colores_cuadros': ('#FA8072','#BDB76B','#4682B4','#F4A460'),
+					 })	
+	return render(request, 'bienvenida.html', context)		
 			
 		
 		

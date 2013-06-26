@@ -1,0 +1,28 @@
+{% extends "base0_problems.html" %}
+
+{% block title %}Connecta - NoProblem{% endblock %}
+
+{% block contentbase %} 
+{% load custom_filters %}
+{% load scientificfilter %}
+{% load i18n %}
+
+<br><br>
+<div>
+Bienvenido a tu red de problemas! Escoge una categoría:
+</div>
+<br><br><br>
+<div style="width=1500px;height:230px;">
+<ul id="int">
+{% for cat in categorias %}
+<li><div id="cuadro2" style="width:140px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></li>
+{% endfor %}
+</ul>
+</div>
+
+{% endblock %}
+
+
+
+
+
