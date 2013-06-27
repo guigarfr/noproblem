@@ -9,13 +9,16 @@
 
 <br><br>
 <div>
-Bienvenido a tu red de problemas! Escoge una categoría:
+¡Hola <a href="/problems/user_detail"><b>{{ user.get_profile.user.username }}</b></a>! Te damos la bienvenida a la
+red de problemas <b>No problem!</b> Escoge una categoría y empieza a jugar:
 </div>
 <br><br><br>
 <div style="width=1500px;height:230px;padding-left:100px;">
 <ul id="int">
 {% for cat in categorias %}
-<li><div id="cuadro2" style="width:140px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></li>
+<li><a style="color:black;font-weight: normal; text-decoration: none;" href="/problems/tree?cat={{ cat.id }}">
+<div id="cuadro2" style="width:140px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></li>
+</a>
 {% endfor %}
 </ul>
 </div>
