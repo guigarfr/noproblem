@@ -1,0 +1,65 @@
+{% extends "base0_problems.html" %}
+
+{% block title %}No problem{% endblock %}
+
+{% block contentbase %}
+<br>
+¡Bienvenida/o a Noproblem! Regístrate a través del siguiente fomulario:
+<p>
+	{% if messages %} 
+		{% for message in messages %}
+			{% if 'success' in message.tags %}
+				<p style="color: green;">
+				{{ message }}
+			{% else %}
+				<p style="color: red;">
+				{{ message }}
+			{% endif %}
+			</p>
+		{% endfor %} 
+	{% endif %} 
+	
+{% if form.errors %}
+<br> 
+<p style="color: red;"> 
+Hay error{{ form.errors|pluralize:",es" }} en el formulario. Corrígelo{{ form.errors|pluralize:",s" }}.
+</p> 
+{% endif %} 
+
+<form id="pos_form" action="" method="post"> 
+
+<div id="cuadro">
+{% csrf_token %} 
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.nombre.label }}:
+        {% for error in form.nombre.errors %}
+        	**{{ error|escape }}
+        {% endfor %}<br />
+        {{ form.nombre }}<br />
+    </div>
+    <div class="fieldWrapper">
+        
+        {{ form.email.label }}:
+        {% for error in form.email.errors %}
+        	**{{ error|escape }}
+        {% endfor %}<br />
+        {{ form.email }}
+        
+    </div>
+    <div class="fieldWrapper">
+        {{ form.password.label }}:
+        {% for error in form.password.errors %}
+        	**{{ error|escape }}
+        {% endfor %}<br />
+        {{ form.password|escape }}<br />
+    </div>
+    <p><input type="submit" value="Enviar" /></p>
+
+</div>
+</form> 
+
+
+
+
+{% endblock %}

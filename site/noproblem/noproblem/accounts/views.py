@@ -30,5 +30,4 @@ def logout_user(request):
     # Redirect to a success page.
     redirect_to = request.REQUEST.get('next', '')
     return HttpResponseRedirect(redirect_to)
-    
 
