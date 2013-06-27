@@ -12,7 +12,7 @@
 Bienvenido a tu red de problemas! Escoge una categoría:
 </div>
 <br><br><br>
-<div style="width=1500px;height:230px;">
+<div style="width=1500px;height:230px;padding-left:100px;">
 <ul id="int">
 {% for cat in categorias %}
 <li><div id="cuadro2" style="width:140px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></li>
