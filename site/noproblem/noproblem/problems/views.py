@@ -167,13 +167,18 @@ def detail(request, prob_id):
 @login_required 
 def user_detail(request):
 	# Obtener lista de problemas global
-	solved_problems=Solves.objects.select_related('user').filter(user=request.user)
 	all_problems = Problem.objects.all()
+	solves_problemsolved=Solves.objects.select_related('user').filter(user=request.user)
+	solved_problems=get_problems_solved(request.user)
+	tosolve_problems = list(set(all_problems) - set(solved_problems))
+	cansolve_problems=get_problems_cansolve(request.user)
+	nextsolve_problems = list(set(tosolve_problems) - set(cansolve_problems))
+	
 	n_problems = Problem.objects.count()
 	
 	# Numero de resoluciones correctas e incorrectas global
-	n_ok = solved_problems.filter(is_correct = True).count()
-	n_nok = solved_problems.count() - n_ok
+	n_ok = solves_problemsolved.filter(is_correct = True).count()
+	n_nok = solves_problemsolved.count() - n_ok
 	if (n_ok > 0):
 		n_pct_ok = n_ok / n_problems
 	else:
@@ -186,10 +191,10 @@ def user_detail(request):
 	# Numero de resoluciones correctas e incorrectas para cada problema
 	n_solved = [0] * n_problems
 	n_solved_ok = [0] * n_problems
-	for i in range(0,solved_problems.count()):
-		pr_id=solved_problems[i].prob.id-1
+	for i in range(0,solves_problemsolved.count()):
+		pr_id=solves_problemsolved[i].prob.id-1
 		n_solved[pr_id] = n_solved[pr_id]+1
-		n_solved_ok[pr_id] = n_solved_ok[pr_id]+solved_problems[i].is_correct
+		n_solved_ok[pr_id] = n_solved_ok[pr_id]+solves_problemsolved[i].is_correct
 		n_solved_false = map(operator.sub, n_solved, n_solved_ok)
 		
 	n_solved_total = sum(x > 0 for x in n_solved)
@@ -204,21 +209,11 @@ def user_detail(request):
 			n_solved_pct_ok[i] = 1.0 * n_solved_ok[i] / n_solved[i]	
 	n_solved_pct_nok = map(lambda x: 1 - x, n_solved_pct_ok)
 	
-	# Lista de identificadores de todos los problemas
-	id_prob_all=map(lambda x: x-1, Problem.objects.values_list('id',flat=True))
-	id_prob_solved_ok=map(lambda x: x-1, solved_problems.filter(is_correct=True).values_list('prob',flat=True).distinct())
-	id_prob_tosolve = map(lambda x: int(x), set(id_prob_all) - set(id_prob_solved_ok))
-	id_prob_cansolve = map(lambda x: x.id-1, get_problems_cansolve(request.user))
-	id_prob_nextsolve = list(set(id_prob_tosolve) - set(id_prob_cansolve))
-	
-	# Lista de identificadores de los problemas resueltos
-	id_prob_all=Problem.objects.values_list('id',flat=True)
-
 	# Vector de listas de resoluciones
 	if (n_solved_total > 0):
 		solved_list_by_problem=n_problems * [None]
 		for i in range(0,n_problems):
-			solved_list_by_problem[i] = solved_problems.filter(prob=i+1)
+			solved_list_by_problem[i] = solves_problemsolved.filter(prob=i+1)
 	else:
 		solved_list_by_problem = []
 
@@ -226,16 +221,17 @@ def user_detail(request):
 	if (n_solved_total > 0):
 		solved_list_by_problem=n_problems * [None]
 		for i in range(0,n_problems):
-			solved_list_by_problem[i] = solved_problems.filter(prob=i+1)
+			solved_list_by_problem[i] = solves_problemsolved.filter(prob=i+1)
 	
     #Set context and render call
 	context = Context({
 					  'num_resueltos': n_solved_total,
 					  'num_resueltos_ok': n_solved_total_ok,
 					  'prob_list': all_problems,
-					  'prob_unsolved_id': id_prob_tosolve,
-					  'prob_cansolve_id': id_prob_cansolve,
-					  'prob_nextsolve_id': id_prob_nextsolve,
+					  'prob_solved': solved_problems,
+					  'prob_unsolved': tosolve_problems,
+					  'prob_cansolve': cansolve_problems,
+					  'prob_nextsolve': nextsolve_problems,
 					  'tasa_acierto_por_problema': n_solved_pct_ok,
 					  'tasa_acierto_global': n_pct_ok,
 					  'nprob': n_problems,

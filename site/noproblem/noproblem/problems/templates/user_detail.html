@@ -59,15 +59,11 @@ Aquí tienes tus envíos de resultados:
 Estos son los próximos a realizar:
 <div id="tosolveproblemlist" class="problemlist">
 	<ul>
-	{% for i in prob_cansolve_id %}
-		{% with prob_list|lookup:i as problem %}
-		<li id='cansolve'> <a href=/problems/{{problem.id}}>Problem {{ problem.title }}</a> </li>
-		{% endwith %}
+	{% for prob in prob_cansolve %}
+		<li id='cansolve'> <a href=/problems/{{problem.id}}>Problem {{ prob.title }}</a> </li>
 	{% endfor %}
-	{% for i in prob_nextsolve_id %}
-		{% with prob_list|lookup:i as problem %}
-		<li id='cantsolve'> Problem {{ problem.title }} </li>
-		{% endwith %}
+	{% for prob in prob_nextsolve %}
+		<li id='cantsolve'> Problem {{ prob.title }} </li>
 	{% endfor %}
 	</ul>
 </div>
@@ -76,10 +72,6 @@ Estos son los próximos a realizar:
 </div>
 
 
-{% for d in prob.data %}
-<li>{{ d }}</li>
-{% endfor %}
-</ul>
 </div>
 </div>
 
