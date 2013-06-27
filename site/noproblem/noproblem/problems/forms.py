@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 from django.forms import ModelForm, HiddenInput
 from noproblem.problems.models import Problem, Solves
 from django.forms.models import inlineformset_factory
+from django import forms
 
 #MAX_INGREDIENTS = 20 para parametro extra al final del formset
 
@@ -23,3 +26,11 @@ class SolverForm(ModelForm):
         'time': HiddenInput(),
         }
         exclude = ('is_correct')
+        
+class RegistroUsuario(forms.Form): 
+	nombre = forms.CharField(required=False, max_length=100,label='Nombre')
+	email = forms.EmailField(label='E-mail')
+	password = forms.CharField(label='Contraseña',widget=forms.PasswordInput) 
+
+
+

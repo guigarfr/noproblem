@@ -27,5 +27,6 @@ def login_user(request):
 
 def logout_user(request):
     auth.logout(request)
-    # Redirect to a success page.
-
+    redirect_to = request.REQUEST.get('next', '')
+    return HttpResponseRedirect(redirect_to)
+	
