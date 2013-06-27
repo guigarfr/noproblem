@@ -16,7 +16,7 @@ red de problemas <b>No problem!</b> Escoge una categoría y empieza a jugar:
 <div style="width=1500px;height:230px;padding-left:100px;">
 <ul id="int">
 {% for cat in categorias %}
-<li><a style="color:black;font-weight: normal; text-decoration: none;" href="/problems/tree?cat={{ cat.id }}">
+<li><a style="color:black;font-weight: normal; text-decoration: none;" href="/problems/tree/{{ cat.id }}">
 <div id="cuadro2" style="width:130px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></li>
 </a>
 {% endfor %}

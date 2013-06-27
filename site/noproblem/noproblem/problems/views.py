@@ -49,7 +49,7 @@ def index(request):
 	return render(request, 'indexpr.html', context)
 
 
-def tree(request, cat):
+def tree(request, poll_id):
 	#Parametros dibujo svg:
 	xradio=35
 	yradio=25
@@ -57,10 +57,9 @@ def tree(request, cat):
 	centery=50
 	
 	context = Context({})
-	
-	if cat:
-		categoria = get_object_or_404(Area, pk=cat)
-		context['cat'] = solves_list
+	if poll_id:
+		categoria = get_object_or_404(Area, pk=poll_id)
+		context['cat'] = categoria
 		
 	problist = Problem.objects.all()
 	dictposic = problem_get_node_positions(problist)
