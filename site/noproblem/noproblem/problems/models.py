@@ -45,7 +45,9 @@ class Problem (models.Model):
 	def solved_by_user(self,usr):
 		return Solves.objects.filter(user=usr, prob=self, is_correct=1).exists()
 	def is_next_to_solve(self,usr):
-		return any([o.solved_by_user(usr) for o in self.get_parents()])
+		unsolved_root = (not self.get_parents() and not self.solved_by_user(usr))
+		unsolved = any([o.solved_by_user(usr) for o in self.get_parents()])
+		return unsolved_root or unsolved
 
 class Solves(models.Model):
     user = models.ForeignKey(UserProfile)
