@@ -17,7 +17,7 @@ urlpatterns = patterns('',
                        # ex: /problems/user_detail/
                        url(r'^user_detail/$', views.user_detail, name='user_detail'),
                        # ex: /problems/tree/
-                       url(r'^tree/$', views.tree, name='tree'),
+                       url(r'^tree(?P<cat>=\d+)*$', views.tree),
                        url(r'^bienvenida/$', views.bienvenida, name='bienvenida'),
 )
 

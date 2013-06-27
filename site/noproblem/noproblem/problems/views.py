@@ -49,13 +49,19 @@ def index(request):
 	return render(request, 'indexpr.html', context)
 
 
-def tree(request):
+def tree(request, cat):
 	#Parametros dibujo svg:
 	xradio=35
 	yradio=25
 	centerx=50
 	centery=50
 	
+	context = Context({})
+	
+	if cat:
+		categoria = get_object_or_404(Area, pk=cat)
+		context['cat'] = solves_list
+		
 	problist = Problem.objects.all()
 	dictposic = problem_get_node_positions(problist)
 	layers = sugiyama_graph_drawing_layering(problist)
@@ -136,17 +142,16 @@ def tree(request):
 	# Number of levels
 	nlevel = max([x[1] for x in dictposic.values()])+1
 	#Set context and render call
-	context = Context({
-                      'pr_dict': newdict,
-                      'layer_list': layers,
-                      'nlayers': numlayers,
-                      'svgwidth': mywidth,
-                      'xradio': xradio,
-                      'yradio': yradio,
-                      'centerx': centerx,
-                      'centery': centery,
-                      'edges': edges,
-                      })
+	context['pr_dict'] = newdict
+	context['layer_list'] = layers
+	context['nlayers'] = numlayers
+	context['svgwidth'] = mywidth
+	context['xradio'] = xradio
+	context['yradio'] = yradio
+	context['centerx'] = centerx
+	context['centery'] = centery
+	context['edges'] = edges
+
 	print "A renderizar"
 	return render(request, 'tree.html', context)
 
