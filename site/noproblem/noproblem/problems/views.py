@@ -411,9 +411,7 @@ def solve(request, prob_id):
     
 @login_required 
 def bienvenida(request):
-	categorias=Area.objects.all()
 	context = Context({
-					 'categorias': categorias,	
 					 'colores_cuadros': ('#FA8072','#BDB76B','#4682B4','#F4A460'),
 					 })	
 	return render(request, 'bienvenida.html', context)		
