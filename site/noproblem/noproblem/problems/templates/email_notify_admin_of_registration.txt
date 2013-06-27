@@ -1,0 +1,5 @@
+New Registration in NoProblem!
+
+Nombre de usuario: {{ username }}
+E-mail: {{ email }}
+pk: {{ pk }}
