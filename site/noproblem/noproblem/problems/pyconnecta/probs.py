@@ -183,7 +183,7 @@ def cine1_datos():
 
 def cine1_solucion(lista):
 	r=lista[0]/1000
-	return [r]
+	return [r,r,r]
 
  
  

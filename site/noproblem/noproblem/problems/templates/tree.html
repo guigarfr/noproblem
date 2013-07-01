@@ -63,7 +63,9 @@ g.node.tosolve ellipse {
 	{% endfor %}
 -->
 
-<div id="tree_wrapper">
+{% if not notree %}
+
+<div id="tree_wrapper" style="text-align:center;">
 {% with 1 as factorx and 100 as factory %}
 {% with 9 as textsize %}
 <svg id="problem-tree" width="{{svgwidth|add:centerx|add:centerx|multiplyperfactor:factorx}}" height="{{nlayers|multiplyperfactor:factory}}" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" ">
@@ -132,7 +134,7 @@ g.node.tosolve ellipse {
 	   {% endif %}
 	   data-content="Solved by 5651 (correct ratio 69.5%).&lt;p class=&quot;topics&quot;&gt;&lt;strong&gt;Topics&lt;/strong&gt;: &lt;span class=&quot;topic&quot;&gt;String Algorithms&lt;/span&gt;&lt;/p&gt;" rel="popover" data-original-title="“Counting DNA Nucleotides”">
 	   {% if user.is_authenticated and prob|nexttosolve:user or prob|issolved:user %}
-		<a xlink:href="/problems/{{prob.id}}/">
+		<a xlink:href="/problems/{{prob.id}}/"> 
 		{% endif %}
 			<ellipse fill="#FFF" stroke="black" cx="{{centerx}}" cy="{{centery}}" rx="{{xradio}}" ry="{{yradio}}"></ellipse>
 			{% with textsize|half as halftext %}
@@ -151,6 +153,10 @@ g.node.tosolve ellipse {
 </svg>
 </div>
 
+{% else %}
+<p>
+Ahora mismo no hay problemas en esta categoría, ¡prueba más adelante!
 
+{% endif %}
 
 {% endblock %}

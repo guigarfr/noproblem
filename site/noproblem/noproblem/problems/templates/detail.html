@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_problems.html" %}
 
 {% block title %}Connecta - NoProblem{% endblock %}
 
@@ -8,29 +8,8 @@
 {% load i18n %}
 
 <style type="text/css">
-#title h1 {
-	float: left;
-	text-align: left;
-
-}
-#title h3 {
-	color:#8F2250;font-family:Annie Use Your Telescope;
-	float: right;
-	text-align: left;
-}
-
 div.spacer {
 	clear: both;
-}
-
-#wording{
-	/*background: #F0F0F0;*/
-    padding: 20px 20px 30px 30px;/*márgenes del texto dentro del body*/
-    border-left:solid 1px;
-    border-right:solid 1px;
-    border-color:black;  
-    border-bottom:solid 1px; 
-	border-top:solid 1px; 
 }
 
 #problemdata,#senddata{
@@ -104,9 +83,17 @@ function submitForm() {
 
 </script>
 
+<p>
+<div id="cuadroup">
+<b>{{ prob.title }}</b>
+</div>
+<div id="cuadro">
+Enunciado del problema.
+{{ prob.wording|linebreaksbr }}
+</div>
+
 
 <div id="title">
-<h1>{{ prob.title }}</h1>
 <h3>{{ prob.category }}</h3>
 </div>
 
@@ -115,20 +102,15 @@ function submitForm() {
 </div>
 
 
-<div id="wording">
-<p>
-{{ prob.wording|linebreaksbr }}
-</p>
-</div>
-
 {% trans "Mostrar datos" as show_data_button %}
 {% trans "Enviar resultado" as sendres_button %}
 
 <div id="datainfo">
 <p>
-{% blocktrans %} Haz click en el botón "{{ show_data_button }}" para ver los datos del problema {% endblocktrans %}.
+{% blocktrans %} Haz click en el botón "{{ show_data_button }}" para ver los datos del problema{% endblocktrans %}.
 {% trans "A partir de este momento empezará a contar el tiempo" %}. 
-{% blocktrans %} Una vez solucionado el problema, copia el resultado, pulsa el botón "{{ sendres_button }}" y pega el valor/es obtenidos en el campo de texto que aparecerá {% endblocktrans %}.<br/> 
+{% blocktrans %} Una vez solucionado el problema, copia el resultado, pulsa el botón "{{ sendres_button }}" y
+pega el valor/es obtenidos en el campo de texto que aparecerá{% endblocktrans %}.<br/> 
 </p>
 </div>
 
@@ -148,7 +130,10 @@ function submitForm() {
 <div id='senddata'>
 <form name="solverform" action="/problems/{{ prob.id }}/send/" method="post">
 {% csrf_token %}
-Result: <input type="text" name="result"><br>
+Result: <br>
+		{% for i in nout|get_range %}
+		<input type="text" name="result{{forloop.counter0}}"><br>
+		{% endfor %}
 		<input type="hidden" name="time">
 		<input type="hidden" name="prdata">
 <button id='finishedbutton'

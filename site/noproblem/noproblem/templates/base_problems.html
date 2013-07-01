@@ -7,7 +7,7 @@
 {% if cat %}
 <ul class="mi-menu">
   <li><a href="/problems/bienvenida/"> Inicio</a></li>
-  <li><a href=""> Categoría: {{ cat.name }} </a></li>
+  <li><a href="/problems/tree/{{ cat.id }}"> Categoría: {{ cat.name }} </a></li>
   <li><a href=""> Puntos: {{ user.get_profile.credits }} </a></li>
   <li><a href="/problems/tree/{{ cat.id }}"> Árbol </a></li>
   <li><a href="/accounts/logout?next=/problems/bienvenida/"> Log Out </a></li>

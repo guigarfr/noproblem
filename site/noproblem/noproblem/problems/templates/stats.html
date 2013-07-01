@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_problems.html" %}
 
 {% block title %}Connecta - NoProblem{% endblock %}
 
@@ -7,53 +7,13 @@
 {% load i18n %}
 
 <style type="text/css">
-#title {
-	color:#8F2250;font-family:Annie Use Your Telescope;
-}
-#title h1 {
-	float: left;
-	text-align: left;
 
-}
-#title h3 {
-	float: right;
-	text-align: left;
-}
-
-#title h4 {
-	clear:both;
-	text-align: left;
-}
 
 div.spacer {
 	clear: both;
 }
 
-body {
-	/*background: #F0F0F0;*/
-	background:white;
-	font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;
-	line-height: 130%;
-	margin-top: 0px;
-    margin-right: 90px;
-    margin-bottom: 0px;
-    margin-left: 90px; /*márgenes del body respecto al html completo*/
-    padding: 10px 10px 50px 10px;/*márgenes del texto dentro del body*/
-    border-left:solid 1px;
-    border-right:solid 1px;
-    border-color:black;  
-    border-bottom:none; 
-}
 
-#wording{
-	/*background: #F0F0F0;*/
-    padding: 20px 20px 30px 30px;/*márgenes del texto dentro del body*/
-    border-left:solid 1px;
-    border-right:solid 1px;
-    border-color:black;  
-    border-bottom:solid 1px; 
-	border-top:solid 1px; 
-}
 
 #data,#senddata{
 	text-align:center;
@@ -98,19 +58,18 @@ body {
 
 {% load custom_filters %}
 
-
-<div id="title">
-<h1>{% blocktrans with prob.title as title %}
-Statistics for {{ title }}
-{% endblocktrans %}</h1>
-<h3>{{ prob.category }}</h3>
-<h4>@{% now "jS F Y H:i:s" %}</h4>
-</div>
+<p>
 
 <div class="spacer">
 </div>
 
-<div id="wording">
+<div id="cuadroup">
+{% blocktrans with prob.title as title %}
+<b>Statistics for {{ title }}</b>
+{% endblocktrans %}
+</div>
+<div id="cuadro">
+
 
 {% if solves_list %}
 

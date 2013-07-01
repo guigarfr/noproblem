@@ -1,6 +1,6 @@
 # Create your views here.
 from noproblem.accounts.models import UserProfile
-from noproblem.problems.models import Problem, Solves, Area
+from noproblem.problems.models import Problem, Solves, Area, SubArea
 from noproblem.problems.forms import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, loader
@@ -62,7 +62,14 @@ def tree(request, poll_id):
 		categoria = get_object_or_404(Area, pk=poll_id)
 		context['cat'] = categoria
 		
-	problist = Problem.objects.all()
+	subareas=SubArea.objects.filter(area=categoria)
+	print subareas
+	if len(subareas)==0:
+		print "entro"
+		context['notree'] = True
+		return render(request, 'tree.html', context)
+		
+	problist = Problem.objects.filter(category__in = subareas).all()
 	dictposic = problem_get_node_positions(problist)
 	layers = sugiyama_graph_drawing_layering(problist)
 	map(lambda x:list(x),layers)
@@ -161,11 +168,14 @@ def detail(request, prob_id):
     
     # Problem data
     mydata = pr.data()
+    nout=len(pr.solve(mydata))
     
     #Set context and render call
     context = Context({
                       'prob': pr,
                       'probdata': mydata,
+                      'cat': pr.category.area,
+                      'nout': nout,
                       })
     return render(request, 'detail.html', context)
 
@@ -273,20 +283,19 @@ def sendresult(request, prob_id):
         #    'error_message': "You didn't select a choice.",
         #}, context_instance=RequestContext(request))
 #    else:		
-
+	
+	mydata = pr.data()
+	nout=len(pr.solve(mydata))
+	
 	# Set needed variables: user, prob, date, time, is_correct
-	res_sent = request.POST['result']
-	print res_sent
-	print isinstance(res_sent,float)
-	if res_sent and not res_sent.isalpha():
-		res_sent=ast.literal_eval(res_sent)
-		try:
-			res_sent=list( res_sent )
-		except TypeError:
-			res_sent=[res_sent]
-		
-	else:
-		res_sent=[]
+	res_sent=[]
+	for i in range(nout):
+		newres = request.POST['result'+str(i)];
+		print newres
+		res_sent.append(newres)
+		if res_sent[i]=='':
+			correct=False	
+	
 	when = datetime.datetime.today()
    	solving_time = request.POST['time']
    	usuario=request.user.get_profile()
@@ -296,41 +305,38 @@ def sendresult(request, prob_id):
    		map(str,problem_data)
    	
    	# Compute result
-   	# TODO: De momento solo para un resultado, pero es una LISTA!!!!!
+   	#To do: precision de res_ok, dos cifras significativas (caso particular de numeros entre 0 y 1)   	
    	
-   	if( res_sent == []):
-   		correct = False
-   	else:
-		print problem_data
-		res_ok = pr.solve(problem_data)
-		print "Resultados",res_sent,res_ok
-		print "L1",len(res_ok)
-		print "L2",len(res_sent)
-		#Is the list the correct size?
-		if( len(res_ok) != len(res_sent) ):
-			print "Listas de distintos tamanyos"
-			correct = False
-		else:
-			# Check if result is correct: TODO: deal with float numbers
-			correct = False
-			for i in range(len(res_ok)):
-				if isinstance(res_ok[i], str):
-					print "Es str"
-					if res_ok[i] == res_sent[i]:
-						correct = True
-					else:
-						correct = False
-						break
+	print problem_data
+	res_ok = pr.solve(problem_data)
+	print "Resultados",res_sent,res_ok
+	print "L1",len(res_ok)
+	print "L2",len(res_sent)
+	#Is the list the correct size?
+	if( len(res_ok) != len(res_sent) ):
+		print "Listas de distintos tamanyos"
+		correct = False
+	else:
+		# Check if result is correct: TODO: deal with float numbers
+		correct = False
+		for i in range(len(res_ok)):
+			if isinstance(res_ok[i], str):
+				print "Es str"
+				if res_ok[i] == res_sent[i]:
+					correct = True
 				else:
-					print "Es numero"
-					if res_ok[i] - float(res_sent[i]) < 1e-3:
-						correct = True
-					else:
-						correct = False
-						break
+					correct = False
+					break
+			else:
+				print "Es numero"
+				if abs(res_ok[i] - float(res_sent[i])) < 1e-3:
+					correct = True
+				else:
+					correct = False
+					break
     
 	# If not resolved before, add points to user
-	if not pr.solved_by_user(usuario):
+	if not pr.solved_by_user(usuario) and correct:
 		usuario.credits = usuario.credits+pr.points
 		usuario.save()
     
@@ -345,7 +351,10 @@ def sendresult(request, prob_id):
 
 def stats(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
-    context = Context({'prob': pr})
+    context = Context({
+    				 'prob': pr,
+    				 'cat': pr.category.area,
+    				 })
     
     # Compute variables for context
     solves_list = Solves.objects.filter(prob=pr)
