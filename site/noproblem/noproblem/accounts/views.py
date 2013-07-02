@@ -2,6 +2,7 @@ from django.contrib import auth
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
+from noproblem.accounts.forms import RegistroUsuario
 
 def login_user(request):
     state = "Please log in below..."
@@ -30,4 +31,18 @@ def logout_user(request):
     # Redirect to a success page.
     redirect_to = request.REQUEST.get('next', '')
     return HttpResponseRedirect(redirect_to)
+
+def register_user(request):
+	if request.method =='POST':
+		form = RegistroUsuario(request.POST)
+		if form.is_valid():
+			user = form.save()
+			print "Password = " + request.POST.get('password1')
+			user.set_password(request.POST.get('password1'))
+			user.save()
+			return HttpResponseRedirect('login')
+	else:
+		form = RegistroUsuario()
+		return render(request, 'register.html', {'form': form})
+
 

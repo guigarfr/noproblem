@@ -26,11 +26,6 @@ class SolverForm(ModelForm):
         'time': HiddenInput(),
         }
         exclude = ('is_correct')
-        
-class RegistroUsuario(forms.Form): 
-	nombre = forms.CharField(required=False, max_length=100,label='Nombre')
-	email = forms.EmailField(label='E-mail')
-	password = forms.CharField(label='Contraseña',widget=forms.PasswordInput) 
 
 
 

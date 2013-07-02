@@ -7,4 +7,5 @@ urlpatterns = patterns('',
                        # ex: /accounts/login/
                        url(r'^login/$', views.login_user),
                        url(r'^logout/$', views.logout_user),
+                       url(r'^register/$', views.register_user),
 )
