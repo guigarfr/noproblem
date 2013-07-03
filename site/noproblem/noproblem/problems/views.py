@@ -17,7 +17,7 @@ import time, datetime, operator
 from django.contrib.auth.decorators import login_required
 from decimal import Decimal
 from noproblem.problems.utils.dbqueries import *
-from noproblem.problems.utils.misc import topological_sort, is_number
+from noproblem.problems.utils.misc import topological_sort, is_number, calcprecision
 from noproblem.problems.utils.sugiyama import problem_get_node_positions, sugiyama_graph_drawing_layering
 from math import atan
 from collections import defaultdict
@@ -329,7 +329,8 @@ def sendresult(request, prob_id):
 					break
 			else:
 				print "Es numero"
-				if abs(res_ok[i] - float(res_sent[i])) < 1e-3:
+				#la precision esta hecha para que la primera cifra significativa no pueda variar (la segunda si)
+				if abs(res_ok[i] - float(res_sent[i])) <= calcprecision(res_ok[i]):
 					correct = True
 				else:
 					correct = False
@@ -419,7 +420,7 @@ def solve(request, prob_id):
                       })
     return render(request, 'user_solves.html', context)
     
-@login_required 
+
 def bienvenida(request):
 	context = Context({
 					 'colores_cuadros': ('#FA8072','#BDB76B','#4682B4','#F4A460'),

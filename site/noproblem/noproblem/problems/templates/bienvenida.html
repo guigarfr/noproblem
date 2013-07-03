@@ -7,6 +7,8 @@
 {% load scientificfilter %}
 {% load i18n %}
 
+{% if user.is_authenticated %}
+
 <br><br>
 <div>
 ¡Hola <a href="/problems/user_detail"><b>{{ user.get_profile.user.username }}</b></a>! Te damos la bienvenida a la
@@ -22,6 +24,12 @@ red de problemas <b>No problem!</b> Escoge una categoría y empieza a jugar:
 {% endfor %}
 </ul>
 </div>
+ 
+{% else %} 
+
+{% include 'auth.html' %}
+
+{% endif %}
 
 {% endblock %}
 

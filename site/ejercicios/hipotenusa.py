@@ -283,36 +283,28 @@ def subirtercero(lista):
 
 #########################################
 
-def prueba_datos():
-	lista=[]
-	numero=randint(1,50)
-	ceros=randint(3,7)
-	num=float(numero)*10**(-ceros)
-	num0=num
-	num= '%.100f' % num
-	lista.extend([num,num0])
-	return lista
-
-def prueba(lista):
-	resul=[]
-	snumber=lista[0]
-	posdot = snumber.find('.')
-	final=len( snumber[posdot+1:] )
-	prime =False
-	segun = False
-	i=1
-	while segun==False and i<=final:
-		if prime==True and segun==False:
-			segun=True
-			second=snumber[posdot+i]
-			possecond=i
-		if snumber[posdot+i] != '0' and prime==False:
-			prime=True
-			first=snumber[posdot+i]
-		i=i+1
-	precision=len(snumber[posdot:possecond+1])
-	resul.extend([snumber,first,second,precision])
-	return resul
+def calcprecision(numero):
+	if int(numero)!=0:
+		precision = 0.1
+	if int(numero)==0:
+		snumber='%.100f' % abs(numero)
+		posdot = snumber.find('.')
+		final=len( snumber[posdot+1:] )
+		prime =False
+		segun = False
+		i=1
+		while segun==False and i<=final:
+			if prime==True and segun==False:
+				segun=True
+				second=snumber[posdot+i]
+				possecond=i
+			if snumber[posdot+i] != '0' and prime==False:
+				prime=True
+				first=snumber[posdot+i]
+			i=i+1
+		first_variable_digit_position=len(snumber[posdot:possecond+1])
+		precision=10**(-(first_variable_digit_position-1))
+	return precision
 	
 
 
