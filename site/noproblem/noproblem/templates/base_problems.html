@@ -4,29 +4,24 @@
 
 {% block contentbase %}
 
+
+<ul class="mi-menu">
+  <li><a href="/problems/bienvenida/"> Inicio</a></li>
 {% if cat %}
-<ul class="mi-menu">
-  <li><a href="/problems/bienvenida/"> Inicio</a></li>
   <li><a href="/problems/tree/{{ cat.id }}"> Categoría: {{ cat.name }} </a></li>
-  <li><a href=""> Puntos: {{ user.get_profile.credits }} </a></li>
-  <li><a href="/problems/tree/{{ cat.id }}"> Árbol </a></li>
-  <li><a href="/accounts/logout?next=/problems/bienvenida/"> Log Out </a></li>
-  <li><a href="/problems/user_detail"> Usuario {{ user.get_profile.user.username }} @{% now "jS F Y H:i:s" %} </a></li>
-</ul>
 {% else %}
-<ul class="mi-menu">
-  <li><a href="/problems/bienvenida/"> Inicio</a></li>
-  <li><a href=""> Categorías </a>
+    <li><a href=""> Categorías </a>
   	<ul>
   	{% for ca in categorias %}
       <li><a href="/problems/tree/{{ ca.id }}"> {{ ca.name }} </a></li>
     {% endfor %}
     </ul></li>
+{% endif %}
   <li><a href=""> Puntos: {{ user.get_profile.credits }} </a></li>
-  <li><a href="/accounts/logout?next=/problems/bienvenida/"> Log Out </a></li>
+  <li><a href="/problems/tree/{{ cat.id }}"> Árbol </a></li>
+  <li><a href="/accounts/logout?next=/problems/bienvenida">Log Out</a></li>
   <li><a href="/problems/user_detail"> Usuario {{ user.get_profile.user.username }} @{% now "jS F Y H:i:s" %} </a></li>
 </ul>
-{% endif %}
 
 
 {% block content %}
