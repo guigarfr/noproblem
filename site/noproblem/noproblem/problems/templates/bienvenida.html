@@ -27,7 +27,9 @@ red de problemas <b>No problem!</b> Escoge una categoría y empieza a jugar:
  
 {% else %} 
 
+{% with '/problems/bienvenida' as next %}
 {% include 'auth.html' %}
+{% endwith %}
 
 {% endif %}
 
