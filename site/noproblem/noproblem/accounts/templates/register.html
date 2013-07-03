@@ -28,7 +28,7 @@ Hay error{{ form.errors|pluralize:",es" }} en el formulario. Corrígelo{{ form.e
 
 <form method="POST" action="">
     {% csrf_token %}
-    {{form}}
+    {{form.as_ul}}
     <input type="submit">
 </form>
 
