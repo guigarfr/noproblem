@@ -425,12 +425,6 @@ def bienvenida(request):
 	context = Context({
 					 'colores_cuadros': ('#FA8072','#BDB76B','#4682B4','#F4A460'),
 					 })	
-	return render(request, 'bienvenida.html', context)	
-	
-def registro(request):
-	form=RegistroUsuario()
-	return render(request, 'registro.html', {'form': form})
-			
-		
+	return render(request, 'bienvenida.html', context)			
 		
 		

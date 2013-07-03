@@ -19,7 +19,6 @@ urlpatterns = patterns('',
                        # ex: /problems/tree/
                        url(r'^tree/(?P<poll_id>\d+)/$', views.tree),
                        url(r'^bienvenida/$', views.bienvenida, name='bienvenida'),
-                       url(r'^registro/$', views.registro, name='resgistro'),
 )
 
 #urlpatterns = patterns('',
