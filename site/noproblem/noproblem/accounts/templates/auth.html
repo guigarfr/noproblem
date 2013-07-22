@@ -4,15 +4,22 @@
 <title>Log in</title>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <style>
+/* 
 body.auth{
 	font-family:Arial,Helvetica,sans-serif;
 	font-size: 12px;
 	text-align:center;
 }
+ */
 </style>
 </head>
-<body class="auth">
+<!-- <body class="auth"> -->
 
+<div style="padding-left:35%;padding-right:35%;">
+<div id="cuadroup" style="text-align:center;">
+<b>Log In</b>
+</div>
+<div id="cuadro" style="text-align:center;">
 
 	{{ state }}
 	<form action="/accounts/login/" method="post">
@@ -24,8 +31,10 @@ body.auth{
 		<input type="text" name="username" value="{{ username}}" /><br />
 		Password:
 		<input type="password" name="password" value="" /><br />
-
+		<br>
 		<input type="submit" value="Log In" />
 	</form>
-</body>
+</div>
+</div>
+<!-- </body> -->
 </html>
