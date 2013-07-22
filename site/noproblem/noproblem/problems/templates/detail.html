@@ -128,7 +128,7 @@ pega el valor/es obtenidos en el campo de texto que aparecerá{% endblocktrans %
 </ul>
 
 <div id='senddata'>
-<form name="solverform" action="/problems/{{ prob.id }}/send/" method="post">
+<form name="solverform" action="{% url problems:sendresult prob.id %}" method="post">
 {% csrf_token %}
 Result: <br>
 		{% for i in nout|get_range %}
