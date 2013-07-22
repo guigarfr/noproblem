@@ -1,11 +1,28 @@
-{% extends "base0_problems.html" %}
+{% extends "base_problems.html" %}
 
-{% block title %}Connecta - NoProblem{% endblock %}
+{% block title %}NoProblem | Connecta{% endblock %}
 
-{% block contentbase %} 
+{% block content %} 
 {% load custom_filters %}
 {% load scientificfilter %}
 {% load i18n %}
+
+{% if not user.is_authenticated %}
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="cuadro2b">No problem! es una herramienta didáctica basada en la resolución de problemas
+que refuerza el aprendizaje de las ciencias a nivel de educación secundaria.</div>
+
+
+
+
+{% endif %}
 
 {% if user.is_authenticated %}
 
@@ -27,12 +44,16 @@ red de problemas <b>No problem!</b> Escoge una categoría y empieza a jugar:
 <a href="/accounts/logout?next=/problems/bienvenida">Log Out</a>
  
 {% else %} 
+<p>
 
 {% with '/problems/bienvenida' as next %}
 {% include 'auth.html' %}
 {% endwith %}
 <br>
-Si no estás registrado regístrate <a href="/accounts/register?next=problems/bienvenida">aquí</a>.
+<div style="text-align:center">Si todavía no estás registrado entra 
+<a href="/accounts/register?next=../../problems/bienvenida">aquí</a>.
+</div>
+
 {% endif %}
 
 {% endblock %}

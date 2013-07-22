@@ -7,6 +7,35 @@ font-family:courier;
 font-size:16pt;
 padding: 30px 30px 30px 30px;
 }
+#cuadro2b{
+border-radius: 0%;
+border:solid 1px;
+border-color:#DCDCDC;
+background-color:#F0F0F0;
+text-align:left;
+font-family:courier;
+font-size:11pt;
+padding: 25px 25px 25px 25px;
+}
+
+#cuadro{
+border-radius: 0%;
+border:solid 1px;
+border-color:#DCDCDC;
+background-color:none;
+/*#F0F0F0;*/
+/*width:450px;*/
+text-align:justify;
+padding: 20px 20px 20px 20px;
+}
+#cuadroup{
+border-radius: 0%;
+border:solid 1px;
+border-color:#DCDCDC;
+background-color:#DCDCDC;
+text-align:justify;
+padding: 5px 20px 5px 20px;
+}
 
 #int{
 list-style: none;
@@ -70,14 +99,16 @@ width:15%;
  background-position: center top;
  background-repeat: no-repeat;
  background-image: url('logo1.gif');
- background-size: 90px;
+ background-size: 80px;
 }
 
+/* 
 .efectologo:hover {
    background-color: white;
    background-image: url('arbol1.gif');
    background-size: 90px;
 }
+ */
 
 #num {
 	font-weight: bold;
@@ -175,24 +206,6 @@ ul {
 }
 
 
-#cuadro{
-border-radius: 0%;
-border:solid 1px;
-border-color:#DCDCDC;
-background-color:none;
-/*#F0F0F0;*/
-/*width:450px;*/
-text-align:justify;
-padding: 20px 20px 20px 20px;
-}
-#cuadroup{
-border-radius: 0%;
-border:solid 1px;
-border-color:#DCDCDC;
-background-color:#DCDCDC;
-text-align:justify;
-padding: 5px 20px 5px 20px;
-}
 
 
 a{

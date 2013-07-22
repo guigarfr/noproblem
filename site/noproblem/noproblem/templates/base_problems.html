@@ -4,7 +4,7 @@
 
 {% block contentbase %}
 
-
+{% if user.is_authenticated %}
 <ul class="mi-menu">
   <li><a href="/problems/bienvenida/"> Inicio</a></li>
 {% if cat %}
@@ -22,6 +22,10 @@
   <li><a href="/accounts/logout?next=/problems/bienvenida">Log Out</a></li>
   <li><a href="/problems/user_detail"> Usuario {{ user.get_profile.user.username }} @{% now "jS F Y H:i:s" %} </a></li>
 </ul>
+
+{% else %}
+
+{% endif %}
 
 
 {% block content %}
