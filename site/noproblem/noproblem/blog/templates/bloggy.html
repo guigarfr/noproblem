@@ -5,11 +5,31 @@
 {% block content %}
 
 <div id="divaa">
+<div id="cuadroup">
+<b>Sigue nuestros posts en Facebook y nuestros comentarios en Twitter!</b>
+</div>
+<br>
+<div style="text-align:center;">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-like-box" data-href="http://www.facebook.com/CienciaACasa" data-width="530" data-show-faces="false" 
+data-stream="true" data-header="true"></div>
 
-<script type="text/javascript" src="http://output46.rssinclude.com/output?type=js&amp;
-id=682043&amp;hash=d7081396ff680e5b549b49d624a87dc4"></script>
+<br><br>
 
+<a class="twitter-timeline" href="https://twitter.com/connectacpc" data-widget-id="317316659083886593" height="400">
+Tweets por @connectacpc</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
+if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";
+fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
+</div>
 </div>
 
 <div id="divbb">
