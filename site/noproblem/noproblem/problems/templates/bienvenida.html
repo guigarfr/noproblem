@@ -24,13 +24,15 @@ red de problemas <b>No problem!</b> Escoge una categoría y empieza a jugar:
 {% endfor %}
 </ul>
 </div>
+<a href="/accounts/logout?next=/problems/bienvenida">Log Out</a>
  
 {% else %} 
 
 {% with '/problems/bienvenida' as next %}
 {% include 'auth.html' %}
 {% endwith %}
-
+<br>
+Si no estás registrado regístrate <a href="/accounts/register?next=problems/bienvenida">aquí</a>.
 {% endif %}
 
 {% endblock %}
