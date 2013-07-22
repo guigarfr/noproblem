@@ -33,7 +33,31 @@ def logout_user(request):
     redirect_to = request.REQUEST.get('next', '')
     return HttpResponseRedirect(redirect_to)
 
-def register_user(request):
+REDIRECT_FIELD_NAME = "next"
+
+def register_user(request,  next_page=None, 
+					template_name='auth.html', 
+					redirect_field_name=REDIRECT_FIELD_NAME):
+	if request.method =='POST':
+		form = RegistroUsuario(request.POST)
+		redirect_to = request.REQUEST.get(redirect_field_name, '') 
+		if form.is_valid():
+			user = form.save()
+			if redirect_to: 
+				return HttpResponseRedirect(redirect_to) 
+			elif next_page is None:
+				return render(request, template_name, {'title': _('Logged out')})
+			else: 
+				# Redirect to this page until the session has been cleared. 
+				return HttpResponseRedirect(next_page or request.path)
+		else:
+			form = RegistroUsuario()
+			return render(request, 'register.html', {'form': form})
+	else:
+		form = RegistroUsuario()
+		return render(request, 'register.html', {'form': form})
+
+def register_user_2(request):
 	if request.method =='POST':
 		form = RegistroUsuario(request.POST)
 		if form.is_valid():
@@ -42,8 +66,6 @@ def register_user(request):
 	else:
 		form = RegistroUsuario()
 		return render(request, 'register.html', {'form': form})
-
-REDIRECT_FIELD_NAME = "next"
 
 def logout(request, next_page=None, 
 					template_name='logged_out.html', 
