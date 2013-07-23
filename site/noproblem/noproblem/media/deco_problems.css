@@ -50,7 +50,8 @@ margin-left:-21px;
 width:103%;
 text-align:justify;
 padding: 5px 5px 5px 5px;
-/*margin-top:100%;*/
+clear:both;
+bottom:0;
 }
 
 #int{
@@ -306,8 +307,7 @@ color:black;font-weight:bold;}
     height: 40px; 
     width: 104%;
     /* el color de fondo */
-    background:white;
-    /*#F0F0F0;*/
+    background:#F0F0F0;
   }
 
   /* si es necesario, evitamos que Blogger de problemas con los saltos de línea cuando escribimos el HTML */
