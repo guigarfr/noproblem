@@ -65,7 +65,7 @@ div.spacer {
 
 <div id="cuadroup">
 {% blocktrans with prob.title as title %}
-<b>Statistics for {{ title }}</b>
+<b>Estadísticas para {{ title }}</b>
 {% endblocktrans %}
 </div>
 <div id="cuadro">
@@ -75,12 +75,12 @@ div.spacer {
 
 	<!-- Imprimo numero de veces solucionado -->
 	{% blocktrans count solves_list|length as counter with prob.title as title %}
-	Problem {{ title }} has been tried to solve just once
+	El problema {{ title }} sólo se ha intentado resolver una vez
 	{% plural %}
-	Problem {{ title }} has been tried to solve {{ counter }} times already
+	El problema {{ title }} ya se ha intentado resolver {{ counter }} veces
 	{% endblocktrans %}
 	{% if oks %}
-	{% blocktrans %}, being solved correctly {{ oks }} of them.{% endblocktrans %}
+	{% blocktrans %}, siendo correctas {{ oks }} de ellas.{% endblocktrans %}
 	{% else %}
 	.
 	{% endif %}
@@ -89,7 +89,7 @@ div.spacer {
 	<!-- Tiempo medio de resolucion del problema -->
 	{% if nok %}
 	{% blocktrans %}
-	Average time for solving this problem is {{ avg_time }}
+	El tiempo medio que has utilizado para resolver este problema es de {{ avg_time }}
 	{% endblocktrans %}
 	<br />
 	{% endif %}
@@ -104,12 +104,12 @@ div.spacer {
     {% for res in solves_list %}
         <li><span class="user">{{ res.user }}</span>
         {% blocktrans with res.date as date and res.time as time %}
-        at {{ date }} and solved in {{ time }} time.
+        el {{ date }} y resuelto en {{ time }}.
         {% endblocktrans %}
         {% if res.is_correct %}
-        	<span class="resok">{% trans "correct!" %}</span>
+        	<span class="resok">{% trans "correcto!" %}</span>
         {% else %}
-			<span class="resfail">{% trans "failed!" %}</span>
+			<span class="resfail">{% trans "incorrecto!" %}</span>
 		{% endif %}
 	</li>
     {% endfor %}
@@ -120,9 +120,9 @@ div.spacer {
     
 {% else %}
   <p>
-  {% trans "No results are available." %}
+  {% trans "No existen resultados disponibles." %}
   {% blocktrans with prob.title as title %}
-  Problem {{ title }} still hasn't been solved
+  El problema {{ title }} todavía no ha sido resuelto
   {% endblocktrans %}
   </p>
 {% endif %}
