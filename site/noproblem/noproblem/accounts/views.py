@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from noproblem.accounts.forms import RegistroUsuario
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
 
 def login_user(request):
     state = "Please log in below..."
@@ -43,7 +44,16 @@ def register_user(request,  next_page=None,
 		redirect_to = request.REQUEST.get(redirect_field_name, '') 
 		if form.is_valid():
 			user = form.save()
-			if redirect_to: 
+			new_user = auth.authenticate(username=request.POST['username'],
+                                    password=request.POST['password1'])
+			if user is not None:
+				if user.is_active:
+					auth.login(request, new_user)
+				else:
+					state = "Your account is not active, please contact the site admin."
+					# Redirigir a contacto??
+					HttpResponseRedirect(reverse('contacto'))
+			if redirect_to:
 				return HttpResponseRedirect(redirect_to) 
 			elif next_page is None:
 				return render(request, template_name, {'title': _('Logged out')})

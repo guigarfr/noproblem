@@ -2,42 +2,35 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.views.static import *
 #from noproblem.views import current_datetime, hours_ahead
-from noproblem.views import preinicio, inicio, about, divulgacion, didactica, desarrollo, contacto
+from noproblem import views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	(r'^$', preinicio),
-	('^welcome/$', preinicio),
-	('^inicio/$', inicio),
-    ('^about/$', about),
-    
-    # Accounts
-    url(r'^accounts/', include('noproblem.accounts.urls', namespace="accounts")), 
-    
-    # divulgacion/blog debe ir antes porque es mas especifico que divulgacion a secas
-    url(r'^divulgacion/blog/', include('noproblem.blog.urls', namespace="divulgacion/blog")),
-    ('^divulgacion/$', divulgacion),
-    
-    ('^didactica/$', didactica),
-    ('^desarrollo/$', desarrollo),
-    ('^contacto/$', contacto),
-    # Examples:
-    #('^time/$', current_datetime),
-    #(r'^time/plus/(\d{1,2})/$', hours_ahead),
-    # url(r'^$', '{{ project_name }}.views.home', name='home'),
-    # url(r'^{{ project_name }}/', include('{{ project_name }}.foo.urls')),
-    #url(r'^preguntas/', include('noproblem.preguntas.urls', namespace="preguntas")),
-    url(r'^problems/', include('noproblem.problems.urls', namespace="problems")), 
-                      
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+	url(r'^$', views.preinicio),
+	url('^welcome/$', views.preinicio),
+	url('^inicio/$', views.inicio),
+	url('^about/$', views.about),
+	# divulgacion/blog debe ir antes porque es mas especifico que divulgacion a secas
+	url(r'^divulgacion/blog/', include('noproblem.blog.urls', namespace="divulgacion/blog")),
+	url('^divulgacion/$', views.divulgacion),
+	url('^didactica/$', views.didactica),
+	url('^desarrollo/$', views.desarrollo),
+	url('^contacto/$', views.contacto, name="contacto"),
 
-    # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+	# Aplicación Accounts
+	url(r'^accounts/', include('noproblem.accounts.urls', namespace="accounts")), 
+
+	# Aplicación Problemas
+	url(r'^problems/', include('noproblem.problems.urls', namespace="problems")), 
+                      
+	# Admin and Admin Documentation:
+	# url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+	url(r'^admin/', include(admin.site.urls)),
     
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT}),
+    # Media files
+	url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT}),
      
 )
