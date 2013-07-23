@@ -20,18 +20,3 @@ urlpatterns = patterns('',
                        url(r'^tree/(?P<cat_id>\d+)/$', views.tree, name='tree'),
                        url(r'^bienvenida/$', views.bienvenida, name='bienvenida'),
 )
-
-#urlpatterns = patterns('',
-#                       url(r'^$',
-#                           ListView.as_view(
-#                                            queryset=Problem.objects.order_by('-pub_date')[:5],
-#                                            context_object_name='latest_prob_list',
-#                                            template_name='index.html'),
-#                           name='index'),
-#                       url(r'^(?P<pk>\d+)/$', DetailView.as_view(model=Problem, template_name='detail.html'), name='detail'),
-#                       url(r'^(?P<pk>\d+)/results/$',
-#                           DetailView.as_view(
-#                                              model=Problem,
-#                                              template_name='stats.html'),
-#                           name='stats'),
-#                       )
