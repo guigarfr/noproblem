@@ -24,25 +24,26 @@ has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</span>.<br />
 Aquí tienes tus envíos de resultados:
 <div id="solvedproblemlist" class="problemlist">
 
+{% trans "Problema" as problema_text %}
 {% if sprob_list_list %}
 	<ul>
 	{% for s_list in sprob_list_list %}
 		{% if s_list %}
 			{% with s_list.0.prob as problem %}
-				<li> <a href={% url problems:detail problem.id %}>Problem {{ problem.title }}</a>
-				({% blocktrans count s_list|length as counter %} {{ counter }} send
-				{% plural %} {{ counter }} sends {% endblocktrans %}  )
+				<li> <a href={% url problems:detail problem.id %}>{{ problema_text }} {{ problem.title }}</a>
+				({% blocktrans count s_list|length as counter %} {{ counter }} envío{{ counter|pluralize }}
+				{% plural %} {{ counter }} envíos {% endblocktrans %}  )
 			{% endwith %}
 			<ul>
 			{% for solve in s_list %}
 				<li>
 				{% blocktrans with solve.date as date and solve.time as time %}
-				at {{ date }} and solved in {{ time }} time.
+				el {{ date }} y resuelto en {{ time }}.
 				{% endblocktrans %}
 				{% if solve.is_correct %}
-					<span class="resok">{% trans "correct!" %}</span>
+					<span class="resok">{% trans "correcto!" %}</span>
 				{% else %}
-					<span class="resfail">{% trans "failed!" %}</span>
+					<span class="resfail">{% trans "incorrecto!" %}</span>
 				{% endif %}
 				</li>
 			{% endfor %}
@@ -52,21 +53,22 @@ Aquí tienes tus envíos de resultados:
 	{% endfor %}
 	</ul>
 {% else %}
-	Aún no has enviado ningún resultado
+	{% trans "Aún no has enviado ningún resultado" %}.
 {% endif %}
 </div>
-
-Estos son los próximos a realizar:
+{% if prob_cansolve or prob_nextsolve %}
+{% trans "Estos son los próximos a realizar" %}:
 <div id="tosolveproblemlist" class="problemlist">
 	<ul>
 	{% for prob in prob_cansolve %}
-		<li id='cansolve'> <a href={% url problems:detail prob.id %}>Problem {{ prob.title }}</a> </li>
+		<li id='cansolve'> <a href={% url problems:detail prob.id %}>{{ problema_text }} {{ prob.title }}</a> </li>
 	{% endfor %}
 	{% for prob in prob_nextsolve %}
-		<li id='cantsolve'> Problem {{ prob.title }} </li>
+		<li id='cantsolve'>{{ problema_text }} {{ prob.title }}</li>
 	{% endfor %}
 	</ul>
 </div>
+{% endif %}
 
 
 </div>
