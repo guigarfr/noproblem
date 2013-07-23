@@ -37,32 +37,6 @@ g.node.tosolve ellipse {
 
 </style>
 
-
-<!--
-{% if pr_dict %}
-	{{ pr_dict }}
-    <ul>
-    {% for prob,v in pr_dict.items %}
-        <li><a href="/problems/{{ prob.id }}/">{{ prob.title }} has {{ prob.get_children.count }} {{ prob.get_children.count|pluralize:"child,children" }}</a></li>
-        {{ prob.title }} is to be in position ({{pr_dict|keyvalue:prob|lookup:0}} , {{pr_dict|keyvalue:prob|lookup:1}})
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No problems are available.</p>
-{% endif %}
-
-	{% for layer in layer_list %}
-		{% with layer_list|length|add:-1 as nlayers %}
-		{% for prob in layer %}
-			{% set depth = forloop.parentloop.counter %}
-			{% with nlayers|substract:depth|add:1 as thisdepth %}
-				{{ prob.id }} in layer {{ depth }} has depth {{ pr_dict|keyvalue:prob|lookup:1 }} translate {{ pr_dict|keyvalue:prob|lookup:0|multiplyperfactor:40 }} and {{ pr_dict|keyvalue:prob|lookup:1|multiplyperfactor:35 }}<br/>
-			{% endwith %}
-		{% endfor %}
-		{% endwith %}
-	{% endfor %}
--->
-
 {% if not notree %}
 
 <div id="tree_wrapper" style="text-align:center;">

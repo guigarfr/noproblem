@@ -12,21 +12,34 @@
 
 <div id="diva">
 <div id="cuadroup">
-<b>{% blocktrans with user.get_profile.user.username as username %} ¡Hola {{ username }}! {% endblocktrans %}
+<b>
+{% blocktrans with user.get_profile.user.username as username %}
+¡Hola {{ username }}!
+{% endblocktrans %}
+
 {% trans "Estos son los detalles de tu cuenta" %}:</b>
 </div>
 <div id="cuadro">
 <div>
-{% blocktrans with user.get_profile.credits as ncredits %}
-Tienes un total de <span id="num">{{ ncredits }}</span> creditos.<br/>
+
+{% blocktrans with user.get_profile.credits as ncredits count ncredits as ncredits %}
+Tienes un total de <span id="num">{{ ncredits }}</span> crédito.<br/>
+{% plural %}
+Tienes un total de <span id="num">{{ ncredits }}</span> créditos.<br/>
 {% endblocktrans %}
-{% blocktrans %}
-En este momento tenemos disponibles un total de <span id="num">{{ nprob }}</span> problemas.<br />
+
+{% blocktrans count nprob as nprob %}
+En este momento tenemos disponible en <i>NoProblem</i> <span id="num">{{ nprob }}</span> problema.<br />
+{% plural %}
+En este momento tenemos disponibles en <i>NoProblem</i> un total de <span id="num">{{ nprob }}</span> problemas.<br />
 {% endblocktrans %}
-{% blocktrans %}
-Has intentado resolver <span id="num">{{ num_resueltos }}</span> problemas, de los cuales
-has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</span>.
+
+{% blocktrans count num_resueltos as nres %}
+Has intentado resolver <span id="num">{{ nres }}</span> problema, el cual has resuelto correctamente.
+{% plural %}
+Has intentado resolver <span id="num">{{ nres }}</span> problemas, de los cuales has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</span>.
 {% endblocktrans %}
+
 <br/>
 <br/>
 {% trans "Aquí tienes tus envíos de resultados" %}:
