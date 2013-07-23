@@ -22,14 +22,20 @@
 {% if form.errors %}
 <br> 
 <p style="color: red;"> 
-Hay error{{ form.errors|pluralize:",es" }} en el formulario. Corrígelo{{ form.errors|pluralize:",s" }}.
+Hay {{ form.errors|pluralize:"un,varios" }} error{{ form.errors|pluralize:",es" }} en el formulario. Corrígelo{{ form.errors|pluralize:",s" }}.
 </p> 
 {% endif %} 
 
 <form method="POST" action="">
     {% csrf_token %}
-    {{form.as_ul}}
-    <input type="submit">
+    {{ form.non_field_errors }}
+	{% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors|striptags }}
+            {{ field.label_tag }} {{ field }}
+        </div>
+	{% endfor %}
+    <p><input type="submit" value="Registrar usuario" /></p>
 </form>
 
 
