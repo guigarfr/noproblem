@@ -12,16 +12,24 @@
 
 <div id="diva">
 <div id="cuadroup">
-<b>¡Hola {{ user.get_profile.user.username }}! Estos son los detalles de tu cuenta:</b>
+<b>{% blocktrans with user.get_profile.user.username as username %} ¡Hola {{ username }}! {% endblocktrans %}
+{% trans "Estos son los detalles de tu cuenta" %}:</b>
 </div>
 <div id="cuadro">
 <div>
-Tienes un total de <span id="num">{{ user.get_profile.credits }}</span> creditos.<br/>
+{% blocktrans with user.get_profile.credits as ncredits %}
+Tienes un total de <span id="num">{{ ncredits }}</span> creditos.<br/>
+{% endblocktrans %}
+{% blocktrans %}
 En este momento tenemos disponibles un total de <span id="num">{{ nprob }}</span> problemas.<br />
+{% endblocktrans %}
+{% blocktrans %}
 Has intentado resolver <span id="num">{{ num_resueltos }}</span> problemas, de los cuales
-has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</span>.<br />
+has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</span>.
+{% endblocktrans %}
 <br/>
-Aquí tienes tus envíos de resultados:
+<br/>
+{% trans "Aquí tienes tus envíos de resultados" %}:
 <div id="solvedproblemlist" class="problemlist">
 
 {% trans "Problema" as problema_text %}
