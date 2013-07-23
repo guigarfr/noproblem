@@ -88,7 +88,8 @@ function submitForm() {
 <b>{{ prob.title }}</b>
 </div>
 <div id="cuadro">
-Enunciado del problema.
+{% trans "Enunciado del problema." %}
+<br/>
 {{ prob.wording|linebreaksbr }}
 </div>
 
@@ -109,8 +110,8 @@ Enunciado del problema.
 <p>
 {% blocktrans %} Haz click en el botón "{{ show_data_button }}" para ver los datos del problema{% endblocktrans %}.
 {% trans "A partir de este momento empezará a contar el tiempo" %}. 
-{% blocktrans %} Una vez solucionado el problema, copia el resultado, pulsa el botón "{{ sendres_button }}" y
-pega el valor/es obtenidos en el campo de texto que aparecerá{% endblocktrans %}.<br/> 
+{% blocktrans %} Una vez solucionado el problema, copia {{ nout|pluralize:"el,los" }} resultado{{ nout|pluralize }}, pulsa el botón "{{ sendres_button }}" y
+pega {{ nout|pluralize:"el,los" }} valor{{ nout|pluralize:"es" }} obtenido{{ nout|pluralize }} en {{ nout|pluralize:"el,los" }} campo{{ nout|pluralize }} de texto que aparecerá{{ nout|pluralize:"n" }}{% endblocktrans %}.<br/> 
 </p>
 </div>
 
@@ -130,7 +131,7 @@ pega el valor/es obtenidos en el campo de texto que aparecerá{% endblocktrans %
 <div id='senddata'>
 <form name="solverform" action="{% url problems:sendresult prob.id %}" method="post">
 {% csrf_token %}
-Result: <br>
+{% blocktrans %} Resultado{{ nout|pluralize }}{% endblocktrans %}: <br>
 		{% for i in nout|get_range %}
 		<input type="text" name="result{{forloop.counter0}}"><br>
 		{% endfor %}
