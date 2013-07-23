@@ -29,20 +29,19 @@ que refuerza el aprendizaje de las ciencias a nivel de educación secundaria.</d
 
 <br><br>
 <div>
-¡Hola <a href="/problems/user_detail"><b>{{ user.get_profile.user.username }}</b></a>! Te damos la bienvenida a la
+¡Hola <a href="{% url problems:user_detail %}"><b>{{ user.get_profile.user.username }}</b></a>! Te damos la bienvenida a la
 red de problemas <b>No problem!</b> Escoge una categoría y empieza a jugar:
 </div>
 <br><br><br>
 <div style="width=1500px;height:230px;padding-left:100px;">
 <ul id="int">
 {% for cat in categorias %}
-<li><a style="color:black;font-weight: normal; text-decoration: none;" href="/problems/tree/{{ cat.id }}">
+<li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
 <div id="cuadro2" style="width:130px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></li>
 </a>
 {% endfor %}
 </ul>
 </div>
-
  
 {% else %} 
 <p>
@@ -51,8 +50,8 @@ red de problemas <b>No problem!</b> Escoge una categoría y empieza a jugar:
 {% include 'auth.html' %}
 {% endwith %}
 <br>
-<div style="text-align:center">Si todavía no estás registrado entra 
-<a href="/accounts/register?next=../../problems/bienvenida">aquí</a>.
+<div style="text-align:center">
+Si todavía no estás registrado entra <a href="{% url accounts:register %}?next=/problems/bienvenida">aquí</a>.
 </div>
 
 {% endif %}

@@ -50,7 +50,7 @@ def index(request):
 	return render(request, 'indexpr.html', context)
 
 
-def tree(request, poll_id):
+def tree(request, cat_id):
 	#Parametros dibujo svg:
 	xradio=35
 	yradio=25
@@ -58,8 +58,8 @@ def tree(request, poll_id):
 	centery=50
 	
 	context = Context({})
-	if poll_id:
-		categoria = get_object_or_404(Area, pk=poll_id)
+	if cat_id:
+		categoria = get_object_or_404(Area, pk=cat_id)
 		context['cat'] = categoria
 		
 	subareas=SubArea.objects.filter(area=categoria)

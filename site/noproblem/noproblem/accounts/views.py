@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from noproblem.accounts.forms import RegistroUsuario
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
+from django.contrib import messages
 
 def login_user(request):
     state = "Please log in below..."
@@ -40,10 +42,22 @@ def register_user(request,  next_page=None,
 					redirect_field_name=REDIRECT_FIELD_NAME):
 	if request.method =='POST':
 		form = RegistroUsuario(request.POST)
+		RegistroUsuario(request.POST)
 		redirect_to = request.REQUEST.get(redirect_field_name, '') 
 		if form.is_valid():
 			user = form.save()
-			if redirect_to: 
+			passwd = form.clean_password2()
+			messages.success(request, 'Su usuario ha sido registrado')
+			new_user = auth.authenticate(username=form.cleaned_data['username'],
+                                    password=passwd)
+			if user is not None:
+				if user.is_active:
+					auth.login(request, new_user)
+				else:
+					state = "Your account is not active, please contact the site admin."
+					# Redirigir a contacto??
+					HttpResponseRedirect(reverse('contacto'))
+			if redirect_to:
 				return HttpResponseRedirect(redirect_to) 
 			elif next_page is None:
 				return render(request, template_name, {'title': _('Logged out')})
@@ -51,21 +65,11 @@ def register_user(request,  next_page=None,
 				# Redirect to this page until the session has been cleared. 
 				return HttpResponseRedirect(next_page or request.path)
 		else:
-			form = RegistroUsuario()
 			return render(request, 'register.html', {'form': form})
 	else:
 		form = RegistroUsuario()
 		return render(request, 'register.html', {'form': form})
 
-def register_user_2(request):
-	if request.method =='POST':
-		form = RegistroUsuario(request.POST)
-		if form.is_valid():
-			user = form.save()
-			return HttpResponseRedirect('login')
-	else:
-		form = RegistroUsuario()
-		return render(request, 'register.html', {'form': form})
 
 def logout(request, next_page=None, 
 					template_name='logged_out.html', 
