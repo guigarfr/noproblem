@@ -19,4 +19,5 @@ urlpatterns = patterns('',
                        # ex: /problems/tree/
                        url(r'^tree/(?P<cat_id>\d+)/$', views.tree, name='tree'),
                        url(r'^bienvenida/$', views.bienvenida, name='bienvenida'),
+                       url(r'^bienvenida/contacto/$', views.contacto, name='contacto'),
 )

@@ -1,0 +1,60 @@
+{% extends "base_problems.html" %}
+
+{% block title %}NoProblem | Connecta{% endblock %}
+
+{% block content %} 
+{% load custom_filters %}
+{% load scientificfilter %}
+{% load i18n %}
+
+<br>
+
+
+	{% if messages %} 
+		{% for message in messages %}
+			{% if 'success' in message.tags %}
+				<p style="color: green;">
+				{{ message }}
+			{% else %}
+				<p style="color: red;">
+				{{ message }}
+			{% endif %}
+			</p>
+		{% endfor %} 
+	{% endif %} 
+	
+{% if form.errors %}
+<br> 
+<p style="color: red;"> 
+Hay error{{ form.errors|pluralize:",es" }} en el formulario. Corrígelo{{ form.errors|pluralize:",s" }}.
+</p> 
+{% endif %} 
+
+<form id="pos_form" action="" method="post"> 
+
+<div id="cuadro">
+{% csrf_token %} 
+    {{ form.non_field_errors }}
+    
+    <div class="fieldWrapper">
+        {{ form.motivo.label }}:
+        {% for error in form.motivo.errors %}
+        	**{{ error|escape }}
+        {% endfor %}<br />
+        {{ form.motivo|escape }}<br />
+    </div>
+    <div class="fieldWrapper">
+        
+        {{ form.message.label }}:
+        {% for error in form.message.errors %}
+        	**{{ error|escape }}
+        {% endfor %}<br />
+        {{ form.message }}
+    </div>
+    <p><input type="submit" value="Enviar" /></p>
+
+</div>
+</form> 
+</div>
+
+{% endblock %}
