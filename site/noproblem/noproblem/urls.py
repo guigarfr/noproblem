@@ -27,6 +27,9 @@ urlpatterns = patterns('',
 
 	# Aplicación Problemas
 	url(r'^problems/', include('noproblem.problems.urls', namespace="problems")), 
+	
+	# Aplicación Foro
+	url(r'^forum/', include('noproblem.problemforum.urls', namespace="forum")), 
                       
 	# Admin and Admin Documentation:
 	# url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

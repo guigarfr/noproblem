@@ -1,0 +1,28 @@
+
+<style>
+
+ .hidden {
+ 	display: none;
+ 	visibility: hidden;
+ }
+ 
+ </style>
+
+{{ title }}
+
+{{ subject }}
+
+<form method="POST" action="{{ action }}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form.hidden_fields %}
+        {{ field }}
+    {% endfor %}
+
+    {% for field in form.visible_fields %}
+    	<div class="fieldWrapper">
+        {{ field.label }} {{ field }}
+        </div>
+    {% endfor %}
+    <p><input type="submit" value="Enviar" /></p>
+</form>

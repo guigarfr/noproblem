@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'noproblem.blog',
     'noproblem.agenda',
     'noproblem.preguntas',
+    'noproblem.problemforum',
 )
 
 
