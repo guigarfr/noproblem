@@ -20,9 +20,9 @@
   <li><a href=""> Puntos: {{ user.get_profile.credits }} </a></li>
   <li><a href="{% url problems:user_detail %}"> Usuario: {{ user.get_profile.user.username }} @{% now "jS F Y H:i:s" %} </a></li>
 {% if cat %}
-  <li style="padding-left:28%;"><a href="{% url accounts:auth_logout_user %}?next=/problems/bienvenida">Log Out</a></li>
+  <li style="padding-right:0;"><a href="{% url accounts:auth_logout_user %}?next=/problems/bienvenida">Log Out</a></li>
 {% else %}
-  <li style="padding-left:35%;"><a href="{% url accounts:auth_logout_user %}?next=/problems/bienvenida">Log Out</a></li>
+  <li style="padding-left:0;"><a href="{% url accounts:auth_logout_user %}?next=/problems/bienvenida">Log Out</a></li>
 {% endif %}
 </ul>
 

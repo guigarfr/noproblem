@@ -28,12 +28,15 @@ que refuerza el aprendizaje de las ciencias a nivel de educación secundaria. ¡
 {% if user.is_authenticated %}
 
 <br><br>
+<!-- 
 <div id="cuadro2b">
 ¡Hola <a href="{% url problems:user_detail %}"><b>{{ user.get_profile.user.username }}</b></a>! Te damos la bienvenida a la
 red de problemas <b>No Problem!</b> Escoge una categoría y empieza a jugar:
 </div>
+ -->
 <br><br><br><br><br>
-<div style="width=1500px;height:230px;padding-left:10%;padding-right:10%;">
+<div align="center" style="text-align:center;">
+<div style="width=1500px;height:230px;">
 <ul id="int">
 {% for cat in categorias %}
 <li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
@@ -41,7 +44,7 @@ red de problemas <b>No Problem!</b> Escoge una categoría y empieza a jugar:
 {% endfor %}
 </ul>
 </div>
-
+</div>
 
 <div style="text-align:center;"><img src="{{ MEDIA_URL }}nop-logo.gif" width="20%"  align="center"> </img>
 </div>
