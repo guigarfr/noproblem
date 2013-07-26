@@ -6,11 +6,11 @@
 
 {% if user.is_authenticated %}
 <ul class="mi-menu">
-  <li><a href="{% url problems:bienvenida %}"> Inicio</a></li>
+  <li><a href="{% url problems:index %}"> Inicio</a></li>
 {% if cat %}
   <li><a href="{% url problems:tree cat.id %}"> Categoría: {{ cat.name }} </a></li>
 {% else %}
-    <li><a href="{% url problems:bienvenida %}"> Categorías </a>
+    <li><a href="{% url problems:index %}"> Categorías </a>
   	<ul>
   	{% for ca in categorias %}
       <li><a href="{% url problems:tree ca.id %}"> {{ ca.name }} </a></li>
