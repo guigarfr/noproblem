@@ -34,9 +34,9 @@ que refuerza el aprendizaje de las ciencias a nivel de educación secundaria. ¡
 red de problemas <b>No Problem!</b> Escoge una categoría y empieza a jugar:
 </div>
  -->
-<br><br><br><br><br>
+<br><br><br>
 <div align="center" style="text-align:center;">
-<div style="width=1500px;height:230px;">
+<div id="lista_cat" style="width=1500px;height:230px;">
 <ul id="int">
 {% for cat in categorias %}
 <li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
@@ -52,8 +52,8 @@ red de problemas <b>No Problem!</b> Escoge una categoría y empieza a jugar:
 
 
 <div style="text-align:center;width:100%;">
-<a href="{% url problems:contacto %}">¿Has encontrado algún error?&nbsp&nbsp&nbsp</a>      
-<a href="{% url problems:contacto %}">&nbsp&nbsp&nbspSugiere un problema</a>
+<a href="{% url problems:contacto %}">¿Has encontrado algún error?&nbsp&nbsp</a>      
+<a href="{% url problems:contacto %}">Sugiere un problema</a>
 </div>
 <br><div class="showhimtext">
 <div style="text-align:center"><b>Instrucciones</b></div>

@@ -62,11 +62,16 @@ clear:both;
  */
 }
 
+#lista_cat{
+display:table;
+margin:0 auto;
+}
+
 
 #int{
 list-style: none;
 display:block;
-margin:-11px;
+/*margin:-11px;*/
 }
 #int li{float:left;width:200px;height:200px;}
 
