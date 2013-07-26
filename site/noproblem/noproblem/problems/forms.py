@@ -27,5 +27,12 @@ class SolverForm(ModelForm):
         }
         exclude = ('is_correct')
 
+class ContactForm(forms.Form): 
+	motivo = forms.ChoiceField(widget = forms.Select(),
+					 label = '¿Por qué quieres contactar con nosotros?',
+                     choices = ([('error','He encontrado un error'),
+                     			 ('sugerencia','Quiero sugerir un problema'),
+                     			 ('otros','Otros') ]), required = True,)
+	message = forms.CharField(widget = forms.widgets.Textarea(),label='Contenido del Mensaje') 
 
 

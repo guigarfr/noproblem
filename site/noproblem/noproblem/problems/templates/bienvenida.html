@@ -17,8 +17,8 @@
 <br>
 <br>
 <br>
-<div id="cuadro2b">No problem! es una herramienta didáctica basada en la resolución de problemas
-que refuerza el aprendizaje de las ciencias a nivel de educación secundaria.</div>
+<div id="cuadro2b">No Problem! es una herramienta didáctica basada en la resolución de problemas
+que refuerza el aprendizaje de las ciencias a nivel de educación secundaria. ¡Entra y juega!</div>
 
 
 
@@ -28,24 +28,53 @@ que refuerza el aprendizaje de las ciencias a nivel de educación secundaria.</d
 {% if user.is_authenticated %}
 
 <br><br>
-<div>
+<div id="cuadro2b">
 ¡Hola <a href="{% url problems:user_detail %}"><b>{{ user.get_profile.user.username }}</b></a>! Te damos la bienvenida a la
-red de problemas <b>No problem!</b> Escoge una categoría y empieza a jugar:
+red de problemas <b>No Problem!</b> Escoge una categoría y empieza a jugar:
 </div>
-<br><br><br>
-<div style="width=1500px;height:230px;padding-left:100px;">
+<br><br><br><br><br>
+<div style="width=1500px;height:230px;padding-left:10%;padding-right:10%;">
 <ul id="int">
 {% for cat in categorias %}
 <li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
-<div id="cuadro2" style="width:130px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></li>
-</a>
+<div id="cuadro2" style="width:130px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
 {% endfor %}
 </ul>
 </div>
+
+
+<div style="text-align:center;"><img src="{{ MEDIA_URL }}nop-logo.gif" width="20%"  align="center"> </img>
+</div>
+<p>
+
+<div style="margin-left:27%;text-align:center;float:left;width:100%;">
+<div style="float:left;width:25%;"><a href="/problems/bienvenida/contacto/">¿Has encontrado algún error?</a></div>
+<div style="float:left;width:15%"><a href="/problems/bienvenida/contacto/">Sugiere un problema</a></div>
+</div>
+<br><br>
+<div class="showhimtext">
+<div style="text-align:center"><b>Instrucciones</b></div>
+<div class="showmetext" id="cuadro">
+<ul>
+<li>En cada categoría encontrarás una red tipo árbol en cuyos nodos hay problemas para
+resolver. Resolver un problema te permitirá desbloquear 
+otros niveles del árbol que contienen problemas relacionados.</li>
+<li>Por cada problema resuelto obtendrás además unos puntos (puedes consultar los puntos que tienes en tu 
+perfil de usuario), esos puntos te permitirán <i>comprar información</i>: Si necesitas ayuda con un problema
+puedes entrar al foro de ese mismo problema, ahora bien, entrar en el foro tiene un precio
+que tendrás que pagar con tus puntos.</li>
+<li>Puedes entrar en el foro de un problema que ya hayas resuelto y responder alguna pregunta
+de otro usuario; si tu ayuda es válida, obtendrás unos puntos extra a cambio.</li>
+<li>Para resolver cada problema necesitarás ver sus datos, que cambian en cada intento de resolución; 
+una vez pulses en "mostrar datos" tendrás 10 segundos para resolverlo.</li>
+</ul>
+</div></div>
+
+
+
  
 {% else %} 
 <p>
-
 {% with '/problems/bienvenida' as next %}
 {% include 'auth.html' %}
 {% endwith %}

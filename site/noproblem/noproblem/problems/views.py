@@ -21,6 +21,7 @@ from noproblem.problems.utils.misc import topological_sort, is_number, calcpreci
 from noproblem.problems.utils.sugiyama import problem_get_node_positions, sugiyama_graph_drawing_layering
 from math import atan
 from collections import defaultdict
+from noproblem.problems.forms import ContactForm
 
 ####################################################
 # 					GLOBAL VARS					   #
@@ -52,12 +53,16 @@ def index(request):
 
 def tree(request, cat_id):
 	#Parametros dibujo svg:
-	xradio=35
+	# xradio=35
+# 	yradio=25
+# 	centerx=50
+# 	centery=50
+	xradio=55
 	yradio=25
-	centerx=50
-	centery=50
+	centerx=60
+	centery=60
 	
-	context = Context({})
+	context = Context({})	
 	if cat_id:
 		categoria = get_object_or_404(Area, pk=cat_id)
 		context['cat'] = categoria
@@ -425,6 +430,23 @@ def bienvenida(request):
 	context = Context({
 					 'colores_cuadros': ('#FA8072','#BDB76B','#4682B4','#F4A460'),
 					 })	
-	return render(request, 'bienvenida.html', context)			
+	return render(request, 'bienvenida.html', context)
+	
+def contacto(request):
+	if request.method == 'POST': 
+		form = ContactForm(request.POST) 
+		if form.is_valid():
+			messages.success(request, 'El formulario ha sido enviado')
+			cd = form.cleaned_data 
+			email = EmailMessage('[connectacpc] Contacto: ' + cd['nombre'] + ' motivo: ' + cd['motivo'],
+								 cd['message'] + "\n\nEnviado por: " + cd.get('email'),
+								 cd.get('email'),
+								 ['guigarfr@gmail.com','paulatuzon@gmail.com'],
+								 headers={'Reply-To': cd.get('email')})
+			email.send()
+			return render_to_response('contacto_nop.html', {'form': form}, context_instance=RequestContext(request)) 
+	else: 
+		form = ContactForm() 
+	return render_to_response('contacto_nop.html', {'form': form}, context_instance=RequestContext(request)) 	
 		
 		
