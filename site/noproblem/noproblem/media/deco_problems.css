@@ -49,6 +49,7 @@ text-align:justify;
 /**/
 margin-left:-21px;
 width:103%;
+height:80px;
 padding: 5px 5px 5px 5px;
 margin-top:100%;
 /* 
@@ -240,7 +241,7 @@ ul {
 
 
 a{
-color: gray; 
+color: black; 
 font-weight: bold; 
 text-decoration: none;
 }

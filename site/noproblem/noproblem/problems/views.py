@@ -53,12 +53,16 @@ def index(request):
 
 def tree(request, cat_id):
 	#Parametros dibujo svg:
-	xradio=35
+	# xradio=35
+# 	yradio=25
+# 	centerx=50
+# 	centery=50
+	xradio=55
 	yradio=25
-	centerx=50
-	centery=50
+	centerx=60
+	centery=60
 	
-	context = Context({})
+	context = Context({})	
 	if cat_id:
 		categoria = get_object_or_404(Area, pk=cat_id)
 		context['cat'] = categoria

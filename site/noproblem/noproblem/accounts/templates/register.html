@@ -4,7 +4,14 @@
 
 {% block contentbase %}
 <br>
-¡Bienvenida/o a Noproblem! Regístrate a través del siguiente fomulario:
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="cuadro2b">No problem! es una herramienta didáctica basada en la resolución de problemas
+que refuerza el aprendizaje de las ciencias a nivel de educación secundaria.</div>
+ 
 <p>
 	{% if messages %} 
 		{% for message in messages %}
@@ -22,9 +29,16 @@
 {% if form.errors %}
 <br> 
 <p style="color: red;"> 
-Hay {{ form.errors|pluralize:"un,varios" }} error{{ form.errors|pluralize:",es" }} en el formulario. Corrígelo{{ form.errors|pluralize:",s" }}.
+Hay {{ form.errors|pluralize:"un,varios" }} error{{ form.errors|pluralize:",es" }} 
+en el formulario. Corrígelo{{ form.errors|pluralize:",s" }}.
 </p> 
 {% endif %} 
+
+<div style="padding-left:30%;padding-right:30%;">
+<div id="cuadroup" style="text-align:center;">
+<b>Regístrate:</b>
+</div>
+<div id="cuadro" style="text-align:right;">
 
 <form method="POST" action="">
     {% csrf_token %}
@@ -35,8 +49,13 @@ Hay {{ form.errors|pluralize:"un,varios" }} error{{ form.errors|pluralize:",es" 
             {{ field.label_tag }} {{ field }}
         </div>
 	{% endfor %}
-    <p><input type="submit" value="Registrar usuario" /></p>
+    <div style="text-align:center;"><p><input type="submit" value="Registrar usuario" /></p></div>
 </form>
-
+</div>
+</div>
+<br>
+<div style="text-align:center">
+Volver a <a href="/problems/bienvenida">Inicio</a>.
+</div>
 
 {% endblock %}

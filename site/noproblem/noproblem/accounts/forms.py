@@ -8,7 +8,7 @@ from django import forms
 class RegistroUsuario(UserCreationForm):
     class Meta:
         model = User
-        fields = ("username", "first_name", "email", "password1", "password2")
+        fields = ("username", "email", "password1", "password2")
     def clean_password2(self):
         # Check that the two password entries match
         password1 = self.cleaned_data.get("password1")
