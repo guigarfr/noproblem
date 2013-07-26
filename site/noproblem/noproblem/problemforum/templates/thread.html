@@ -1,0 +1,19 @@
+<!-- Posts  -->
+<div class="ttitle">{{ title }}</div>
+<div id="list">
+
+    {% for post in posts.object_list %}
+        <div class="post">
+        	<a href="{% url forum:post 'reply' post.pk %}">
+            <span class="title">{{ post.title }}</span><br />
+            {{ post.creator }} | <span class="date">{{ post.created }}</span> <br /><br />
+            {{ post.body }} </a> <br />
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Next/Prev page links
+    ...
+-->
+
+<a class="button" href="{% url forum:post 'new_message' pk %}">Reply</a>

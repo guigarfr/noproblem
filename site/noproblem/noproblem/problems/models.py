@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from noproblem.accounts.models import UserProfile
 
@@ -24,6 +25,7 @@ class Problem (models.Model):
 	requirements = models.ManyToManyField('Problem',blank=True,null=True)
 	datos = models.CharField(max_length=200)
 	solucion = models.CharField(max_length=200)
+	creator = models.ForeignKey(UserProfile, blank=True, null=True)
 	def __unicode__(self):
 		return self.title
 	def get_children(self):
