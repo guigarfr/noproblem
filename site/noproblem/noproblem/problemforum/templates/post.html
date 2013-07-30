@@ -1,4 +1,11 @@
 
+{% extends "base_problems.html" %}
+
+{% block title %}NoProblem | Connecta{% endblock %}
+
+{% block content %} 
+
+
 <style>
 
  .hidden {
@@ -7,10 +14,11 @@
  }
  
  </style>
+<br>
 
-{{ title }}
+<!-- {{ title }} -->
 
-{{ subject }}
+<!-- {{ subject }} -->
 
 <form method="POST" action="{{ action }}">
     {% csrf_token %}
@@ -18,11 +26,13 @@
     {% for field in form.hidden_fields %}
         {{ field }}
     {% endfor %}
-
+<br>
     {% for field in form.visible_fields %}
     	<div class="fieldWrapper">
-        {{ field.label }} {{ field }}
+        {{ field.label }}:<br> {{ field }}
         </div>
     {% endfor %}
     <p><input type="submit" value="Enviar" /></p>
 </form>
+
+{% endblock %}

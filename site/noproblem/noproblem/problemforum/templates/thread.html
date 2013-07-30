@@ -6,23 +6,34 @@
 
 {% block content %} 
 
-<div class="ttitle">{{ title }}</div>
+<br>
+<div style="text-align:center;"><h2>{{ title }}</h2></div>
 <div id="list">
 
     {% for post in posts.object_list %}
         <div class="post">
-        	<a href="{% url forum:post 'reply' post.pk %}">
-            <span class="title">{{ post.title }}</span><br />
-            {{ post.creator }} | <span class="date">{{ post.created }}</span> <br /><br />
-            {{ post.body }} </a> <br />
+        	<a href="{% url forum:post 'reply' post.pk %}"></a>
+           <!--  {{ post.title }}<br /> -->
+            <div id="cuadroup">{{ post.creator }} | {{ post.created }} <br></div>
+            <div id="cuadro">
+            {{ post.body }}  </div>
         </div>
+        <br>
     {% endfor %}
+    <br>
 </div>
 
 <!-- Next/Prev page links
     ...
 -->
 
-<a class="button" href="{% url forum:post 'new_message' pk %}">Reply</a>
+<div style="text-align:right;"><a class="button" href="{% url forum:post 'new_message' pk %}">Pregunta o responde</a>
+</div>
+<br>
+
+<div style="text-align:center;width:100%;">
+<a href="/forum/">Volver a la lista de foros&nbsp</a>      
+<span style="border-left:solid 1px;"><a href="/forum/">&nbsp&nbspVolver al {{ title }}</a>
+</div>
 
 {% endblock %}
