@@ -36,9 +36,7 @@ def thread(request, pk):
     posts = Post.objects.filter(thread=pk).order_by("created")
     posts = mk_paginator(request, posts, 15)
     title = Thread.objects.get(pk=pk).prob.title
-    return render_to_response("thread.html", add_csrf(request, posts=posts, pk=pk,
-        title=title, media_url=MEDIA_URL))
-
+    return render(request, "thread.html", {"posts":posts,"title":title,"pk":pk,"media_url":MEDIA_URL})
 
 # Actions: post
 
@@ -55,8 +53,8 @@ def post(request, ptype, pk):
         post_to_reply = Post.objects.get(pk=pk)
         subject = post_to_reply.thread.prob.title
         form = PostForm(initial={'username': post_to_reply.creator.user.username})
-    return render_to_response("post.html", add_csrf(request, subject=subject,
-        action=action, title=title, form=form))
+    return render(request, "post.html", {"subject":subject,
+        "action":action, "title":title, "form":form})
 
 def reply(request, pk):
     """Reply to a thread."""

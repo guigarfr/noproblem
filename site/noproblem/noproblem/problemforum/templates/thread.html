@@ -1,4 +1,11 @@
 <!-- Posts  -->
+
+{% extends "base_problems.html" %}
+
+{% block title %}NoProblem | Connecta{% endblock %}
+
+{% block content %} 
+
 <div class="ttitle">{{ title }}</div>
 <div id="list">
 
@@ -17,3 +24,5 @@
 -->
 
 <a class="button" href="{% url forum:post 'new_message' pk %}">Reply</a>
+
+{% endblock %}

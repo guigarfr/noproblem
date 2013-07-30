@@ -6,12 +6,14 @@
 
 {% block content %} 
 
+
+<br>
 <div id="list">
 <table border="0" cellpadding="4" width="100%">
     <tr>
-        <td>Topics</td>
-        <td>Replies</td>
-        <td>Last post</td>
+        <td>Discusiones</td>
+        <td>Respuestas</td>
+        <td>Último post</td>
         <td></td>
     </tr>
 
@@ -24,7 +26,7 @@
         <td {% if forloop.last %}class="last"{% endif %}>
             {{ thread.last_post.short|linebreaksbr }}</td>
         <td {% if forloop.last %}class="last"{% endif %}>
-            <a class="button" href="{% url forum:thread thread.pk %}">VIEW</a>
+            <a class="button" href="{% url forum:thread thread.pk %}">VER</a>
         </td>
     </tr>
 
