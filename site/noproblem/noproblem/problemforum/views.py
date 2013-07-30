@@ -29,7 +29,7 @@ def forum(request):
     """Listing of threads."""
     threads = Thread.objects.order_by("-prob__created_at")
     threads = mk_paginator(request, threads, 20)
-    return render_to_response("forum.html", add_csrf(request, threads=threads))
+    return render(request, "forum.html", {"threads":threads})
     
 def thread(request, pk):
     """Listing of posts in a thread."""
