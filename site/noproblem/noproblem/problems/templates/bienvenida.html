@@ -78,12 +78,12 @@ una vez pulses en "mostrar datos" tendrás 10 segundos para resolverlo.</li>
  
 {% else %} 
 <p>
-{% with '/problems/bienvenida' as next %}
+{% with '/problems/' as next %}
 {% include 'auth.html' %}
 {% endwith %}
 <br>
 <div style="text-align:center">
-Si todavía no estás registrado entra <a href="{% url accounts:register %}?next=/problems/bienvenida">aquí</a>.
+Si todavía no estás registrado entra <a href="{% url accounts:register %}?next=/problems/">aquí</a>.
 </div>
 
 {% endif %}
