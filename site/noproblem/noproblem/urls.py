@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 	url(r'^accounts/', include('noproblem.accounts.urls', namespace="accounts")), 
 
 	# Aplicación Problemas
-	url(r'^problems/', include('noproblem.problems.urls', namespace="problems")), 
+	url(r'^noproblem/', include('noproblem.problems.urls', namespace="problems")), 
 	
 	# Aplicación Foro
 	url(r'^forum/', include('noproblem.problemforum.urls', namespace="forum")), 
