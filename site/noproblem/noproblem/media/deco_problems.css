@@ -416,3 +416,11 @@ Equivalencias entre nombres de templates:
 - stats son las estadísticas del problema en concreto (te aparece al resolver el problema)
 - tree es el árbol de los problemas de una categoría
 */  
+
+
+.errormessage {
+	text-align: center;
+	font-weight: bold;
+	color: red;
+
+}

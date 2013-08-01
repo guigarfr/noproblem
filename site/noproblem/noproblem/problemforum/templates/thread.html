@@ -8,12 +8,23 @@
 
 {% if unsolved %}
 <br><br>
+
 <div style="text-align:center;">
+
 Recuerda que cada vez que entres en el foro, si no has resuelto todavía el problema, 
 consumirás 1 punto.
 
-<br><br>
+<br/><br/>
 <button onclick="location.href='{% url forum:payforumentrance pk %}'">Pagar puntos</button>
+<br/><br/>
+</div>
+
+<div class='errormessage'>
+{% if message %}
+{{ message }}
+<br/>
+<br/>
+{% endif %}
 </div>
 
 {% else %}
@@ -43,11 +54,12 @@ consumirás 1 punto.
 </div>
 <br>
 
-<div style="text-align:center;width:100%;">
-<a href="/forum/">Volver a la lista de foros&nbsp</a>      
-<span style="border-left:solid 1px;"><a href="{% url problems:detail prob.pk %}">&nbsp&nbspVolver al {{ title }}</a>
+{% endif %}
+
+<div style="text-align:center;width:100%;">   
+<a href="{% url problems:detail pr.pk %}">Volver al {{ title }}</a>
 </div>
 
-{% endif %}
+
 
 {% endblock %}

@@ -40,23 +40,25 @@ def thread(request, pk):
 	user =  UserProfile.objects.get(user=request.user)
 	thread = Thread.objects.get(pk=pk)
 	prob = thread.prob
+	title = prob.title
 	if prob.solved_by_user(user):
 		posts = Post.objects.filter(thread=pk).order_by("created")
 		posts = mk_paginator(request, posts, 15)
-		title = prob.title
 		print prob.pk
 		context = Context({
 			"posts":posts,
 			"title":title,
 			"pk":pk,
 			"media_url":MEDIA_URL,
-			"prob":prob,
+			"pr":prob,
 			})
 		return render(request, "thread.html", context)
 	else:
 		context = Context({
 			'pk' : pk,
 			'unsolved' : True,
+			"title":title,
+			"pr":prob,
 			})
 		return render(request, "thread.html", context)
 		
@@ -65,11 +67,11 @@ def thread(request, pk):
 def payforumentrance(request, pk):
 	creditsperentrance = 1
 	user =  UserProfile.objects.get(user=request.user)
-	if user.credits>creditsperentrance:
+	prob = Thread.objects.get(pk=pk).prob
+	title = prob.title
+	if user.credits>=creditsperentrance:
 		posts = Post.objects.filter(thread=pk).order_by("created")
 		posts = mk_paginator(request, posts, 15)
-		prob = Thread.objects.get(pk=pk).prob
-		title = prob.title
 		user.credits = F('credits') - creditsperentrance
 		user.save()
 		context = Context({
@@ -77,7 +79,7 @@ def payforumentrance(request, pk):
 			"title":title,
 			"pk":pk,
 			"media_url":MEDIA_URL,
-			"prob":prob, 
+			"pr":prob, 
 			})
 		return render(request, "thread.html", context)
 	else:
@@ -85,6 +87,8 @@ def payforumentrance(request, pk):
 			'pk' : pk,
 			'unsolved' : True,
 			'message' : "No tienes suficientes créditos para entrar al foro",
+			'pr': prob,
+			'title': title,
 			})
 		return render(request, "thread.html", context)
 		
