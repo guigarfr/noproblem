@@ -68,13 +68,15 @@ def tree(request, cat_id):
 		context['cat'] = categoria
 		
 	subareas=SubArea.objects.filter(area=categoria)
-	print subareas
 	if len(subareas)==0:
-		print "entro"
 		context['notree'] = True
 		return render(request, 'tree.html', context)
 		
 	problist = Problem.objects.filter(category__in = subareas).all()
+	if len(problist)==0:
+		context['notree'] = True
+		return render(request, 'tree.html', context)
+		
 	dictposic = problem_get_node_positions(problist)
 	layers = sugiyama_graph_drawing_layering(problist)
 	map(lambda x:list(x),layers)
