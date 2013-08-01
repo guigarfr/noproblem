@@ -6,6 +6,11 @@
 
 {% block content %} 
 
+{% if unsolved %}
+<button onclick="location.href='{% url forum:payforumentrance pk %}'">Entrar al foro</button>
+
+{% else %}
+
 <br>
 <div style="text-align:center;"><h2>{{ title }}</h2></div>
 <div id="list">
@@ -33,7 +38,9 @@
 
 <div style="text-align:center;width:100%;">
 <a href="/forum/">Volver a la lista de foros&nbsp</a>      
-<span style="border-left:solid 1px;"><a href="/forum/">&nbsp&nbspVolver al {{ title }}</a>
+<span style="border-left:solid 1px;"><a href="{% url problems:detail prob.pk %}">&nbsp&nbspVolver al {{ title }}</a>
 </div>
+
+{% endif %}
 
 {% endblock %}

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
 from noproblem.problemforum.models import Thread, Post
@@ -8,6 +9,9 @@ from noproblem.problemforum.forms import PostForm
 from noproblem.accounts.models import UserProfile
 from django.http import HttpResponseRedirect
 from django import forms
+from django.template import Context
+from django.db.models import F
+
 
 def add_csrf(request, ** kwargs):
     d = dict(user=request.user, ** kwargs)
@@ -32,12 +36,58 @@ def forum(request):
     return render(request, "forum.html", {"threads":threads})
     
 def thread(request, pk):
-    """Listing of posts in a thread."""
-    posts = Post.objects.filter(thread=pk).order_by("created")
-    posts = mk_paginator(request, posts, 15)
-    title = Thread.objects.get(pk=pk).prob.title
-    return render(request, "thread.html", {"posts":posts,"title":title,"pk":pk,"media_url":MEDIA_URL})
-
+	"""Listing of posts in a thread."""
+	user =  UserProfile.objects.get(user=request.user)
+	thread = Thread.objects.get(pk=pk)
+	if prob.solved_by_user(user):
+		posts = Post.objects.filter(thread=pk).order_by("created")
+		posts = mk_paginator(request, posts, 15)
+		prob = Thread.objects.get(pk=pk).prob
+		title = prob.title
+		print prob.pk
+		context = Context({
+			"posts":posts,
+			"title":title,
+			"pk":pk,
+			"media_url":MEDIA_URL,
+			"prob":prob,
+			})
+		return render(request, "thread.html", context)
+	else:
+		context = Context({
+			'pk' : pk,
+			'unsolved' : True,
+			})
+		return render(request, "thread.html", context)
+		
+		
+# Pagar entrada a foro
+def payforumentrance(request, pk):
+	creditsperentrance = 1
+	user =  UserProfile.objects.get(user=request.user)
+	if user.credits>creditsperentrance:
+		posts = Post.objects.filter(thread=pk).order_by("created")
+		posts = mk_paginator(request, posts, 15)
+		prob = Thread.objects.get(pk=pk).prob
+		title = prob.title
+		user.credits = F('credits') - creditsperentrance
+		user.save()
+		context = Context({
+			"posts":posts,
+			"title":title,
+			"pk":pk,
+			"media_url":MEDIA_URL,
+			"prob":prob, 
+			})
+		return render(request, "thread.html", context)
+	else:
+		context = Context({
+			'pk' : pk,
+			'unsolved' : True,
+			'message' : "No tienes suficientes créditos para entrar al foro",
+			})
+		return render(request, "thread.html", context)
+		
 # Actions: post
 
 def post(request, ptype, pk):
