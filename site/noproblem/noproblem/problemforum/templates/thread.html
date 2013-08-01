@@ -7,7 +7,14 @@
 {% block content %} 
 
 {% if unsolved %}
-<button onclick="location.href='{% url forum:payforumentrance pk %}'">Entrar al foro</button>
+<br><br>
+<div style="text-align:center;">
+Recuerda que cada vez que entres en el foro, si no has resuelto todavía el problema, 
+consumirás 1 punto.
+
+<br><br>
+<button onclick="location.href='{% url forum:payforumentrance pk %}'">Pagar puntos</button>
+</div>
 
 {% else %}
 

@@ -22,6 +22,7 @@ from noproblem.problems.utils.sugiyama import problem_get_node_positions, sugiya
 from math import atan
 from collections import defaultdict
 from noproblem.problems.forms import ContactForm
+from noproblem.problemforum.models import Thread
 
 ####################################################
 # 					GLOBAL VARS					   #
@@ -177,12 +178,15 @@ def detail(request, prob_id):
     mydata = pr.data()
     nout=len(pr.solve(mydata))
     
+    #hilo
+    hilo = Thread.objects.filter(prob=prob_id)[0]
     #Set context and render call
     context = Context({
                       'prob': pr,
                       'probdata': mydata,
                       'cat': pr.category.area,
                       'nout': nout,
+                      'hilo': hilo.pk,
                       })
     return render(request, 'detail.html', context)
 
