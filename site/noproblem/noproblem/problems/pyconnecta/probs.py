@@ -184,6 +184,55 @@ def cine1_datos():
 def cine1_solucion(lista):
 	r=lista[0]/1000
 	return [r,r,r]
+	
+#para prueba entre nuestros amigos################################
+
+#suma de dos numeros enteros
+def sumasimple_datos():
+	lista=[]
+	uno=randint(1,100)
+	dos=randint(1,100)
+	lista.extend([uno,dos])
+	return lista
+
+def sumasimple(lista):
+	return[lista[0]+lista[1]]
+
+#resta de dos numeros enteros
+def restasimple_datos():
+	lista=[]
+	uno=randint(1,100)
+	dos=randint(1,100)
+	lista.extend([uno,dos])
+	return lista
+
+def restasimple(lista):
+	return[lista[0]-lista[1]]
+	
+#suma de dos numeros con comas
+def sumacomas_datos():
+	uno=random.uniform(0.1,99.0)
+	dos=random.uniform(0.1,99.0)
+	lista=[]
+	lista.extend([uno,dos])
+	return lista
+
+def sumacomas(lista):
+	return[lista[0]+lista[1]]
+	
+#resta de dos numeros con comas
+def restacomas_datos():
+	uno=random.uniform(0.1,99.0)
+	dos=random.uniform(0.1,99.0)
+	lista=[]
+	lista.extend([uno,dos])
+	return lista
+
+def restacomas(lista):
+	return[lista[0]-lista[1]]
+	
+
+	
 
  
  
