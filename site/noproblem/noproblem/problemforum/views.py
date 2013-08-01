@@ -39,10 +39,10 @@ def thread(request, pk):
 	"""Listing of posts in a thread."""
 	user =  UserProfile.objects.get(user=request.user)
 	thread = Thread.objects.get(pk=pk)
+	prob = thread.prob
 	if prob.solved_by_user(user):
 		posts = Post.objects.filter(thread=pk).order_by("created")
 		posts = mk_paginator(request, posts, 15)
-		prob = Thread.objects.get(pk=pk).prob
 		title = prob.title
 		print prob.pk
 		context = Context({
