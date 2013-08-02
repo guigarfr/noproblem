@@ -23,6 +23,9 @@ from math import atan
 from collections import defaultdict
 from noproblem.problems.forms import ContactForm
 from noproblem.problemforum.models import Thread
+from django.contrib import messages
+from django.core.mail import send_mail, EmailMessage
+
 
 ####################################################
 # 					GLOBAL VARS					   #
@@ -439,16 +442,17 @@ def bienvenida(request):
 	return render(request, 'bienvenida.html', context)
 	
 def contacto(request):
+	usuario=request.user.get_profile()
 	if request.method == 'POST': 
 		form = ContactForm(request.POST) 
 		if form.is_valid():
 			messages.success(request, 'El formulario ha sido enviado')
 			cd = form.cleaned_data 
-			email = EmailMessage('[connectacpc] Contacto: ' + cd['nombre'] + ' motivo: ' + cd['motivo'],
-								 cd['message'] + "\n\nEnviado por: " + cd.get('email'),
-								 cd.get('email'),
+			email = EmailMessage('[connectacpc] Contacto Problemas: motivo: ' + cd['motivo'],
+								 cd['message'],
+								 usuario.user.email,
 								 ['guigarfr@gmail.com','paulatuzon@gmail.com'],
-								 headers={'Reply-To': cd.get('email')})
+								 headers={'Reply-To': usuario.user.email})
 			email.send()
 			return render_to_response('contacto_nop.html', {'form': form}, context_instance=RequestContext(request)) 
 	else: 
