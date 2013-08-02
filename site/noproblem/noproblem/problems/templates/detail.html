@@ -88,15 +88,17 @@ function submitForm() {
 <b>{{ prob.title }}</b>
 </div>
 <div id="cuadro">
-{% trans "Enunciado del problema." %}
-<br/>
+<!-- {% trans "Enunciado del problema." %} -->
+
 {{ prob.wording|linebreaksbr }}
 </div>
 
 
+<!-- 
 <div id="title">
 <h3>{{ prob.category }}</h3>
 </div>
+ -->
 
 <div class="spacer">
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -106,9 +108,10 @@ function submitForm() {
 {% trans "Mostrar datos" as show_data_button %}
 {% trans "Enviar resultado" as sendres_button %}
 
-<div id="datainfo">
+<div style="font-size:10pt;">
 <p>
-{% blocktrans %} Haz click en el botón "{{ show_data_button }}" para ver los datos del problema{% endblocktrans %}.
+{% blocktrans %} Haz click en el botón "{{ show_data_button }}" para ver l
+os datos del problema{% endblocktrans %}.
 {% trans "A partir de este momento empezará a contar el tiempo" %}. 
 {% blocktrans count nout as nout %}
 Una vez solucionado el problema, copia el resultado, pulsa el botón "{{ sendres_button }}" y
@@ -143,7 +146,7 @@ pega los valores obtenidos en los campos de texto que aparecerán.
 Resultado
 {% plural %}
 Resultados
-{% endblocktrans %}: <br>
+{% endblocktrans %} <br>
 		{% for i in nout|get_range %}
 		<input type="text" name="result{{forloop.counter0}}"><br>
 		{% endfor %}

@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 #++++++++++++++++hiponetusa+++++++++++++
 #Dados los dos catetos, halla la hipotenusa.
 import sys
@@ -231,13 +233,76 @@ def restacomas_datos():
 def restacomas(lista):
 	return[lista[0]-lista[1]]
 	
+#################################otra categoria
+#como se llama esta aplicacion
+def define_datos():
+	lista=[]
+	return lista
+
+def define(lista):
+	nombre = 'connecta'
+	return [nombre]
+
+#palabra mal escrita
+def palabra_datos():
+	lista=[]
+	return lista
+
+def palabra(lista):
+	return ['v']
+	
+#posicion letra alfabeto
+def posletra_datos():
+	lista=[]
+	num=randint(1,26)
+ 	lista.append(num)
+ 	return lista
+ 
+def posletra(lista):
+	letras=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+	return letras[lista[0]-1]
+ 
+
+#################################otra categoria
+#series
+
+def serie1_datos():
+	lista=[1,2,3,4,5]
+	return lista
+def serie1(lista):
+	return [6]
+	
+def serie2_datos():
+	lista=[1, -1, 2, -2, 3, -3, 4]
+	return lista
+def serie2(lista):
+	return [-4]
+	
+def serie3_datos():
+	lista=[1, 4, 9, 16, 25]
+	return lista
+def serie3(lista):
+	return [36]	
+
+def serie4_datos():
+	lista=[4, 8, 15, 16, 23]
+	return lista
+def serie4(lista):
+	return [42]	
+	
+def serie5_datos():
+	lista=[1, 1, 2, 3, 5, 8, 13, 21]
+	return lista
+def serie5(lista):
+	return [34]
+	
+def serie6_datos():
+	lista=[1, 11, 21, 1211, 111221]
+	return lista
+def serie6(lista):
+	return [312211]
 
 	
-
- 
- 
- 
-
 
 
 
