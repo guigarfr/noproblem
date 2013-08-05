@@ -75,12 +75,12 @@ div.spacer {
 
 	<!-- Imprimo numero de veces solucionado -->
 	{% blocktrans count solves_list|length as counter with prob.title as title %}
-	El problema {{ title }} sólo se ha intentado resolver una vez
+	El problema {{ title }} se ha intentado resolver una vez,
 	{% plural %}
-	El problema {{ title }} ya se ha intentado resolver {{ counter }} veces
+	El problema {{ title }} se ha intentado resolver {{ counter }} veces,
 	{% endblocktrans %}
 	{% if oks %}
-	{% blocktrans %}, siendo correctas {{ oks }} de ellas.{% endblocktrans %}
+	{% blocktrans %} de las cuales {{ oks }} han sido correctas.{% endblocktrans %}
 	{% else %}
 	.
 	{% endif %}
@@ -100,7 +100,8 @@ div.spacer {
     </div>
 
 	<!-- Lista de usuarios que lo han solucionado -->
-    <ul>
+    <!-- 
+<ul>
     {% for res in solves_list %}
         <li><span class="user">{{ res.user }}</span>
         {% blocktrans with res.date as date and res.time as time %}
@@ -114,6 +115,7 @@ div.spacer {
 	</li>
     {% endfor %}
     </ul>
+ -->
     
     <!-- Cálculo de porcentajes de solución -->
     
