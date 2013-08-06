@@ -100,6 +100,7 @@ div.spacer {
     </div>
 
 	<!-- Lista de usuarios que lo han solucionado -->
+	
     <ul>
     {% for res in solves_list %}
         <li><span class="user">{{ res.user }}</span>
@@ -111,8 +112,8 @@ div.spacer {
         {% else %}
 			<span class="resfail">{% trans "incorrecto!" %}</span>
 		{% endif %}
+		{{ res.user }}
 	</li>
-    {% endfor %}
     </ul>
     
     <!-- Cálculo de porcentajes de solución -->
@@ -126,7 +127,11 @@ div.spacer {
   {% endblocktrans %}
   </p>
 {% endif %}
-
+</div>
+<br>
+<div style="text-align:center;">
+<button onclick="location.href='{% url problems:tree cat.id %}'">Volver al árbol</button>
+<!-- <button onclick="location.href='#'">Siguiente problema</button> -->
 </div>
 
 {% endblock %}
