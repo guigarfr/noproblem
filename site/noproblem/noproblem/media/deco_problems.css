@@ -140,6 +140,19 @@ width:15%;
    background-size: 90px;
 }
  */
+ 
+.nopdib {
+ width: 1024px;
+ height:10%;
+ display:block;
+ background-color: white;
+ background-position: center top;
+ background-repeat: no-repeat;
+ background-image: url('nop-dibujo.tiff');
+ background-size: 100%;
+ position:absolute;
+ 
+}
 
 #num {
 	font-weight: bold;
