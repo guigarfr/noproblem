@@ -37,30 +37,7 @@ text-align:justify;
 padding: 5px 20px 5px 20px;
 }
 
-#cuadrofinal{
-font-size:8pt;
-border-radius: 0%;
-border:solid 1px;
-border-color:#C0C0C0;
-border-left-color:black;
-border-right-color:black;
-background-color:#C0C0C0;
-text-align:justify;
-/**/
-margin-left:-21px;
-width:103%;
-height:80px;
-padding: 5px 5px 5px 5px;
-margin-top:100%;
-/* 
-height: 7%; 
-width:85.9%;
-position: absolute;
-left: 7%;
-bottom: 0;
-clear:both;
- */
-}
+
 
 #lista_cat{
 display:table;
@@ -195,9 +172,9 @@ width:15%;
 
 
 
-html{background-color:#F0F0F0;
-min-height:100%;
-position:relative;
+html{
+background-color:#F0F0F0;
+height:100%;
 }
 body{
 		/*background: #F0F0F0;*/
@@ -206,25 +183,65 @@ body{
       font-family: Istok Web;
       font-size:14px;
 	  line-height: 130%;
-	  margin-top: 0px;
-      margin-right: auto;
-      margin-bottom: 0px;
-      margin-left: auto; /*márgenes del body respecto al html completo*/
-      padding: 10px 20px 0px 20px;/*márgenes del texto dentro del body top right bottom left*/
       border-left:solid 1px;
       border-right:solid 1px;
       border-color:black;  
       border-bottom:none; 
       text-align:justify;
-    
+      
+    /*
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+	margin-left: auto; 
+    padding: 10px 20px 0px 20px; /*márgenes del texto dentro del body top right bottom left*/
+    *//*
     width: 1024px;
     min-height:100%;
-   
-   
+    */
+    
+	margin:0;
+    padding:0;
+    height:100%
 
       }
 
+#bbody{
+padding-top:10px;
+padding-right:20px;
+padding-left:20px;
+padding-bottom:90px;/* Height of the footer */
+}
 
+#container{
+min-height:100%;
+position:relative;
+height:100%;
+}
+
+#cuadrofinal{
+font-size:8pt;
+border-radius: 0%;
+border:none;
+border-color:#C0C0C0;
+border-left-color:black;
+border-right-color:black;
+background-color:#C0C0C0;
+text-align:center;
+/**/
+/* 
+margin-left:-21px;
+width:103%;
+height:80px;
+padding: 5px 5px 5px 5px;
+margin-top:100%;
+ */
+
+position:absolute;
+bottom:0;
+width:100%;
+height:90px;   /* Height of the footer */
+}
 
 
 h1 {
@@ -337,12 +354,14 @@ color:black;font-weight:bold;}
 	border-right-color:black;
     list-style-type: none;
     margin: 0; /* si queremos centrarlo */
-    margin-top:100px;
+    /* 
+margin-top:100px;
     margin-left:-21px;
+ */
     padding: 0;
     /* la altura y su ancho dependerán de los textos */
     height: 40px; 
-    width: 104%;
+    width: 100%;
     /* el color de fondo */
     background:#F0F0F0;
   }
