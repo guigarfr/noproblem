@@ -228,13 +228,19 @@ body{
 
 
 h1 {
-	color:#8F2250;font-size:48pt;
+	/* 
+color:#8F2250;
 	font-family: 'Denk One', sans-serif;
+ */
+	font-size:48pt;
+	font-family: 'Finger Paint', cursive;
+	color: white;
 }
 
 h2 {
 font-weight:normal;font-size:18pt;
 font-family: 'Finger Paint', cursive;
+
 	/*font-weight:normal;font-size:24pt;font-family:Annie Use Your Telescope;*/
 }
 
