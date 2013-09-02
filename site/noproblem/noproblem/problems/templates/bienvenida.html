@@ -12,11 +12,6 @@
 
 
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <div id="cuadro2b">No Problem! es una herramienta didáctica basada en la resolución de problemas
 que refuerza el aprendizaje de las ciencias a nivel de educación secundaria. ¡Entra y juega!</div>
 
@@ -41,7 +36,7 @@ red de problemas <b>No Problem!</b> Escoge una categoría y empieza a jugar:
 <ul id="int">
 {% for cat in categorias %}
 <li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
-<div id="cuadro2" style="width:130px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
+<div id="cuadro2" style="width:140px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
 {% endfor %}
 </ul>
 </div>
@@ -74,23 +69,7 @@ de otro usuario; si tu ayuda es válida, obtendrás unos puntos extra a cambio.<
 una vez pulses en "mostrar datos" tendrás 10 segundos para resolverlo.</li>
 </ul>
 </div></div>
-<ul>
-<li>En cada categoría encontrarás una red tipo árbol en cuyos nodos hay problemas para
-resolver. Resolver un problema te permitirá desbloquear 
-otros niveles del árbol que contienen problemas relacionados.</li>
-<li>Por cada problema resuelto obtendrás además unos puntos (puedes consultar los puntos que tienes en tu 
-perfil de usuario), esos puntos te permitirán <i>comprar información</i>: Si necesitas ayuda con un problema
-puedes entrar al foro de ese mismo problema, ahora bien, entrar en el foro tiene un precio
-que tendrás que pagar con tus puntos.</li>
-<li>Puedes entrar en el foro de un problema que ya hayas resuelto y responder alguna pregunta
-de otro usuario; si tu ayuda es válida, obtendrás unos puntos extra a cambio.</li>
-<li>Para resolver cada problema necesitarás ver sus datos, que cambian en cada intento de resolución; 
-una vez pulses en "mostrar datos" tendrás 10 segundos para resolverlo.</li>
-</ul>
 
-
-
- 
 {% else %} 
 <p>
 {% with '/noproblem/' as next %}

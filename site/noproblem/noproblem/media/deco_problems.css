@@ -1,11 +1,11 @@
 #cuadro2{
-border-radius: 50%;
+border-radius: 0%;
 border:none;
 background-color:#F0F0F0;
 text-align:center;
 font-family:courier;
 font-size:16pt;
-padding: 30px 30px 30px 30px;
+padding: 20px 20px 20px 20px;
 }
 #cuadro2b{
 border-radius: 0%;
@@ -190,7 +190,7 @@ body{
     */
     
 	margin:0;
-    padding:0;
+    padding: 0px 35px 0px 35px;
     height:100%;
 }
 #container{
@@ -205,9 +205,10 @@ border-color:black;
 border-bottom:none; 
 }
 #header{
-padding:10px;
+padding-top:20px;
+padding-right:9px;
 width: 1024px;
-height:10%;
+height:130px;
 background-color: white;
 background-position: center top;
 background-repeat: no-repeat;
@@ -216,6 +217,7 @@ background-size: 100%;
 }
 #bbody{
 padding:10px;
+padding-top:0;
 padding-bottom:90px;/* Height of the footer */
 }
 #cuadrofinal{
@@ -345,6 +347,8 @@ color:black;font-weight:bold;}
 	border-right-color:black;
     list-style-type: none;
     margin: 0; 
+    margin-left:-11px;
+    width: 102%;
     /* 
 	margin-top:100px;
     margin-left:-21px;
@@ -352,7 +356,6 @@ color:black;font-weight:bold;}
     padding: 0;
     /* la altura y su ancho dependerán de los textos */
     height: 40px; 
-    width: 100%;
     /* el color de fondo */
     background:#F0F0F0;
   }
