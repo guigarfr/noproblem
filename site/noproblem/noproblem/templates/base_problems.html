@@ -1,10 +1,10 @@
 {% extends "base0_problems.html" %}
 
 
-
 {% block contentbase %}
 
 {% if user.is_authenticated %}
+
 <ul class="mi-menu">
   <li><a href="{% url problems:index %}"> Inicio</a></li>
 {% if cat %}
