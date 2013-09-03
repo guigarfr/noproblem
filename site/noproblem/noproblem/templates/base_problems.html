@@ -5,6 +5,7 @@
 
 {% if user.is_authenticated %}
 
+<div id="barra">
 <ul class="mi-menu">
   <li><a href="{% url problems:index %}"> Inicio</a></li>
 {% if cat %}
@@ -25,12 +26,14 @@
   <li style="padding-left:0;"><a href="{% url accounts:auth_logout_user %}?next={% url problems:index %}">Log Out</a></li>
 {% endif %}
 </ul>
+</div>
 <br><br>
 {% else %}
 
 {% endif %}
 
-
+<div id="nobarra">
 {% block content %}
 {% endblock %}
+</div>
 {% endblock %}
