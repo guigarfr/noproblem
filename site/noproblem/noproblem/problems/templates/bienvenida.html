@@ -23,24 +23,75 @@ que refuerza el aprendizaje de las ciencias a nivel de educación secundaria. ¡
 {% if user.is_authenticated %}
 
 
-<!-- 
-<div id="cuadro2b">
-¡Hola <a href="{% url problems:user_detail %}"><b>{{ user.get_profile.user.username }}</b></a>! Te damos la bienvenida a la
-red de problemas <b>No Problem!</b> Escoge una categoría y empieza a jugar:
-</div>
- -->
-
 <div align="center" style="text-align:center;">
 <div id="lista_cat">
-<!-- style="width=1500px;height:230px;" -->
+<div class="sss" style="text-align:justify;font-size:10pt;color:gray;line-height: 100%;">
+Benvinguda/t a l'aplicació No Problem! Aquesta aplicació és una xarxa de resolució de problemes especialment dissenyats per
+a educació secundària. Típicament ESO, batxillerat i mòduls. A banda dels problemes en sí, que podràs
+anar resolent i pujar de nivell, tens un fòrum per llençar o respondre preguntes i un perfil
+que resumeix les teues estadístiques. <b>No necesitas leer todo esto, la mejor manera
+de enterarse de qué va, es entrar y jugar.</b> Aún así, por si acaso, te dejamos aquí unas breves instrucciones.
+En cada categoría encontrarás una red tipo árbol en cuyos nodos hay problemas para
+resolver. Resolver un problema te permitirá desbloquear 
+otros niveles del árbol que contienen problemas relacionados.
+Por cada problema resuelto obtendrás además unos puntos (puedes consultar los puntos que tienes en tu 
+perfil de usuario), esos puntos te permitirán comprar información ==> Si necesitas ayuda con un problema
+puedes entrar al foro de ese mismo problema, ahora bien, entrar en el foro tiene un precio
+que tendrás que pagar con tus puntos.
+Puedes entrar en el foro de un problema que ya hayas resuelto y responder alguna pregunta
+de otro usuario; si tu ayuda es válida, obtendrás unos puntos extra a cambio.
+No puedes en ningún caso escribir en el foro ninguna "fórmula final"; en tal caso, se te aplicaría una penalización.
+Para resolver cada problema necesitarás ver sus datos, 
+una vez pulses en "mostrar datos" tendrás 10 segundos para escribir el resultado en los espacios en blanco.
+</div>
 <ul id="int">
+<li><div id="cuadro2" style="border:none;background-color:white;"><span style="color:black;">Tria</span></div></li>
 {% for cat in categorias %}
+{% if cat.id == 2 %}
+<li><div id="cuadro2" style="background-color:white"><span style="color:black;">una</span></div></li>
 <li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
-<div id="cuadro2" style="width:140px;background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
+<div id="cuadro2" style="background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
+<li><div id="cuadro2" style="background-color:white"><span style="color:black;">?#!%&=??</span></div></li>
+{% elif cat.id == 3 %}
+<li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
+<div id="cuadro2" style="background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
+<li><div id="cuadro2" style="border:none;background-color:white"><span style="color:black;">categoria</span></div></li>
+{% else %}
+<li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
+<div id="cuadro2" style="background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
+{% endif %}
 {% endfor %}
+<li><div id="cuadro2" style="background-color:white"><span style="color:black;">i</span></div></li>
+<li><div id="cuadro2" style="border:none;background-color:white"><span style="color:black;">juga</span></div></li>
 </ul>
+<div style="text-align:justify;color:gray;font-size:10pt;line-height: 100%;">
+Fin de las instrucciones. Ahora unos comentarios adicionales sobre la aplicación, algo de publicidad educativa en letra pequeña para
+acabar de llenar esta página. La manera en què els problemes estan enunciats pretén seguir una línia pedagògica constructivista, 
+atenent a la necessitat d'un ensenyament significatiu de les ciències en etapes formatives on l'alumne siga una peça clau 
+en el seu aprenentatge
+i, en aquest cas en particular, en el propi plantejament del problema. Així doncs, ens hem basat 
+en referències d'experts com ara <a style="color:gray;font-weight:normal;" 
+href="http://unesdoc.unesco.org/images/0013/001390/139003s.pdf"><i><u>¿Cómo
+promover el interés por la cultura científica? Una propuesta fundamentada para la educación científica
+de jóvenes de 15 a 18 años</u></i></a>, on, en línies generals, es suggereix que els problemes tinguen un
+plantejament obert i que puga ser d'interès (desafiador) per a l'estudiant. No problem! está pensada
+para ser una aplicación abierta, no sólo en el sentido de su uso libre en internet, sino para con los docentes y
+expertos en didáctica ==> Desde Connecta, el centro de promoción científica desde donde hemos realizado 
+esta aplicación, esperamos con muchas ganas el <i>feed-back</i> de personas de este sector, sea sobre
+los problemas que hay ahora mismo propuestos como de nuevos que quieran sugerir; asimismo, aprovechamos para
+recordar que ofrecemos la personalización de esta aplicación a aquellas profesoras y profesores que estén interesados en usarla 
+exclusivamente para sus clases (en este caso ponte en contacto con nosotros). ¿¿Pero todavía sigues leyendo?? 
+¡Ya es hora de que entres y juegues! 
+
 </div>
 </div>
+</div>
+
+<br><br>
+
+<div class="rrr"><a href="">hola</a></div>
+
+<br><br>
 
 <div style="text-align:center;"><img src="{{ MEDIA_URL }}nop-logo.gif" width="20%"  align="center"> </img>
 </div>
@@ -51,6 +102,7 @@ red de problemas <b>No Problem!</b> Escoge una categoría y empieza a jugar:
 <a href="{% url problems:contacto %}">¿Has encontrado algún error?&nbsp&nbsp</a>      
 <a href="{% url problems:contacto %}">Sugiere un problema</a>
 </div>
+<!-- 
 <br>
 <div class="showhimtext">
 <div style="text-align:center"><b>Instrucciones</b></div>
@@ -69,6 +121,7 @@ de otro usuario; si tu ayuda es válida, obtendrás unos puntos extra a cambio.<
 una vez pulses en "mostrar datos" tendrás 10 segundos para resolverlo.</li>
 </ul>
 </div></div>
+ -->
 
 {% else %} 
 <p>
