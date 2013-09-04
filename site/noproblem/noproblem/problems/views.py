@@ -336,15 +336,20 @@ def sendresult(request, prob_id):
 			# Check if result is correct: TODO: deal with float numbers
 			correct = False
 			for i in range(len(res_ok)):
-				if isinstance(res_ok[i], str):
-					print "Es str"
+				if isinstance(res_ok[i], basestring):
+					#print "Es str"
 					if res_ok[i] == res_sent[i]:
 						correct = True
 					else:
 						correct = False
 						break
 				else:
-					print "Es numero"
+					#print "Es numero"
+					print type(res_sent[i])
+					# Si el resultado es numero, pero nos han mandado cadena, es incorrecto
+					if isinstance(res_sent[i], basestring):
+						correct = False
+						break
 					#la precision esta hecha para que la primera cifra significativa no pueda variar (la segunda si)
 					if abs(res_ok[i] - float(res_sent[i])) <= calcprecision(res_ok[i]):
 						correct = True
