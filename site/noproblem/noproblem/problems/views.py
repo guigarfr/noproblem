@@ -272,6 +272,7 @@ def user_detail(request):
 @login_required    
 def sendresult(request, prob_id):
 	import ast
+	correct=True
 
 	# Get problem object from database
 	# Problem already exists as we come from detail view
@@ -322,33 +323,34 @@ def sendresult(request, prob_id):
    	#To do: precision de res_ok, dos cifras significativas (caso particular de numeros entre 0 y 1)   	
    	
 	print problem_data
-	res_ok = pr.solve(problem_data)
-	print "Resultados",res_sent,res_ok
-	print "L1",len(res_ok)
-	print "L2",len(res_sent)
-	#Is the list the correct size?
-	if( len(res_ok) != len(res_sent) ):
-		print "Listas de distintos tamanyos"
-		correct = False
-	else:
-		# Check if result is correct: TODO: deal with float numbers
-		correct = False
-		for i in range(len(res_ok)):
-			if isinstance(res_ok[i], str):
-				print "Es str"
-				if res_ok[i] == res_sent[i]:
-					correct = True
+	if correct:
+		res_ok = pr.solve(problem_data)
+		print "Resultados",res_sent,res_ok
+		print "L1",len(res_ok)
+		print "L2",len(res_sent)
+		#Is the list the correct size?
+		if( len(res_ok) != len(res_sent) ):
+			print "Listas de distintos tamanyos"
+			correct = False
+		else:
+			# Check if result is correct: TODO: deal with float numbers
+			correct = False
+			for i in range(len(res_ok)):
+				if isinstance(res_ok[i], str):
+					print "Es str"
+					if res_ok[i] == res_sent[i]:
+						correct = True
+					else:
+						correct = False
+						break
 				else:
-					correct = False
-					break
-			else:
-				print "Es numero"
-				#la precision esta hecha para que la primera cifra significativa no pueda variar (la segunda si)
-				if abs(res_ok[i] - float(res_sent[i])) <= calcprecision(res_ok[i]):
-					correct = True
-				else:
-					correct = False
-					break
+					print "Es numero"
+					#la precision esta hecha para que la primera cifra significativa no pueda variar (la segunda si)
+					if abs(res_ok[i] - float(res_sent[i])) <= calcprecision(res_ok[i]):
+						correct = True
+					else:
+						correct = False
+						break
     
 	# If not resolved before, add points to user
 	if not pr.solved_by_user(usuario) and correct:
