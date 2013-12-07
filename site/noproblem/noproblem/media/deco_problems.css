@@ -1,5 +1,5 @@
 #cuadro2{
-border-radius:30%;
+border-radius: 0 0 5px 5px;
 border:solid 1px;
 background-color:#F0F0F0;
 text-align:center;
@@ -20,7 +20,8 @@ padding: 25px 25px 25px 25px;
 }
 
 #cuadro{
-border-radius: 0%;
+/*border-radius: 0%;*/
+border-radius: 0 0 5px 5px;
 border:solid 1px;
 border-color:#DCDCDC;
 background-color:none;
