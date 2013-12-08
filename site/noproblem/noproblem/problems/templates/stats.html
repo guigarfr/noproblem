@@ -14,7 +14,6 @@ div.spacer {
 }
 
 
-
 #data,#senddata{
 	text-align:center;
 }
@@ -73,6 +72,22 @@ div.spacer {
 
 {% if solves_list %}
 
+<!-- 
+Intento decir si es correcta o no la última respuesta que ha dado el usuario al problema, pero después de varias intentonas
+con loopbreak y otras cosas no lo consigo
+ -->
+<!-- 
+	{% for res in solves_list|slice:"::-1" %}	
+    	{% if res.user.id == user.id %}
+   			{% if res.is_correct %}
+        		<span class="resok">{% trans "Correcto!" %}</span>
+        	{% else %}
+				<span class="resfail">{% trans "Incorrecto!" %}</span>
+			{% endif %}
+		{%endif%}
+    {% endfor %}
+ -->
+
 	<!-- Imprimo numero de veces solucionado -->
 	{% blocktrans count solves_list|length as counter with prob.title as title %}
 	El problema {{ title }} se ha intentado resolver una vez,
@@ -80,7 +95,7 @@ div.spacer {
 	El problema {{ title }} se ha intentado resolver {{ counter }} veces,
 	{% endblocktrans %}
 	{% if oks %}
-	{% blocktrans %} de las cuales {{ oks }} han sido correctas.{% endblocktrans %}
+	{% blocktrans %} {{ oks }} han sido correctas.{% endblocktrans %}
 	{% else %}
 	.
 	{% endif %}
@@ -100,19 +115,22 @@ div.spacer {
     </div>
 
 	<!-- Lista de usuarios que lo han solucionado -->
-	
+
+	Esta es tu lista de intentos para este problema:
     <ul>
     {% for res in solves_list %}
-        <li><span class="user">{{ res.user }}</span>
-        {% blocktrans with res.date as date and res.time as time %}
-        el {{ date }} y resuelto en {{ time }}.
-        {% endblocktrans %}
-        {% if res.is_correct %}
-        	<span class="resok">{% trans "correcto!" %}</span>
-        {% else %}
-			<span class="resfail">{% trans "incorrecto!" %}</span>
+    {% if res.user.id == user.id %}
+        	<li>
+        	{% blocktrans with res.date as date and res.time as time %}
+        	El {{ date }}, resuelto en {{ time }} &rarr;
+        	{% endblocktrans %}
+        	{% if res.is_correct %}
+        		<span class="resok">{% trans "Correcto!" %}</span>
+        	{% else %}
+				<span class="resfail">{% trans "Incorrecto!" %}</span>
 		{% endif %}
 	</li>
+	{%endif%}
     {% endfor %}
     </ul>
     

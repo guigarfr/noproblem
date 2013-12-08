@@ -371,6 +371,7 @@ def sendresult(request, prob_id):
 	# user hits the Back button.
 	return HttpResponseRedirect(reverse('problems:stats', args=(pr.id,)))
 
+	
 def stats(request, prob_id):
     pr = get_object_or_404(Problem, pk=prob_id)
     context = Context({
@@ -381,7 +382,7 @@ def stats(request, prob_id):
     # Compute variables for context
     solves_list = Solves.objects.filter(prob=pr)
     context['solves_list'] = solves_list
-    num=solves_list.count()
+    num=solves_list.count()  
     
     if (num != 0):
 		nok = solves_list.filter(is_correct=1).count()
@@ -412,7 +413,7 @@ def stats(request, prob_id):
 		# Assign the labels to the pie data
 		chart.set_pie_labels(['OK', 'Fail'])
 		
-		context['chart_url'] = chart.get_url()
+		context['chart_url'] = chart.get_url()		
 	    
     return render(request, 'stats.html', context)
 
