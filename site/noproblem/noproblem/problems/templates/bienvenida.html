@@ -22,33 +22,24 @@ que refuerza el aprendizaje de las ciencias a nivel de educación secundaria. ¡
 
 {% if user.is_authenticated %}
 
-<br><br><br><br><br>
+<br><br><br>
 
 <div align="center" style="text-align:center;">
-<div id="lista_cat">
 
+<div style="font-family:courier;font-size:14pt;text-color:black;">Tria una categoria i juga</div>
+
+<br><br>
+
+<div id="lista_cat">
 <ul id="int">
-<li><div id="cuadro2" style="border:none;background-color:white;"><span style="color:black;">Tria</span></div></li>
 {% for cat in categorias %}
-{% if cat.id == 2 %}
-<li><div id="cuadro2" style="background-color:white"><span style="color:black;">una</span></div></li>
 <li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
 <div id="cuadro2" style="background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
-<li><a href="#codeword"><div id="cuadro2" style="background-color:white"><span style="color:black;">?#!%&=??</span></div></a></li>
-{% elif cat.id == 3 %}
-<li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
-<div id="cuadro2" style="background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
-<li><div id="cuadro2" style="border:none;background-color:white"><span style="color:black;">categoria</span></div></li>
-{% else %}
-<li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
-<div id="cuadro2" style="background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
-{% endif %}
 {% endfor %}
-<li><div id="cuadro2" style="background-color:white"><span style="color:black;">i</span></div></li>
-<li><div id="cuadro2" style="border:none;background-color:white"><span style="color:black;">juga</span></div></li>
+<li><a href="#codeword"><div id="cuadro2" style="border:solid 1px;background-color:white;"><span style="color:black;">?#!%&=??</span></div></a></li>
 </ul>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <A NAME="codeword"></a>
 
