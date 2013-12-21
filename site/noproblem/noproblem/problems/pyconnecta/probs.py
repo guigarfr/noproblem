@@ -76,15 +76,13 @@ def plano1(lista):
 #es practicamente nulo.
  
 def altura_datos():
-	lista=[]
 	altura=randint(2,50)
-	lista.append(altura)
-	return lista
+	return [altura]
 	
 def altura(lista):
 	t=sqrt(lista[0]*2.0/constantes.G)
 	v=t*constantes.G
-	return v
+	return [v]
 	
 	
 #++++++++++++++++frenada++++++++++
