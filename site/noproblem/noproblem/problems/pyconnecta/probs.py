@@ -33,19 +33,17 @@ def hipotenusa(lista):
 #en m/s y el segundo a otra en m/s, calcula cuando y donde se cruzaran.
 
 def trenes_datos():
-	lista=[]
 	v1=randint(28,130)
 	v2=randint(28,130)
 	dist=randint(100,1000)
-	lista.extend([v1,v2,dist])
-	return lista
+	return [v1,v2,dist]
 
 def trenes(lista):
-	lista[0]=lista[0]*3.6
-	lista[1]=lista[1]*3.6
-	t=lista[2]/(lista[1]+lista[0])
-	x=lista[0]*t
-	return (x,t)
+	v1=lista[0]*3.6
+	v2=lista[1]*3.6
+	t=lista[2]/(v1+v2)
+	x=v1*t
+	return [x,t]
 
 #++++++++++++++++plano inclinado 1++++++++++
 #Desde una altura de 50 cm soltamos un objeto situado en un plano inclinado 30 con la horizontal. 
@@ -302,6 +300,9 @@ def serie6_datos():
 def serie6(lista):
 	return [312211]
 
+
+#################################otra categoria
+#series
 	
 
 
