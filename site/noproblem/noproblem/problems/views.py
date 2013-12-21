@@ -1,4 +1,6 @@
 # Create your views here.
+#from __future__ import division
+
 from noproblem.accounts.models import UserProfile
 from noproblem.problems.models import Problem, Solves, Area, SubArea
 from noproblem.problems.forms import *
@@ -347,11 +349,16 @@ def sendresult(request, prob_id):
 					#print "Es numero"
 					print type(res_sent[i])
 					# Si el resultado es numero, pero nos han mandado cadena, es incorrecto
-					if isinstance(res_sent[i], basestring):
-						correct = False
-						break
+					result = res_sent[i]
+					if isinstance(result, basestring):
+						result = result.replace(',', '.')
+						try:
+							result = eval(result)
+						except: 
+							correct = False
+							break
 					#la precision esta hecha para que la primera cifra significativa no pueda variar (la segunda si)
-					if abs(res_ok[i] - float(res_sent[i])) <= calcprecision(res_ok[i]):
+					if abs(res_ok[i] - float(result)) <= calcprecision(res_ok[i]):
 						correct = True
 					else:
 						correct = False

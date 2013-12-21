@@ -93,7 +93,7 @@ def calcprecision(numero):
 	if int(numero)!=0:
 		precision = 0.1
 	if int(numero)==0:
-		snumber='%.100f' % abs(numero)
+		snumber='%.50f' % abs(numero)
 		posdot = snumber.find('.')
 		final=len( snumber[posdot+1:] )
 		prime =False
