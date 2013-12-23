@@ -45,28 +45,6 @@ def trenes(lista):
 	x=v1*t
 	return [x,t]
 
-#++++++++++++++++plano inclinado 1++++++++++
-#Desde una altura de 50 cm soltamos un objeto situado en un plano inclinado 30 con la horizontal. 
-#El coeficiente de rozamiento entre el objeto y la superficie es 0,2. Determinen la velocidad con que llegara al suelo.
-
-def plano1_datos():
-	lista=[]
-	altura=randint(20,100)
-	angulo=randint(10,70)
-	coef= random.randrange(1, 9, 1)	
-	coef=float(coef)/10.0
-	lista.extend([altura,angulo,coef])
-	return lista
-
-def plano1(lista):
-	FR=-lista[2]*constantes.G*math.cos(math.radians(lista[1]))
-	Px=constantes.G*math.sin(math.radians(lista[1]))
-	a=FR+Px
-	espacio=(float(lista[0])/100.0)/math.sin(math.radians(lista[1]))
-	t=sqrt(2*espacio/a)
-	v=a*t
-	return v
-	
  
 #++++++++++++++++objeto hacia arriba++++++++++
 #Guille se ha quedado encerrado en casa y no puede salir. Por suerte tenemos copia de sus llaves, asi que vamos 
@@ -100,7 +78,7 @@ def frenada(lista):
 	decel=6.0
 	t=sqrt(lista[0]*2.0/decel)
 	v=decel*t*3.6
-	return v
+	return [v]
 	
 #++++++++++velocidadMedia+++++++++++++++
 #Una bici va a 5m/s durante 5 minutos y luego cambia a una velocidad media de 8 m/s durante los siguientes 10 minutos. 
@@ -118,7 +96,30 @@ def velm_datos():
 def velm(lista):
 	d=lista[0]*lista[2]*60+lista[1]*lista[3]*60
 	vm=float(d)/(lista[2]*60+lista[3]*60)
-	return (d,vm)
+	return [d/1000.0,vm]
+ 
+#++++++++++++++++plano inclinado 1++++++++++
+#Desde una altura de 50 cm soltamos un objeto situado en un plano inclinado 30 con la horizontal. 
+#El coeficiente de rozamiento entre el objeto y la superficie es 0,2. Determinen la velocidad con que llegara al suelo.
+
+def plano1_datos():
+	lista=[]
+	altura=randint(20,100)
+	angulo=randint(10,70)
+	coef= random.randrange(0, 9, 1)	
+	coef=float(coef)/10.0
+	lista.extend([altura,angulo,coef])
+	return lista
+
+def plano1(lista):
+	FR=-lista[2]*constantes.G*math.cos(math.radians(lista[1]))
+	Px=constantes.G*math.sin(math.radians(lista[1]))
+	a=FR+Px
+	espacio=(float(lista[0])/100.0)/math.sin(math.radians(lista[1]))
+	t=sqrt(2*espacio/a)
+	v=a*t
+	return [v]
+	 
  
  
 #++++++++++Valor minimo mu++++++++++++++
@@ -141,13 +142,9 @@ def mumin(lista):
 	lista[1]=float(lista[1])
 	lista[2]=float(lista[2])
 	mu=math.tan(math.radians(lista[0]))*((lista[2]/(lista[1]-lista[2]))+1)
-	return mu
+	return [mu]
 	
  
-#++++++++++Rozamiento agua++++++++++++++
-
- 
-#+++++++++++++++caida libro con folio concepto rozamiento+++++++++++
 
 #+++++++++++velocidad limite gota agua++++++++++++++++++++
 #El rozamiento dinamico se da cuando un cuerpo se mueve dentro de un fluido, y su efecto depende, entre otras cosas, 
@@ -168,23 +165,71 @@ def gota(lista):
 	densidad=1000.0
 	masa=densidad*(4.0/3.0)*math.pi*r**3
 	v=masa*constantes.G/gamma
-	return v
+	return [v]
+	
+	
+###############Distancia entre dos piedras que caen###############
+#En un comic, Mary Jane se cae de lo alto de un edificio, tres segundos despues, Spiderman se tira
+#tras ella para rescatarla. A Spiderman no le queda mucha tela de aranya para 
+#coger a Mary Jane antes de que choque contra el suelo, crees que este problema
+#empeora las cosas segun pasa el tiempo?
 
-
-# Prueba Willy
-def cine1_datos():
+def no_datos():
 	lista=[]
-	diam=random.uniform(0.1,2.0)
-	diam=round(diam,2)
-	lista.append(diam)
+	return []
+
+def spiderman(lista):
+	return ['s']
+	
+##############plano inclinado plano recto coef rozamiento misma distancia en cada plano##############
+#Un coche se desliza sin motor por una cuesta hacia abajo de 30 grados de inclinacion, averigua 
+#el coeficiente dinamico de rozamiento del coche con la superficie si tras la pendiente
+#el coche sigue deslizandose por un tramo horizontal la misma distancia que ha recorrido en la pendiente.
+#pag 90 libro fisica cou
+ 
+def caucho_datos():
+	lista=[]
+	alpha=randint(10,60)
+	lista.append(alpha)
 	return lista
 
-def cine1_solucion(lista):
-	r=lista[0]/1000
-	return [r,r,r]
+def caucho(lista):
+	mu=float(math.sin(math.radians(lista[0])))/(float(1+math.cos(math.radians(lista[0]))))
+	return [mu]
 	
-#para prueba entre nuestros amigos################################
 
+################ascensor y cuerpo en él####################
+
+
+def ascensor_datos():
+	lista=[]
+	kilos=randint(50,100)
+	suelo=randint(520,1020)
+	lista.extend([kilos,suelo])
+	return lista
+
+def ascensor(lista):
+	respuesta=[]
+	F1=lista[0]*10
+	F2=lista[0]*10+lista[0]
+	F3=lista[0]*10-lista[0]
+	if F1 < lista[1]:
+		respuesta.append('n')
+	else:
+		respuesta.append('s')
+	if F2 < lista[1]:
+		respuesta.append('n')
+	else:
+		respuesta.append('s')
+	if F3 < lista[1]:
+		respuesta.append('n')
+	else:
+		respuesta.append('s')
+	return respuesta
+
+
+	
+#para prueba entre nuestros amigos sumas y restas################################
 #suma de dos numeros enteros
 def sumasimple_datos():
 	lista=[]
@@ -228,81 +273,49 @@ def restacomas_datos():
 
 def restacomas(lista):
 	return[lista[0]-lista[1]]
-	
-#################################otra categoria
-#como se llama esta aplicacion
-def define_datos():
-	lista=[]
-	return lista
-
-def define(lista):
-	nombre = 'connecta'
-	return [nombre]
-
-#palabra mal escrita
-def palabra_datos():
-	lista=[]
-	return lista
-
-def palabra(lista):
-	return ['v']
-	
-#posicion letra alfabeto
-def posletra_datos():
-	lista=[]
-	num=randint(1,26)
- 	lista.append(num)
- 	return lista
- 
-def posletra(lista):
-	letras=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-	return letras[lista[0]-1]
- 
-
-#################################otra categoria
-#series
-
-def serie1_datos():
-	lista=[1,2,3,4,5]
-	return lista
-def serie1(lista):
-	return [6]
-	
-def serie2_datos():
-	lista=[1, -1, 2, -2, 3, -3, 4]
-	return lista
-def serie2(lista):
-	return [-4]
-	
-def serie3_datos():
-	lista=[1, 4, 9, 16, 25]
-	return lista
-def serie3(lista):
-	return [36]	
-
-def serie4_datos():
-	lista=[4, 8, 15, 16, 23]
-	return lista
-def serie4(lista):
-	return [42]	
-	
-def serie5_datos():
-	lista=[1, 1, 2, 3, 5, 8, 13, 21]
-	return lista
-def serie5(lista):
-	return [34]
-	
-def serie6_datos():
-	lista=[1, 11, 21, 1211, 111221]
-	return lista
-def serie6(lista):
-	return [312211]
 
 
 #################################otra categoria
-#series
-	
+#CONCEPTOS
 
+
+#mru o mrua
+#dada una ecuacion de movmiento, es mru o mrua? si es mrua, acelera o frena?
+def mov_datos():
+	xi=randint(0,50)
+	vi=randint(2,30)
+	a=randint(-10,10)
+	lista=[xi,vi,a]
+	return lista
+
+def mov(lista):
+	if(lista[2]==0):
+		res='MRU'
+		res2='nada'
+	else:
+		res='MRUA'
+		if(lista[2]<0):
+			res2='frena'
+		else:
+			res2='acelera'
+	return[res,res2]
+	
+#vector posicion o vector desplazamiento
+#dada una ecuacion de movimiento, calcula la posicion y el espacio recorrido a los para+3 segundos
+def deltar_datos():
+	xi=randint(0,50)
+	vi=randint(2,30)
+	a=randint(-10,-1)
+	para=-float(vi)/float(a)
+	lista=[xi,vi,a,para+3]
+	return lista
+
+def deltar(lista):
+	pos=lista[0]+lista[1]*lista[3]+0.5*lista[2]*(lista[3]**2)
+	trayec1=lista[0]+lista[1]*(lista[3]-3)+0.5*lista[2]*((lista[3]-3)**2)
+	trayec2=trayec1-pos
+	trayec=(trayec1-lista[0])+trayec2
+	return [pos,trayec]
 
 
 

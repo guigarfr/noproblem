@@ -90,7 +90,7 @@ function submitForm() {
 <div id="cuadro">
 <!-- {% trans "Enunciado del problema." %} -->
 
-{{ prob.wording|linebreaksbr }}
+{{ prob.wording|safe|linebreaksbr }}
 </div>
 
 

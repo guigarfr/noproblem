@@ -140,11 +140,6 @@ def mumin(lista):
 	mu=math.tan(math.radians(lista[0]))*((lista[2]/(lista[1]-lista[2]))+1)
 	return [mu]
 	
- 
-#++++++++++Rozamiento agua++++++++++++++
-
- 
-#+++++++++++++++caida libro con folio concepto rozamiento+++++++++++
 
 #+++++++++++velocidad limite gota agua++++++++++++++++++++
 #El rozamiento dinamico se da cuando un cuerpo se mueve dentro de un fluido, y su efecto depende, entre otras cosas, 
@@ -226,34 +221,6 @@ def ascensor(lista):
 		respuesta.append('s')
 	return respuesta
 
-#################diferencia entre distancia recorrida y posición####################
-#un coche se mueve sobre su trayectoria siguiendo la ecuación 
-#e = 25 + 40t - 5t^2, ¿qué distancia habrá recorrido a los 5 segundos, y a los 6?
-
-def distpos_datos():
-	lista=[]
-	pos_i=	randint(10,50)
-	v_i= randint(30,60)
-	amed = -randint(3,7)
-	t_lim=-float(v_i)/(2*float(amed))
-	t_rand= int(t_lim)
-	t1=random.randrange(t_rand+1, t_rand+10, 1)
-	t2=t1+1
-	lista.extend([pos_i,v_i,amed,t_lim,t1,t2])
-	return lista
-
-def distpos(lista):
-	resul=[]
-	pos0 = lista[0] + lista[1]*lista[3] + lista[2] * lista[3]**2
-	pos1=lista[0] + lista[1]*lista[4] + lista[2] * lista[4]**2
-	pos2=lista[0] + lista[1]*lista[5] + lista[2] * lista[5]**2
-	adelante=pos0-lista[0]
-	atras1 =adelante - (pos1 - lista[0])
-	atras2 = adelante - (pos2 - lista[0])
-	dist1 = adelante + atras1
-	dist2 = adelante + atras2
-	resul.extend([dist1,dist2])
-	return resul
 
 #################trabajo realizado al subir escaleras o ascensor####################
 #Calcula el trabajo (en Julios) que realizas al subir las escaleras de un tercer piso si tu masa es 
