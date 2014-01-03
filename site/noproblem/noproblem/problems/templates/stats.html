@@ -90,12 +90,12 @@ con loopbreak y otras cosas no lo consigo
 
 	<!-- Imprimo numero de veces solucionado -->
 	{% blocktrans count solves_list|length as counter with prob.title as title %}
-	El problema {{ title }} se ha intentado resolver una vez,
+	El problema {{ title }} se ha intentado resolver una vez
 	{% plural %}
-	El problema {{ title }} se ha intentado resolver {{ counter }} veces,
+	El problema {{ title }} se ha intentado resolver {{ counter }} veces
 	{% endblocktrans %}
 	{% if oks %}
-	{% blocktrans %} {{ oks }} han sido correctas.{% endblocktrans %}
+	{% blocktrans %}, {{ oks }} han sido correctas.{% endblocktrans %}
 	{% else %}
 	.
 	{% endif %}
@@ -148,7 +148,7 @@ con loopbreak y otras cosas no lo consigo
 </div>
 <br>
 <div style="text-align:center;">
-<button onclick="location.href='{% url problems:tree cat.id %}'">Volver al árbol</button>
+<button onclick="location.href='{% url 'problems:tree' cat.id %}'">Volver al árbol</button>
 <!-- <button onclick="location.href='#'">Siguiente problema</button> -->
 </div>
 

@@ -33,7 +33,7 @@ que refuerza el aprendizaje de las ciencias a nivel de educación secundaria. ¡
 <div id="lista_cat">
 <ul id="int">
 {% for cat in categorias %}
-<li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url problems:tree cat.id %}">
+<li><a style="color:black;font-weight: normal; text-decoration: none;" href="{% url 'problems:tree' cat.id %}">
 <div id="cuadro2" style="background-color:{{colores_cuadros|lookup:forloop.counter0}};">{{ cat.name }}</div></a></li>
 {% endfor %}
 <li><a href="#codeword"><div id="cuadro2" style="border:solid 1px;background-color:white;"><span style="color:black;">?#!%&=??</span></div></a></li>
@@ -87,8 +87,8 @@ exclusivamente para sus clases (en este caso ponte en contacto con nosotros). ¿
 
 
 <div style="text-align:center;width:100%;">
-<a href="{% url problems:contacto %}">¿Has encontrado algún error?&nbsp&nbsp</a>      
-<a href="{% url problems:contacto %}">Sugiere un problema</a>
+<a href="{% url 'problems:contacto' %}">¿Has encontrado algún error?&nbsp&nbsp</a>      
+<a href="{% url 'problems:contacto' %}">Sugiere un problema</a>
 </div>
 <!-- 
 <br>
@@ -118,7 +118,7 @@ una vez pulses en "mostrar datos" tendrás 10 segundos para resolverlo.</li>
 {% endwith %}
 <br>
 <div style="text-align:center">
-Si todavía no estás registrado entra <a href="{% url accounts:register %}?next={% url problems:index %}">aquí</a>.
+Si todavía no estás registrado entra <a href="{% url 'accounts:register' %}?next={% url 'problems:index' %}">aquí</a>.
 </div>
 
 {% endif %}

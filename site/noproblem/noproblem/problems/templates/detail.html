@@ -29,6 +29,36 @@ div.spacer {
 <script language="javascript"> 
 
 var startCount = 0;
+var myTimer;
+
+function countdown( elementName, minutes, seconds )
+{
+    var element, endTime, hours, mins, msLeft, time;
+
+    function twoDigits( n )
+    {
+        return (n <= 9 ? "0" + n : n);
+    }
+
+    function updateTimer()
+    {
+        msLeft = endTime - (+new Date);
+        if ( msLeft < 1000 ) {
+            element.innerHTML = "<br/>Se acabó el tiempo!<br/>Recarga la página e intentalo de nuevo.";
+        } else {
+            time = new Date( msLeft );
+            hours = time.getUTCHours();
+            mins = time.getUTCMinutes();
+            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) +
+                ':' + twoDigits( time.getUTCSeconds() );
+            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+        }
+    }
+
+    element = document.getElementById( elementName );
+    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+    updateTimer();
+}
 
 function showdata() {
 	var ele = document.getElementById("problemdata");
@@ -38,7 +68,31 @@ function showdata() {
 	butt_ini.disabled = true;
 	butt_end.disabled = false;
 	window.startCount = new Date();
-} 
+	startTimer();
+}
+
+function disablesend() {
+	var ele = document.getElementById("problemdata");
+	var ele2 = document.getElementById("senddata");
+	var butt_end = document.getElementById("finishedbutton");
+	ele.style.display = "none";
+	ele2.style.display = "none";
+	butt_end.disabled = true;
+	window.startCount = new Date();
+}
+
+function startTimer()
+{
+	// set timer to 5 minutes = 1000*60*5
+	myTimer=setTimeout(function(){disablesend()},1000*60*1);
+	countdown( "countdowntimer", 1, 0 )
+}
+
+
+function stopTimer()
+{
+	clearTimeout(myTimer);
+}
 
 function get_time_difference(earlierDate,laterDate)
 {
@@ -74,6 +128,7 @@ function onClickCheck() {
 }
 
 function submitForm() {
+	stopTimer();
 	dateCurrent = new Date();
 	oDiff = get_time_difference(window.startCount, dateCurrent);
 	document.solverform.time.value = oDiff.hours + ":" + oDiff.minutes + ":" + oDiff.seconds;
@@ -130,7 +185,7 @@ pega los valores obtenidos en los campos de texto que aparecerán.
         {{ show_data_button }}
 </button>
 
-<button onclick="location.href='{% url forum:thread hilo %}'">Entrar al foro</button>
+<button onclick="location.href='{% url 'forum:thread' hilo %}'">Entrar al foro</button>
 
 <div id='problemdata' style="display: none">
 <ul>
@@ -140,7 +195,7 @@ pega los valores obtenidos en los campos de texto que aparecerán.
 </ul>
 
 <div id='senddata'>
-<form name="solverform" action="{% url problems:sendresult prob.id %}" method="post">
+<form name="solverform" action="{% url 'problems:sendresult' prob.id %}" method="post">
 {% csrf_token %}
 {% blocktrans count nout as nout %}
 Resultado
@@ -158,11 +213,13 @@ Resultados
         disabled=true>
         {{ sendres_button }}
 </button>
-
 </form>
 
+
 </div>
 </div>
+
+<br/><div id="countdowntimer"/>
 
 {% endblock %}
 

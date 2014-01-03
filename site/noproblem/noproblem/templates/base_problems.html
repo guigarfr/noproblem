@@ -1,5 +1,6 @@
 {% extends "base0_problems.html" %}
 
+{% load url from future %}
 
 {% block contentbase %}
 
@@ -7,23 +8,23 @@
 
 <div id="barra">
 <ul class="mi-menu">
-  <li><a href="{% url problems:index %}"> Inicio</a></li>
+  <li><a href="{% url 'problems:index' %}"> Inicio</a></li>
 {% if cat %}
-  <li><a href="{% url problems:tree cat.id %}"> Categoría: {{ cat.name }} </a></li>
+  <li><a href="{% url 'problems:tree' cat.id %}"> Categoría: {{ cat.name }} </a></li>
 {% else %}
-    <li><a href="{% url problems:index %}"> Categorías </a>
+    <li><a href="{% url 'problems:index' %}"> Categorías </a>
   	<ul>
   	{% for ca in categorias %}
-      <li><a href="{% url problems:tree ca.id %}"> {{ ca.name }} </a></li>
+      <li><a href="{% url 'problems:tree' ca.id %}"> {{ ca.name }} </a></li>
     {% endfor %}
     </ul></li>
 {% endif %}
   <li><a href=""> Puntos: {{ user.get_profile.credits }} </a></li>
-  <li><a href="{% url problems:user_detail %}"> Usuario: {{ user.get_profile.user.username }} @{% now "jS F Y H:i:s" %} </a></li>
+  <li><a href="{% url 'problems:user_detail' %}"> Usuario: {{ user.get_profile.user.username }} @{% now "jS F Y H:i:s" %} </a></li>
 {% if cat %}
-  <li style="padding-right:0;"><a href="{% url accounts:auth_logout_user %}?next={% url problems:index %}">Log Out</a></li>
+  <li style="padding-right:0;"><a href="{% url 'accounts:auth_logout_user' %}?next={% url 'problems:index' %}">Log Out</a></li>
 {% else %}
-  <li style="padding-left:0;"><a href="{% url accounts:auth_logout_user %}?next={% url problems:index %}">Log Out</a></li>
+  <li style="padding-left:0;"><a href="{% url 'accounts:auth_logout_user' %}?next={% url 'problems:index' %}">Log Out</a></li>
 {% endif %}
 </ul>
 </div>
