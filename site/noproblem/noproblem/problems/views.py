@@ -32,7 +32,7 @@ from django.core.mail import send_mail, EmailMessage
 ####################################################
 # 					GLOBAL VARS					   #
 ####################################################
-precision = 1e-3
+precision=1e-3
 
 ####################################################
 #			  GENERIC PYTHON FUNCTIONS			   #

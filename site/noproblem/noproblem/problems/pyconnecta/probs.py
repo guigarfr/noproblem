@@ -226,6 +226,82 @@ def ascensor(lista):
 	else:
 		respuesta.append('s')
 	return respuesta
+	
+	
+###################################ENERGIA Y TRABAJO###########################
+#Con que fuerza tendra que frenar un vehiculo de 100 kg para pararse antes de llegar
+#a un paso de peatones que esta a 10 metros si va a 50 km/h
+
+def ew1_datos():
+	lista=[]
+	masa=randint(200,1000)
+	vel=randint(10,100)
+	dist=randint(5,30)
+	lista.extend([masa,vel,dist])
+	return lista
+
+def ew1(lista):
+	v=float(lista[1]*10.0/36.0)
+	F=-0.5*float(lista[0]*(v**2)/lista[2])
+	return [F]
+	
+#Desde una altura de 20 metros dejo caer un objeto, con que velocidad impactara sobre el suelo (en km/h)
+
+def ew2_datos():
+	lista=[]
+	altura=randint(3,100)
+	lista.append(altura)
+	return lista
+
+def ew2(lista):
+	v=sqrt(2*9.8*float(lista[0]))
+	vel=float(v*3.6)
+	return [vel]
+	
+#Calcula la fuerza que tengo que hacer para subir un objeto por una rampa de 30 metros
+#si el objeto esta incialmente en reposo y quiero que llegue arriba con una velocidad de
+#tantos metros por segundo
+
+def ew3_datos():
+	lista=[]
+	masa=randint(2,50)
+	velocidad=randint(3,30)
+	altura=randint(3,12)
+	distancia=randint(5,30)
+	lista.extend([masa,velocidad,altura,distancia])
+	return lista
+
+def ew3(lista):
+	F=float((0.5*lista[0]*(lista[1]**2)+lista[0]*9.8*lista[2])/lista[3])
+	return [F]
+	
+#lanzo una pelota a un balcon con una velocidad incial de tanto; a que altura maxima tiene que estar el 
+#balcon para llegar a encalarla
+
+def ew4_datos():
+	lista=[]
+	vel=randint(5,30)
+	lista.append(vel)
+	return lista
+
+def ew4(lista):
+	altura=float(0.5*(lista[0]**2)/9.8)
+	return [altura]
+	
+#calcula la fuerza de rozamiento que hay sobre una silla de tantos kg que lanzo en un plano horizontal
+#a una velocidad de tanto para que se pare a los tantos metros 
+
+def ew5_datos():
+	lista=[]
+	masa=randint(2,20)
+	vel=randint(5,20)
+	dist=randint(2,40)
+	lista.extend([masa,vel,dist])
+	return lista
+
+def ew5(lista):
+	F=-0.5*float(lista[0]*(lista[1]**2)/lista[2])
+	return [F]
 
 
 	

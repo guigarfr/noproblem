@@ -116,6 +116,7 @@ con loopbreak y otras cosas no lo consigo
 
 	<!-- Lista de usuarios que lo han solucionado -->
 
+
 	Esta es tu lista de intentos para este problema:
     <ul>
     {% for res in solves_list %}
@@ -128,11 +129,29 @@ con loopbreak y otras cosas no lo consigo
         		<span class="resok">{% trans "Correcto!" %}</span>
         	{% else %}
 				<span class="resfail">{% trans "Incorrecto!" %}</span>
-		{% endif %}
-	</li>
+			{% endif %}
+			</li>
 	{%endif%}
     {% endfor %}
     </ul>
+    
+    <p>
+    Usuarios que han resuelto este problema:
+    <ul>
+    {% for pas in solves_list %}
+    {% if pas.is_correct %}
+    {% if pas.user.id != 1 %}
+    <li>
+    {{ pas.user }}
+    {% blocktrans with pas.date as date and pas.time as time %}
+        	el {{ date }}, resuelto en {{ time }}
+    {% endblocktrans %}
+	</li>
+	{% endif %}
+	{% endif %}
+    {% endfor %}
+    </ul>
+    
     
     <!-- Cálculo de porcentajes de solución -->
     

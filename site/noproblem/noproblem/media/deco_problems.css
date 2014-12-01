@@ -175,7 +175,8 @@ body{
 	  /*background: #F0F0F0;*/
 	  background:#F0F0F0;
       /*font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;*/
-      font-family: Istok Web;
+      /*font-family: Istok Web;*/
+      font-family: 'Raleway', sans-serif;
       font-size:14px;
 	  line-height: 130%;
       
@@ -221,7 +222,7 @@ background-size: 100%;
 }
 #bbody{
 padding-top:0;
-padding-bottom:90px;/* Height of the footer */
+padding-bottom:100px;/* Height of the footer */
 }
 #barra{
 padding-left:0px;
@@ -244,7 +245,7 @@ text-align:center;
 position:absolute;
 bottom:0;
 width:100%;
-height:90px;   /* Height of the footer */
+height100px;   /* Height of the footer */
 }
 
 

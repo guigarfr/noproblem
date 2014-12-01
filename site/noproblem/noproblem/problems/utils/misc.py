@@ -91,7 +91,7 @@ def topological_sort(problem_list):
 
 def calcprecision(numero):
 	if int(numero)!=0:
-		precision = 0.1
+		precision = 1.0
 	if int(numero)==0:
 		snumber='%.50f' % abs(numero)
 		posdot = snumber.find('.')
@@ -111,3 +111,8 @@ def calcprecision(numero):
 		first_variable_digit_position=len(snumber[posdot:possecond+1])
 		precision=10**(-(first_variable_digit_position-1))
 	return precision
+	
+	
+	
+	
+	
