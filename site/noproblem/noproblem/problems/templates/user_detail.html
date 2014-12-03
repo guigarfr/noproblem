@@ -100,7 +100,7 @@ de los cuales has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</
 <div id="tosolveproblemlist" class="problemlist">
 	<ul>
 	{% for prob in prob_cansolve %} <!-- estas listas no estan bien. no muestra los enlaces... -->
-		<li id='cansolve'> <a href={% url 'problems:detail' prob.id %}>{{ problema_text }} {{ prob.title }}</a> </li>
+		<li id='cansolve'> <a href={% url problems:detail prob.id %}>{{ problema_text }} {{ prob.title }}</a> </li>
 	{% endfor %}
 	{% for prob in prob_nextsolve %}
 		<li id='cantsolve'>{{ problema_text }} {{ prob.title }}</li>

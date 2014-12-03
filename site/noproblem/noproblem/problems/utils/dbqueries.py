@@ -9,8 +9,10 @@ def get_problems_correct(usr):
 	return Problem.objects.filter(id__in = solved_ok_idlist).all()
 	
 def get_problems_cansolve(usr):
+	all_problems = Problem.objects.all()
 	solved_problems = get_problems_correct(usr)
-	nextproblems = [];
+	initial_problems = all_problems.filter(requirements=None)
+	nextproblems = initial_problems;
 	for i in solved_problems:
-		nextproblems = nextproblems + list(Problem.objects.filter(requirements=i).all())
+		nextproblems = nextproblems + list(all_problems.filter(requirements=i).all())
 	return list(set(nextproblems) - set(solved_problems))
