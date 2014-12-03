@@ -185,7 +185,7 @@ pega los valores obtenidos en los campos de texto que aparecerán.
         {{ show_data_button }}
 </button>
 
-<button onclick="location.href='{% url 'forum:thread' hilo %}'">Entrar al foro</button>
+<button onclick="location.href='{% url forum:thread hilo %}'">Entrar al foro</button>
 
 <div id='problemdata' style="display: none">
 <ul>
@@ -195,7 +195,7 @@ pega los valores obtenidos en los campos de texto que aparecerán.
 </ul>
 
 <div id='senddata'>
-<form name="solverform" action="{% url 'problems:sendresult' prob.id %}" method="post">
+<form name="solverform" action="{% url problems:sendresult prob.id %}" method="post">
 {% csrf_token %}
 {% blocktrans count nout as nout %}
 Resultado

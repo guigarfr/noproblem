@@ -135,19 +135,20 @@ con loopbreak y otras cosas no lo consigo
     {% endfor %}
     </ul>
     
+    <!-- Aquí habria que hacerlo de forma que si no hay usuarios,
+	 no aparezca el texto. Por ejemplo, generar la lista en
+	 la vista. -->
     <p>
     Usuarios que han resuelto este problema:
     <ul>
     {% for pas in solves_list %}
     {% if pas.is_correct %}
-    {% if pas.user.id != 1 %}
     <li>
     {{ pas.user }}
     {% blocktrans with pas.date as date and pas.time as time %}
         	el {{ date }}, resuelto en {{ time }}
     {% endblocktrans %}
 	</li>
-	{% endif %}
 	{% endif %}
     {% endfor %}
     </ul>
@@ -167,7 +168,7 @@ con loopbreak y otras cosas no lo consigo
 </div>
 <br>
 <div style="text-align:center;">
-<button onclick="location.href='{% url 'problems:tree' cat.id %}'">Volver al árbol</button>
+<button onclick="location.href='{% url problems:tree cat.id %}'">Volver al árbol</button>
 <!-- <button onclick="location.href='#'">Siguiente problema</button> -->
 </div>
 

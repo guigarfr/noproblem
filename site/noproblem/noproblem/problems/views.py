@@ -367,11 +367,12 @@ def sendresult(request, prob_id):
 	# If not resolved before, add points to user
 	if not pr.solved_by_user(usuario) and correct:
 		usuario.credits = usuario.credits+pr.points
-		usuario.save()
+	        usuario.save()
     
    	# Add new solve to database
-	s = Solves(user=usuario, prob=pr,date=when, time=solving_time, is_correct=correct)
-	s.save()
+	if not usuario.user.is_staff:
+	    s = Solves(user=usuario, prob=pr,date=when, time=solving_time, is_correct=correct)
+	    s.save()
 	
 	# Always return an HttpResponseRedirect after successfully dealing
 	# with POST data. This prevents data from being posted twice if a
@@ -388,11 +389,17 @@ def stats(request, prob_id):
     
     # Compute variables for context
     solves_list = Solves.objects.filter(prob=pr)
+    
+    # No vamos a contar aquellas resoluciones que son de miembros administrativo
+    if not request.user.is_staff:
+	    solves_list = solves_list.exclude(user__user__is_staff=True)
+    
     context['solves_list'] = solves_list
     num=solves_list.count()  
     
     if (num != 0):
-		nok = solves_list.filter(is_correct=1).count()
+		oklist = solves_list.filter(is_correct=1);
+		nok = oklist.count()
 		nfail = solves_list.count() - nok
 		pctg_oks = nok/num
 		pctg_fails = 1 - pctg_oks
@@ -413,6 +420,8 @@ def stats(request, prob_id):
 	
 		# Create google pie chart
 		chart = PieChart3D(250, 100)
+		
+		print "OK:",nok,"Fail:",nfail
 
 		# Add some data
 		chart.add_data([nok, nfail])

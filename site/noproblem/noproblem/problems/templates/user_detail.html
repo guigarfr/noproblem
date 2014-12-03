@@ -33,12 +33,26 @@ En este momento tenemos disponible en No Problem! <span id="num">{{ nprob }}</sp
 En este momento tenemos disponibles en No Problem! un total de <span id="num">{{ nprob }}</span> problemas.<br />
 {% endblocktrans %}
 
-{% blocktrans count num_resueltos as nres %}
-Has intentado resolver <span id="num">{{ nres }}</span> problema, el cual has resuelto correctamente.
-{% plural %}
-Has intentado resolver <span id="num">{{ nres }}</span> problemas, 
-de los cuales has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</span>.
-{% endblocktrans %}
+{% if not num_resueltos %}
+	Todavía no has intentado resolver ningún problema.
+{% else %}
+	
+
+{% if not num_resueltos_ok %}
+	{% blocktrans count num_resueltos as nres %}
+	Has intentado resolver <span id="num">{{ nres }}</span> problema, el cual aún no has resuelto correctamente.
+	{% plural %}
+	Has intentado resolver <span id="num">{{ nres }}</span> problemas, el cual aún no has resuelto correctamente.
+	{% endblocktrans %}
+{% else %}
+	{% blocktrans count num_resueltos as nres %}
+		Has intentado resolver <span id="num">{{ nres }}</span> problema, el cual has resuelto correctamente.	
+	{% plural %}
+		Has intentado resolver <span id="num">{{ nres }}</span> problemas, 
+de los cuales has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</span> veces.
+	{% endblocktrans %}	
+{% endif %}
+
 
 <br/>
 <br/>
@@ -51,7 +65,7 @@ de los cuales has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</
 	{% for s_list in sprob_list_list %}
 		{% if s_list %}
 			{% with s_list.0.prob as problem %}
-				<li> <a href={% url 'problems:detail' problem.id %}>{{ problema_text }} {{ problem.title }}</a>
+				<li> <a href={% url problems:detail problem.id %}>{{ problema_text }} {{ problem.title }}</a>
 				({% blocktrans count s_list|length as counter %} {{ counter }} envío{{ counter|pluralize }}
 				{% plural %} {{ counter }} envíos {% endblocktrans %}  )
 			{% endwith %}
@@ -76,12 +90,16 @@ de los cuales has resuelto correctamente <span id="num">{{ num_resueltos_ok }}</
 {% else %}
 	{% trans "Aún no has enviado ningún resultado" %}.
 {% endif %}
+
+{% endif %}
+
 </div>
+<!-- Esto habría que ponerlos por categorias... -->
 {% if prob_cansolve or prob_nextsolve %}
 {% trans "Estos son los próximos a realizar" %}:
 <div id="tosolveproblemlist" class="problemlist">
 	<ul>
-	{% for prob in prob_cansolve %}
+	{% for prob in prob_cansolve %} <!-- estas listas no estan bien. no muestra los enlaces... -->
 		<li id='cansolve'> <a href={% url 'problems:detail' prob.id %}>{{ problema_text }} {{ prob.title }}</a> </li>
 	{% endfor %}
 	{% for prob in prob_nextsolve %}
