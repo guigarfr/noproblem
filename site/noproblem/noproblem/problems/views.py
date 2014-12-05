@@ -370,9 +370,8 @@ def sendresult(request, prob_id):
 	        usuario.save()
     
    	# Add new solve to database
-	if not usuario.user.is_staff:
-	    s = Solves(user=usuario, prob=pr,date=when, time=solving_time, is_correct=correct)
-	    s.save()
+	s = Solves(user=usuario, prob=pr,date=when, time=solving_time, is_correct=correct)
+	s.save()
 	
 	# Always return an HttpResponseRedirect after successfully dealing
 	# with POST data. This prevents data from being posted twice if a
@@ -390,9 +389,13 @@ def stats(request, prob_id):
     # Compute variables for context
     solves_list = Solves.objects.filter(prob=pr)
     
+    print "Despues: Tengo %d solves_list elements" % solves_list.count()
+    
     # No vamos a contar aquellas resoluciones que son de miembros administrativo
     if not request.user.is_staff:
 	    solves_list = solves_list.exclude(user__user__is_staff=True)
+	    
+    print "Despues: Tengo %d solves_list elements" % solves_list.count()
     
     context['solves_list'] = solves_list
     num=solves_list.count()  
