@@ -392,6 +392,12 @@ def deltar(lista):
 	trayec2=trayec1-pos
 	trayec=(trayec1-lista[0])+trayec2
 	return [pos,trayec]
+	
+def prova_datos():
+	return [2,4,5,6]
+
+def prova_result(list):
+	return [list[0]]
 
 
 
