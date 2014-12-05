@@ -199,65 +199,69 @@ def detail(request, prob_id):
 def user_detail(request):
 	# Obtener lista de problemas global
 	all_problems = Problem.objects.all()
-	solves_problemsolved=Solves.objects.select_related('user').filter(user=request.user)
+	resolutions = Solves.objects.filter(user=request.user).all()
 	solved_problems=get_problems_solved(request.user)
 	tosolve_problems = list(set(all_problems) - set(solved_problems))
 	cansolve_problems=get_problems_cansolve(request.user)
 	nextsolve_problems = list(set(tosolve_problems) - set(cansolve_problems))
 	
-	n_problems = Problem.objects.count()
+	n_problems = all_problems.count()
 	
 	# Numero de resoluciones correctas e incorrectas global
-	n_ok = solves_problemsolved.filter(is_correct = True).count()
-	n_nok = solves_problemsolved.count() - n_ok
-	if (n_ok > 0):
+	n_all = resolutions.count()
+	n_ok = resolutions.filter(is_correct = True).count()
+	n_nok = n_all - n_ok
+	if (n_problems > 0):
 		n_pct_ok = n_ok / n_problems
 	else:
 		n_pct_ok = 0
-	if (n_nok > 0):
+	if (n_problems > 0):
 		n_pct_nok = n_nok / n_problems
 	else:
 		n_pct_nok = 0
 		
+	# Obtengo los ids porque yo no se si van seguidos, o han habido borrados.
+	problem_ids = list(all_problems.values_list('id',flat=True).distinct())	
+		
 	# Numero de resoluciones correctas e incorrectas para cada problema
 	n_solved = [0] * n_problems
 	n_solved_ok = [0] * n_problems
-	for i in range(0,solves_problemsolved.count()):
-		pr_id=solves_problemsolved[i].prob.id-1
-		n_solved[pr_id] = n_solved[pr_id]+1
-		n_solved_ok[pr_id] = n_solved_ok[pr_id]+solves_problemsolved[i].is_correct
-		n_solved_false = map(operator.sub, n_solved, n_solved_ok)
-		
-	n_solved_total = sum(x > 0 for x in n_solved)
-	n_solved_total_ok = sum(x > 0 for x in n_solved_ok)
-
+	n_solved_nok = [0] * n_problems
+	for i in range(0,n_all):
+		pr_id=resolutions[i].prob.id
+		array_index = problem_ids.index(pr_id)
+		n_solved[array_index] = n_solved[array_index]+1
+		if resolutions[i].is_correct:
+		    n_solved_ok[array_index] = n_solved_ok[array_index] + 1
+		else:
+		    n_solved_nok[array_index] = n_solved_nok[array_index] + 1
+	
 	# Porcentajes de resolucion de cada problema
 	n_solved_pct_ok = [0.0] * n_problems
 	for i in range(0,n_problems):
 		if(n_solved[i] == 0):
 			n_solved_pct_ok[i] = 0
 		else:
-			n_solved_pct_ok[i] = 1.0 * n_solved_ok[i] / n_solved[i]	
-	n_solved_pct_nok = map(lambda x: 1 - x, n_solved_pct_ok)
+			n_solved_pct_ok[i] = 1.0 * n_solved_ok[i] / n_solved[i]
 	
 	# Vector de listas de resoluciones
-	if (n_solved_total > 0):
+	if (n_all > 0):
 		solved_list_by_problem=n_problems * [None]
 		for i in range(0,n_problems):
-			solved_list_by_problem[i] = solves_problemsolved.filter(prob=i+1)
+			solved_list_by_problem[i] = list(resolutions.filter(prob=problem_ids[i]).all())
 	else:
 		solved_list_by_problem = []
 
-	# Vector de identificador de problema por resolver
-	if (n_solved_total > 0):
-		solved_list_by_problem=n_problems * [None]
-		for i in range(0,n_problems):
-			solved_list_by_problem[i] = solves_problemsolved.filter(prob=i+1)
+	## Vector de identificador de problema por resolver
+	#if (n_solved_total > 0):
+	#	solved_list_by_problem=n_problems * [None]
+	#	for i in range(0,n_problems):
+	#		solved_list_by_problem[i] = solves_problemsolved.filter(prob=i+1)
 	
     #Set context and render call
 	context = Context({
-					  'num_resueltos': n_solved_total,
-					  'num_resueltos_ok': n_solved_total_ok,
+					  'num_resueltos': n_all,
+					  'num_resueltos_ok': n_ok,
 					  'prob_list': all_problems,
 					  'prob_solved': solved_problems,
 					  'prob_unsolved': tosolve_problems,
