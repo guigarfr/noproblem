@@ -15,8 +15,9 @@ def preinicio(request):
 def inicio(request):
 	hoy=datetime.datetime.now().date()
 	ultimos_eventos = Evento.objects.filter(fecha_ini__gte=hoy).order_by('fecha_ini')[:5]
+	pasados_eventos = Evento.objects.filter(fecha_ini__lte=hoy).order_by('fecha_ini')[:5]
 	context = Context({
-					  'ultimos_eventos':ultimos_eventos,
+					  'ultimos_eventos':ultimos_eventos,'pasados_eventos':pasados_eventos,
 					  })
 	return render(request,'inicio.html',context)
 

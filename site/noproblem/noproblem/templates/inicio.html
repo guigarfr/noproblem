@@ -4,11 +4,10 @@
 
 {% block content %}
 
-<!-- 
 <div id="cuadro">
-<div align="center"><img src="{{ MEDIA_URL }}welcome.jpg" width="100%"  align="center"> </img></div>
+<div align="center"><img src="{{ MEDIA_URL }}bdcJose.jpg" width="100%"  align="center"> </img></div>
 </div>
- -->
+
 
 <!-- 
 <div id="cuadro">
@@ -22,6 +21,8 @@ Bar de Ciències<br>Dijous 9 de Maig a les 20 h<br>Biologia Sintètica amb Manel
 </div>
  -->
 
+
+<!-- 
 <div id="slider">
 <input checked type="radio" name="slider" id="slide1" />
 <input type="radio" name="slider" id="slide2" />
@@ -71,6 +72,7 @@ Taller infantil
 <div id="active">
 <label for="slide1"></label><label for="slide2"></label><label for="slide3"></label><label for="slide4"></label><label for="slide5"></label></div>
 </div>
+ -->
 
 
 <div style="text-align:left;"><h2>Te interesa Connecta si...</h2></div>
@@ -84,7 +86,8 @@ eres estudiante y
 necesitas refuerzo con materias de ciencias <div class="showme"><br>te enseñamos a aprenderlas</div></div></a></li>
 
 <li><a href="/didactica/" class="showhim"><div id="cuadro2" style="width:150px;background-color:#BDB76B;">
-eres profesor de ciencias <div class="showme"><br>te ofrecemos <i>software</i> didáctico</div></div></a></li>
+eres profesor de ciencias <div class="showme"><br>te ofrecemos <i>software</i> didáctico
+y te conectamos con las últimas investigaciones en didáctica</div></div></a></li>
 
 <li><a href="/divulgacion/" class="showhim"><div id="cuadro2" style="width:150px;background-color:#4682B4;">eres una institución
 o empresa que necesita actividades de transferencia <div class="showme"><br>
@@ -107,9 +110,10 @@ formativas y te gusta innovar <div class="showme"><br>te invitamos a formar part
 <b>Las tres des: Divulgación, Didáctica y Desarrollo</b>
 </div>
 <div id="cuadro">
-La divulgación de los conceptos de alto nivel
-desarrollados por especialistas, el aprendizaje significativo de las ciencias en las etapas formativas
-y la utilización de los recursos que ofrece una formación científica en cualquier ámbito social
+La divulgación de los conceptos, elementales y de alto nivel,
+desarrollados por especialistas, el pulso a favor de un aprendizaje significativo de las ciencias 
+en las etapas formativas, en contacto con las estrategias didácticas propuestas en las investigaciones, 
+y la utilización de los recursos que ofrece una formación científica en cualquier ámbito social,
 son los tres pilares sobre los que trabaja Connecta. ¡Escoge el tuyo!
 <div align="center">
 <img src="{{ MEDIA_URL }}logo-arbol-blanco.jpg" width="50%" 
@@ -119,7 +123,7 @@ style="border:none;border-radius:50%;"> </img></div>
 <br>
 
 <div id="cuadroup">
-<b>Connecta tu agenda</b>
+<b>Connecta tu agenda - Eventos puntuales y periódicos</b>
 </div>
 
 <div id="cuadro">
@@ -147,13 +151,50 @@ style="border:none;border-radius:50%;"> </img></div>
 {% else %}
 <p>No hay próximos eventos.
 {% endif %}
+</div>
 
+<!-- ultimos eventos -->
+<br>
+<div id="cuadroup">
+<b>Eventos anteriores</b>
+</div>
+
+<div id="cuadro">
+{% if pasados_eventos %}
+	{% for evento in pasados_eventos %}
+<div align="right"><b>{{evento.tipo}}</b></div>
+<br>
+<i>{{ evento.titulo }}</i>
+<p>{{ evento.contenido_generico|safe|linebreaksbr }}
+	{% if evento.contenido_especifico %}
+<div class="showhimtext">
+<div style="color:gray;"><b>Leer más</b></div>
+<div class="showmetext" id="cuadro">
+{{ evento.contenido_especifico|safe|linebreaksbr }}
+</div></div>
+	{% endif %}
+<p><div id="coords">{{evento.fecha_ini|date:'H:i'}}-{{evento.fecha_final|date:'H:i'}}. 
+{{evento.lugar}},
+{% if evento.enlace_direccion %}
+ <a href="{{evento.enlace_direccion}}"> {{evento.direccion}}</a>,
+{% endif %}
+ {{evento.ciudad}}, 
+{{evento.fecha_ini|date:'d-m-Y'}}.</div>
+<br>
+	{% endfor %}
+{% else %}
+<p>No eventos.
+{% endif %}
 
 </div>
+<!-- fin ultimos eventos -->
+
+
 </div>
 
 <div id="divb">
 
+<!-- 
 <div id="cuadroup">
 <b>Encén la bombeta</b>
 </div>
@@ -179,14 +220,26 @@ setTimeout("rotar();",2000);
 </script>
 <div id="rotando"></div><script type="text/javascript">rotar();</script>
 </div>
+
 <p>
+ -->
+
 <!-- Twitter -->
+
+<div id="cuadroup">
+<b>Síguenos en Twitter</b>
+</div>
 
 <a class="twitter-timeline" href="https://twitter.com/connectacpc" data-widget-id="317316659083886593" height="400">
 Tweets por @connectacpc</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
 if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";
 fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<p>
+<div id="cuadroup">
+<b>Y también en Facebook</b>
+</div>
 
 <!-- Facebook -->
 

@@ -114,22 +114,23 @@ font-weight:normal;font-size:16pt;font-family:Annie Use Your Telescope; color:#8
 
 
 
-html{background-color:#F0F0F0;
+html{background-color:#DCDCDC;
 }
 body{
 		/*background: #F0F0F0;*/
 	  background:white;
       /*font: 14px Trebuchet MS, Trebuchet, Helvetica, Arial;*/
-      font-family: Istok Web;
+      /* font-family: Istok Web; */
+      font-family: 'Raleway', sans-serif;
       font-size:14px;
 	  line-height: 130%;
-	  margin-top: 0px;
+	  margin-top: 10px;;
       margin-right: auto;
       margin-bottom: 0px;
       margin-left: auto; /*márgenes del body respecto al html completo*/
       padding: 10px 20px 50px 20px;/*márgenes del texto dentro del body top right bottom left*/
-      border-left:solid 1px;
-      border-right:solid 1px;
+      border-left:none;
+      border-right:none;
       border-color:black;  
       border-bottom:none; 
       text-align:center;
@@ -256,7 +257,7 @@ color:black;font-weight:bold;}
 /*nuevo submenu**********************/
 
   .mi-menu  {
-    border-radius: 5px;
+    border-radius: 0px;
     list-style-type: none;
     margin: 0; /* si queremos centrarlo */
     margin-top:100px;
@@ -306,6 +307,7 @@ color:black;font-weight:bold;}
     border-radius: 0 0 5px 5px;
     left: 0;
     margin: 0;
+    text-align: left;
     opacity: 0; /* no son visibles */
     position: absolute;
     top: 40px; /* se ubican debajo del enlace principal */
