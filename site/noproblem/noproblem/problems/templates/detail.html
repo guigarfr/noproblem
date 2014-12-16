@@ -56,7 +56,7 @@ function countdown( elementName, minutes, seconds )
     }
 
     element = document.getElementById( elementName );
-    endTime = (+new Date) + 10000 * (60*minutes + seconds) + 500;
+    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
     updateTimer();
 }
 
@@ -84,8 +84,8 @@ function disablesend() {
 function startTimer()
 {
 	// set timer to 5 minutes = 1000*60*5
-	myTimer=setTimeout(function(){disablesend()},1000*60*1);
-	countdown( "countdowntimer", 1, 0 )
+	myTimer=setTimeout(function(){disablesend()},1000*60*10);
+	countdown( "countdowntimer", 10, 0 )
 }
 
 
