@@ -303,6 +303,43 @@ def ew5(lista):
 	F=-0.5*float(lista[0]*(lista[1]**2)/lista[2])
 	return [F]
 
+#un coche va a una velocidad (kmh) de tanto, y al cabo de un rato a tanto (kmh). Que energia ha consumido el motor para hacer esta aceleracion.
+
+def ew6_datos():
+	lista=[]
+	masa=randint(500,1000)
+	veli=randint(50,60)
+	velf=randint(100,120)
+	lista.extend([masa,veli,velf])
+	return lista
+
+def ew6(lista):
+	lista[0]=float(lista[0])
+	lista[1]=float(lista[1])
+	lista[2]=float(lista[2])
+	W=0.5*float(lista[0]*((lista[2]*10/36)**2-(lista[1]*10/36)**2))
+	return [W]
+
+#tengo un tonel de tantos kg, para subirlo a un cambion por una rampa de tantos metros hago una fuerza de tanto, mientras que 
+#para subirlo a pulso hago una fuerza de tanto. si el cambion esta a tantos metros del suelo, calcula cuando hare mas trabajo,
+#si subiendolo a pulso o por la rampa. escribe el resultado del trabajo mayor.
+
+def ew7_datos():
+	lista=[]
+	Frampa=float(randint(100,500))
+	Fpulso=float(randint(500,1000))
+	drampa=float(randint(2,10))
+	altura=float(randint(1,3))
+	lista.extend([Frampa,Fpulso,drampa,altura])
+	return lista
+
+def ew7(lista):
+	Wrampa=lista[0]*lista[2]
+	Wpulso=lista[1]*lista[3]
+	if Wrampa >= Wpulso:
+		return [Wrampa]
+	else:
+		return [Wpulso]
 
 	
 #para prueba entre nuestros amigos sumas y restas################################
